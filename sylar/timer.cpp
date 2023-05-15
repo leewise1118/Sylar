@@ -170,4 +170,8 @@ bool TimerManager::detectClockRollover( uint64_t now_ms ) {
     m_previouseTime = now_ms;
     return rollover;
 }
+bool TimerManager::hasTimer() {
+    MutexType::ReadLock Rlock( m_mutex );
+    return !m_timers.empty();
+}
 } // namespace sylar

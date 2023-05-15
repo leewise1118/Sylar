@@ -51,8 +51,12 @@ void test1() {
     sylar::IOManager iom;
     iom.schedule( &test_fiber );
 }
+void test_timer() {
+    sylar::IOManager iom( 2 );
+    iom.addTimer( 500, []() { SYLAR_LOG_INFO( g_logger ) << "hello timer"; } );
+}
 
 int main() {
-    test1();
+    test_timer();
     return 0;
 }

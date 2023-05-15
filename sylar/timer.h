@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <memory>
 #include <set>
+#include <vector>
 
 namespace sylar {
 class TimerManager;
@@ -49,6 +50,7 @@ class TimerManager {
                                   bool                recurring = false );
     uint64_t   getNextTimer();
     void       listExpiredCb( std::vector<Func> &cbs );
+    bool       hasTimer();
 
   protected:
     virtual void onTimeInsertedAtFront() = 0; // 插入到最前端，即时间最短
