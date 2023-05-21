@@ -6,18 +6,6 @@
 #include <system_error>
 #include <ucontext.h>
 
-/*
-typedef struct ucontext_t {
-    unsigned long int                    __ctx( uc_flags );
-    struct ucontext_t                   *uc_link; //指向上下文，即其他协程
-    stack_t                              uc_stack;//该上下文使用的栈
-    mcontext_t                           uc_mcontext;//上下文
-    sigset_t                             uc_sigmask;//上下文中的阻塞信息
-    struct _libc_fpstate                 __fpregs_mem;
-    __extension__ unsigned long long int __ssp[ 4 ];
-} ucontext_t;
-*/
-
 namespace sylar {
 
 // 继承enable_shared_from_this类，获取当前类的智能指针，但是不可以在栈上去创建对象了，因为它一定要是智能指针的成员

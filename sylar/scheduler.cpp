@@ -6,7 +6,8 @@ namespace sylar {
 
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME( "system" );
 static thread_local Scheduler *t_scheduler = nullptr; // 当前线程的协程调度器
-static thread_local Fiber *t_fiber = nullptr; // 协程调度器的调度工作线程
+static thread_local Fiber *t_scheduler_fiber =
+    nullptr; // 协程调度器的调度工作线程
 
 // 返回协程调度器
 Scheduler *Scheduler::GetThis() {
@@ -14,7 +15,7 @@ Scheduler *Scheduler::GetThis() {
 }
 // 返回调度工作协程
 Fiber *Scheduler::GetMainFiber() {
-    return t_fiber;
+    return t_scheduler_fiber;
 }
 
 Scheduler::Scheduler( size_t threads, bool use_caller, const std::string &name )
@@ -39,8 +40,8 @@ Scheduler::Scheduler( size_t threads, bool use_caller, const std::string &name )
         Thread::SetName( m_name );
 
         // 当前线程的执行协程切换为当前协程
-        t_fiber      = m_rootFiber.get();
-        m_rootThread = sylar::GetThreadId();
+        t_scheduler_fiber = m_rootFiber.get();
+        m_rootThread      = sylar::GetThreadId();
         m_threadIds.push_back( m_rootThread );
     } else {
         m_rootThread = -1;
@@ -49,48 +50,43 @@ Scheduler::Scheduler( size_t threads, bool use_caller, const std::string &name )
 }
 
 Scheduler::~Scheduler() {
-    SYLAR_LOG_DEBUG( g_logger ) << "Scheduler::~Scheduler()";
     SYLAR_ASSERT( m_stopping );
     if ( GetThis() == this ) {
         t_scheduler = nullptr;
     }
 }
 void Scheduler::start() {
-    SYLAR_LOG_DEBUG( g_logger ) << "Scheduler::start() ";
-    {
-        MutexType::Lock lock( m_mutex );
-        if ( !m_stopping ) {
-            // 正在执行状态
-            return;
-        }
-        m_stopping = false;
-        SYLAR_ASSERT( m_threads.empty() );
-
-        // 开始调度，创建调度线程池
-        m_threads.resize( m_threadCount );
-        // 分配线程到线程池，并绑定各自的实例
-        for ( size_t i = 0; i < m_threadCount; i++ ) {
-            m_threads[ i ] =
-                std::make_shared<Thread>( std::bind( &Scheduler::run, this ),
-                                          m_name + "_" + std::to_string( i ) );
-            m_threadIds.push_back( m_threads[ i ]->getId() );
-        }
+    MutexType::Lock lock( m_mutex );
+    if ( !m_stopping ) {
+        // 正在执行状态
+        return;
     }
+    m_stopping = false;
+    SYLAR_ASSERT( m_threads.empty() );
+
+    // 开始调度，创建调度线程池
+    m_threads.resize( m_threadCount );
+    // 分配线程到线程池，并绑定各自的实例
+    for ( size_t i = 0; i < m_threadCount; i++ ) {
+        m_threads[ i ] =
+            std::make_shared<Thread>( std::bind( &Scheduler::run, this ),
+                                      m_name + "_" + std::to_string( i ) );
+        m_threadIds.push_back( m_threads[ i ]->getId() );
+    }
+    lock.unlock();
 }
 void Scheduler::stop() {
-    SYLAR_LOG_DEBUG( g_logger ) << "Scheduler::stop()";
     m_autoStop = true;
 
-    //
     if ( m_rootFiber && m_threadCount == 0 &&
          ( m_rootFiber->getState() == Fiber::TERM ||
            m_rootFiber->getState() == Fiber::INIT ) ) {
+        SYLAR_LOG_INFO( g_logger ) << this << " stopped";
         m_stopping = true;
         if ( stopping() ) {
             return;
         }
     }
-    bool exit_on_this_fiber = false;
     if ( m_rootThread != -1 ) {
         SYLAR_ASSERT( GetThis() == this );
 
@@ -103,6 +99,8 @@ void Scheduler::stop() {
     }
     if ( m_rootFiber ) {
         tickle();
+    }
+    if ( m_rootFiber ) {
         if ( !stopping() ) {
             m_rootFiber->call();
         }
@@ -115,16 +113,13 @@ void Scheduler::stop() {
     for ( auto &i : thrs ) {
         i->join();
     }
-    if ( stopping() ) {
-        return;
-    }
 }
 void Scheduler::run() {
-    SYLAR_LOG_DEBUG( g_logger ) << "Scheduler::run()";
+    SYLAR_LOG_DEBUG( g_logger ) << m_name << " run";
     setThis();
     // 判断线程是否在线程池里,如果不在，则设置主协程
     if ( GetThreadId() != m_rootThread ) {
-        t_fiber = Fiber::GetThis().get();
+        t_scheduler_fiber = Fiber::GetThis().get();
     }
 
     Fiber::ptr idle_fiber =
@@ -134,6 +129,7 @@ void Scheduler::run() {
     while ( true ) {
         task.reset();
         bool tickle_me = false;
+        bool is_active = false;
         // 分配协程
         {
             MutexType::Lock lock( m_mutex );
@@ -155,6 +151,7 @@ void Scheduler::run() {
                 task = *it;
                 m_fibers.erase( it ); // 任务列表移除任务
                 ++m_activeThreadCount;
+                is_active = true;
                 break;
             }
             tickle_me |= it != m_fibers.end();
@@ -181,6 +178,10 @@ void Scheduler::run() {
             }
             task.reset();
         } else {
+            if ( is_active ) {
+                --m_activeThreadCount;
+                continue;
+            }
             if ( idle_fiber->getState() == Fiber::TERM ) {
                 SYLAR_LOG_INFO( g_logger ) << "idle fiber term";
                 break;

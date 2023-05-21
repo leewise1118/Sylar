@@ -20,3 +20,8 @@
             << sylar::BacktraceToString( 100, 2, "   " );                      \
         assert( x );                                                           \
     }
+
+// LIKCLY宏的封装，告诉编译器优化，条件大概率成立
+#define SYLAR_LIKELY( x ) __builtin_expect( !!( x ), 1 )
+// LIKCLY宏的封装，告诉编译器优化，条件大概率不成立
+#define SYLAR_UNLIKELY( x ) __builtin_expect( !!( x ), 0 )
