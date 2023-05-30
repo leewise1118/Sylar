@@ -115,17 +115,6 @@ class Scheduler {
         }
     }
 
-  protected:
-    virtual void tickle(); // 通知各调度线程的调度协程有新任务
-    void         run();
-    virtual bool stopping();
-    virtual void idle();
-
-    void setThis();
-    bool hasIdleThread() {
-        return m_idleThreadCount > 0;
-    }
-
   private:
     /**
      * @brief 添加任务 no-thread-safe
@@ -140,6 +129,17 @@ class Scheduler {
             m_fibers.push_back( task );
         }
         return need_tickle;
+    }
+
+  protected:
+    virtual void tickle(); // 通知协程调度器有新任务
+    void         run();    // 协程调度函数
+    virtual bool stopping();
+    virtual void idle(); // 协程无任务可调度时执行idle协程
+
+    void setThis();
+    bool hasIdleThread() {
+        return m_idleThreadCount > 0;
     }
 
   private:

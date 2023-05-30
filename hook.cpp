@@ -1,4 +1,5 @@
 #include "hook.h"
+#include "iomanager.h"
 
 namespace sylar {
 
@@ -13,6 +14,7 @@ void hook_init() {
     if ( is_inited ) {
         return;
     }
+    // dlsym 动态库里取函数
 #define XX( name )                                                             \
     name##_f = (name##_fun) dlsym( RTLD_NEXT, #name );                         \
     HOOK_FUN( XX );
@@ -41,8 +43,19 @@ extern "C" {
 #undef XX
 }
 
-typedef unsigned int ( *sleep_fun )( unsigned int seconds );
-extern sleep_fun sleep_f;
+unsigned int sleep( unsigned int seconds ) {
+    if ( !sylar::t_hook_enable ) {
+        return sleep_f( seconds );
+    }
+    sylar::Fiber::ptr fiber = sylar::Fiber::GetThis();
+    sylar::IOManager *iom   = sylar::IOManager::GetThis();
+    // iom->addTimer( seconds * 1000,
+    //                std::bind( &sylar::IOManager::schedule, iom, fiber ) );
+    sylar::Fiber::YieldToHold();
+}
 
-typedef int ( *usleep_fun )( useconds_t usec );
+int usleep( useconds_t usec ) {
+}
+
+extern sleep_fun  sleep_f;
 extern usleep_fun usleep_f;

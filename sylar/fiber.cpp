@@ -4,6 +4,7 @@
 #include "macro.h"
 #include "scheduler.h"
 #include <atomic>
+#include <memory>
 
 namespace sylar {
 
@@ -199,13 +200,12 @@ void Fiber::MainFunc() {
                                     << " fiber_id=" << cur->getId() << std::endl
                                     << sylar::BacktraceToString();
     }
+    std::weak_ptr<Fiber> w_ptr = cur;
+    w_ptr.reset();
+    cur->swapOut();
 
-    auto raw_ptr = cur.get();
-    cur.reset();
-    raw_ptr->swapOut();
-
-    SYLAR_ASSERT2( false, "never reach fiber_id=" +
-                              std::to_string( raw_ptr->getId() ) );
+    SYLAR_ASSERT2( false,
+                   "never reach fiber_id=" + std::to_string( cur->getId() ) );
 }
 
 void Fiber::CallerMainFunc() {

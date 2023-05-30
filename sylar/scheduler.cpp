@@ -19,7 +19,7 @@ Fiber *Scheduler::GetMainFiber() {
 }
 
 Scheduler::Scheduler( size_t threads, bool use_caller, const std::string &name )
-    : m_name( std::move( name ) ) {
+    : m_name( name ) {
     SYLAR_ASSERT( threads > 0 );
     // 初始化一个当前线程的调度协程
     if ( use_caller ) {
@@ -66,7 +66,7 @@ void Scheduler::start() {
 
     // 开始调度，创建调度线程池
     m_threads.resize( m_threadCount );
-    // 分配线程到线程池，并绑定各自的实例
+    // 分配线程到线程池
     for ( size_t i = 0; i < m_threadCount; i++ ) {
         m_threads[ i ] =
             std::make_shared<Thread>( std::bind( &Scheduler::run, this ),
@@ -77,6 +77,7 @@ void Scheduler::start() {
 }
 void Scheduler::stop() {
     m_autoStop = true;
+    SYLAR_LOG_INFO( g_logger ) << "stop()";
 
     if ( m_rootFiber && m_threadCount == 0 &&
          ( m_rootFiber->getState() == Fiber::TERM ||
@@ -122,6 +123,8 @@ void Scheduler::run() {
         t_scheduler_fiber = Fiber::GetThis().get();
     }
 
+    // 创建idle协程
+    SYLAR_LOG_DEBUG( g_logger ) << "create idle fiber";
     Fiber::ptr idle_fiber =
         std::make_shared<Fiber>( std::bind( &Scheduler::idle, this ) );
 
@@ -133,21 +136,21 @@ void Scheduler::run() {
         // 分配协程
         {
             MutexType::Lock lock( m_mutex );
-            auto            it = m_fibers.begin();
+            auto            it = m_fibers.begin(); // 取任务
             while ( it != m_fibers.end() ) {
-                // 任务指定了某个协程执行，但不是当前协程，跳过，通知其他协程执行
+                // 该任务不存在，且指定了线程执行，跳过,查找下一个任务
                 if ( it->threadId != -1 && it->threadId != GetThreadId() ) {
                     ++it;
                     tickle_me = true;
                     continue;
                 }
                 SYLAR_ASSERT( it->fiber || it->cb );
-                // 当前协程正在执行，跳过，不进行处理
+                // 该任务的协程存在，且正在被执行，跳过，查找下一个任务
                 if ( it->fiber && it->fiber->getState() == Fiber::EXEC ) {
                     ++it;
                     continue;
                 }
-                // 找到指定协程，拷贝任务
+                // 找到任务，指定到当前任务。
                 task = *it;
                 m_fibers.erase( it ); // 任务列表移除任务
                 ++m_activeThreadCount;
@@ -156,27 +159,32 @@ void Scheduler::run() {
             }
             tickle_me |= it != m_fibers.end();
         }
+        // 若任务存在，执行tickle()
         if ( tickle_me ) {
             tickle();
         }
-        if ( task.cb ) {
-            task.fiber = std::make_shared<Fiber>( std::move( task.cb ) );
-            task.cb    = nullptr; // 有必要吗？
-                               // Move不是直接把所有权转到task.fiber里面了吗？
-        }
+        // 如果任务是函数，将函数创建成协程
+        // 处理任务中的协程
         if ( task.fiber && ( task.fiber->getState() != Fiber::TERM &&
                              task.fiber->getState() != Fiber::EXCEPT ) ) {
+
+            // 切换到当前协程执行
             task.fiber->swapIn();
             --m_activeThreadCount;
 
-            // 将协程加入任务列表
+            // 将协程加入任务列表,并置于链表最后
             if ( task.fiber->getState() == Fiber::READY ) {
+                SYLAR_LOG_DEBUG( g_logger ) << "setState to Ready";
                 schedule( task.fiber );
             } else if ( task.fiber->getState() != Fiber::TERM &&
                         task.fiber->getState() != Fiber::EXCEPT ) {
+                SYLAR_LOG_DEBUG( g_logger ) << "setState to Hold";
                 task.fiber->setState( Fiber::HOLD );
             }
+
             task.reset();
+        } else if ( task.cb ) {
+            task.fiber->reset( task.cb );
         } else {
             if ( is_active ) {
                 --m_activeThreadCount;

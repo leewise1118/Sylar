@@ -1,4 +1,7 @@
 #pragma once
+#include "fiber.h"
+#include <functional>
+#include <iostream>
 #include <unistd.h>
 
 namespace sylar {
