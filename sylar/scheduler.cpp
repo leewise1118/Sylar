@@ -2,6 +2,7 @@
 #include "macro.h"
 #include "scheduler.h"
 #include "util.h"
+#include <memory>
 namespace sylar {
 
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME( "system" );
@@ -128,7 +129,10 @@ void Scheduler::run() {
     Fiber::ptr idle_fiber =
         std::make_shared<Fiber>( std::bind( &Scheduler::idle, this ) );
 
-    Task task;
+    SYLAR_LOG_DEBUG( g_logger ) << "create call back function fiber";
+    Fiber::ptr cb_fiber;
+    Task       task;
+
     while ( true ) {
         task.reset();
         bool tickle_me = false;
@@ -164,7 +168,6 @@ void Scheduler::run() {
             tickle();
         }
         // 如果任务是函数，将函数创建成协程
-        // 处理任务中的协程
         if ( task.fiber && ( task.fiber->getState() != Fiber::TERM &&
                              task.fiber->getState() != Fiber::EXCEPT ) ) {
 
@@ -184,7 +187,24 @@ void Scheduler::run() {
 
             task.reset();
         } else if ( task.cb ) {
-            task.fiber->reset( task.cb );
+            if ( cb_fiber ) {
+                cb_fiber->reset( task.cb );
+            } else {
+                cb_fiber.reset( new Fiber( task.cb ) );
+            }
+            task.reset();
+            cb_fiber->swapIn();
+            --m_activeThreadCount;
+            if ( cb_fiber->getState() == Fiber::READY ) {
+                schedule( cb_fiber );
+                cb_fiber.reset();
+            } else if ( cb_fiber->getState() == Fiber::EXCEPT ||
+                        cb_fiber->getState() == Fiber::TERM ) {
+                cb_fiber->reset( nullptr );
+            } else { // if(cb_fiber->getState() != Fiber::TERM) {
+                cb_fiber->m_state = Fiber::HOLD;
+                cb_fiber.reset();
+            }
         } else {
             if ( is_active ) {
                 --m_activeThreadCount;

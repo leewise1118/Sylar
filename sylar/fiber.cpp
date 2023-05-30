@@ -96,7 +96,7 @@ Fiber::~Fiber() {
 
 // 重置协程函数，并重置状态
 // INIT，TERM, EXCEPT
-void Fiber::reset( std::function<void()> cb ) {
+void Fiber::reset( FiberFunc cb ) {
     SYLAR_ASSERT( m_stack );
     SYLAR_ASSERT( m_state == TERM || m_state == EXCEPT || m_state == INIT );
     m_cb = cb;
