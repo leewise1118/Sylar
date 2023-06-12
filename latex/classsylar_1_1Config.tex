@@ -1,0 +1,91 @@
+\doxysection{sylar\+::Config Class Reference}
+\hypertarget{classsylar_1_1Config}{}\label{classsylar_1_1Config}\index{sylar::Config@{sylar::Config}}
+
+
+{\ttfamily \#include $<$config.\+h$>$}
+
+
+
+Collaboration diagram for sylar\+::Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classsylar_1_1Config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{Config\+Var\+Base\+::ptr}} $>$ \mbox{\hyperlink{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767}{Config\+Var\+Map}}
+\item 
+typedef \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}} \mbox{\hyperlink{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29}{Mutex\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\static \mbox{\hyperlink{classsylar_1_1ConfigVar}{Config\+Var}}$<$ T $>$\+::ptr \mbox{\hyperlink{classsylar_1_1Config_adde813cb9c68f633c020675e5cd7741a}{Lookup}} (const std\+::string \&name, const T \&default\+\_\+value, const std\+::string \&description=\"{}\"{})
+\item 
+{\footnotesize template$<$class T $>$ }\\static \mbox{\hyperlink{classsylar_1_1ConfigVar}{Config\+Var}}$<$ T $>$\+::ptr \mbox{\hyperlink{classsylar_1_1Config_aee856ec7e648987627713129db3593c4}{Lookup}} (const std\+::string \&name)
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Config_a2493fc15005de6e9c1e680481d734657}{Load\+From\+Yaml}} (const YAML\+::\+Node \&root)
+\item 
+static \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{Config\+Var\+Base\+::ptr}} \mbox{\hyperlink{classsylar_1_1Config_a0cd72efaefdc4cffac4ea7d935a46d0c}{Lookup\+Base}} (const std\+::string \&name)
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Config_a0535f79dd0911d3bd6cd56e75e22410a}{Visit}} (std\+::function$<$ void(\mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{Config\+Var\+Base\+::ptr}})$>$ cb)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767}\label{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767} 
+\index{sylar::Config@{sylar::Config}!ConfigVarMap@{ConfigVarMap}}
+\index{ConfigVarMap@{ConfigVarMap}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{ConfigVarMap}{ConfigVarMap}}
+{\footnotesize\ttfamily typedef std\+::unordered\+\_\+map$<$std\+::string, \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{Config\+Var\+Base\+::ptr}}$>$ \mbox{\hyperlink{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767}{sylar\+::\+Config\+::\+Config\+Var\+Map}}}
+
+\Hypertarget{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29}\label{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29} 
+\index{sylar::Config@{sylar::Config}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}} \mbox{\hyperlink{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29}{sylar\+::\+Config\+::\+Mutex\+Type}}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1Config_a2493fc15005de6e9c1e680481d734657}\label{classsylar_1_1Config_a2493fc15005de6e9c1e680481d734657} 
+\index{sylar::Config@{sylar::Config}!LoadFromYaml@{LoadFromYaml}}
+\index{LoadFromYaml@{LoadFromYaml}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{LoadFromYaml()}{LoadFromYaml()}}
+{\footnotesize\ttfamily void sylar\+::\+Config\+::\+Load\+From\+Yaml (\begin{DoxyParamCaption}\item[{const YAML\+::\+Node \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Config_aee856ec7e648987627713129db3593c4}\label{classsylar_1_1Config_aee856ec7e648987627713129db3593c4} 
+\index{sylar::Config@{sylar::Config}!Lookup@{Lookup}}
+\index{Lookup@{Lookup}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{Lookup()}{Lookup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static \mbox{\hyperlink{classsylar_1_1ConfigVar}{Config\+Var}}$<$ T $>$\+::ptr sylar\+::\+Config\+::\+Lookup (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Config_adde813cb9c68f633c020675e5cd7741a}\label{classsylar_1_1Config_adde813cb9c68f633c020675e5cd7741a} 
+\index{sylar::Config@{sylar::Config}!Lookup@{Lookup}}
+\index{Lookup@{Lookup}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{Lookup()}{Lookup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+static \mbox{\hyperlink{classsylar_1_1ConfigVar}{Config\+Var}}$<$ T $>$\+::ptr sylar\+::\+Config\+::\+Lookup (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const T \&}]{default\+\_\+value,  }\item[{const std\+::string \&}]{description = {\ttfamily \"{}\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Config_a0cd72efaefdc4cffac4ea7d935a46d0c}\label{classsylar_1_1Config_a0cd72efaefdc4cffac4ea7d935a46d0c} 
+\index{sylar::Config@{sylar::Config}!LookupBase@{LookupBase}}
+\index{LookupBase@{LookupBase}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{LookupBase()}{LookupBase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{Config\+Var\+Base\+::ptr}} sylar\+::\+Config\+::\+Lookup\+Base (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Config_a0535f79dd0911d3bd6cd56e75e22410a}\label{classsylar_1_1Config_a0535f79dd0911d3bd6cd56e75e22410a} 
+\index{sylar::Config@{sylar::Config}!Visit@{Visit}}
+\index{Visit@{Visit}!sylar::Config@{sylar::Config}}
+\doxysubsubsection{\texorpdfstring{Visit()}{Visit()}}
+{\footnotesize\ttfamily void sylar\+::\+Config\+::\+Visit (\begin{DoxyParamCaption}\item[{std\+::function$<$ void(\mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{Config\+Var\+Base\+::ptr}})$>$}]{cb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{config_8h}{config.\+h}}\item 
+sylar/\mbox{\hyperlink{config_8cpp}{config.\+cpp}}\end{DoxyCompactItemize}

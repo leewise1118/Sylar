@@ -1,0 +1,267 @@
+\doxysection{sylar\+::Fiber Class Reference}
+\hypertarget{classsylar_1_1Fiber}{}\label{classsylar_1_1Fiber}\index{sylar::Fiber@{sylar::Fiber}}
+
+
+{\ttfamily \#include $<$fiber.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::Fiber\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classsylar_1_1Fiber__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::Fiber\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classsylar_1_1Fiber__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}} \{ \newline
+\mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a5a6fe5b68c3f97031e573ee5afa1bda3}{INIT}}
+, \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a6287bcaf8ba42a1e0134e21d20cda1a8}{HOLD}}
+, \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523acc22c1782e42ddc799479ed5e6020c5d}{EXEC}}
+, \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523afe11192b01883279e41e793362388092}{TERM}}
+, \newline
+\mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a468c79bb239b57c37218c636edd5c049}{READY}}
+, \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523aa515d86e87fbe5d46690359f5dd5fe13}{EXCEPT}}
+ \}
+\item 
+using \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{ptr}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}} $>$
+\item 
+using \mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{Fiber\+Func}} = std\+::function$<$ void()$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1Fiber_afd46ca003a4d7be47922f012472cfedf}{Fiber}} (\mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{Fiber\+Func}} cb, size\+\_\+t stacksize=0, bool use\+\_\+caller=false)
+\item 
+\mbox{\hyperlink{classsylar_1_1Fiber_a2e9a01682c9290b34a103b4f41a7e0d6}{\texorpdfstring{$\sim$}{\string~}\+Fiber}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Fiber_a02c9c0f83efd890d9b9b866e4e47bc1d}{reset}} (\mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{Fiber\+Func}} cb)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Fiber_a4a1f61001070d3e14c274e98fd68e6d8}{swap\+In}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Fiber_a43585923f39c2230fb529229a6eb6d3b}{swap\+Out}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Fiber_a0e2abad4fd10a7f9f6e16fd51d044285}{call}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Fiber_aa9f42925ec8f66eafb481ae453df946b}{back}} ()
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1Fiber_a357f571db2dc90eb942e4e7fef62d251}{get\+Id}} () const
+\item 
+\mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}} \mbox{\hyperlink{classsylar_1_1Fiber_a8b2f1e5ba3a5b94fffa55aa601a22e89}{get\+State}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1Fiber_ac3393ce5d300097a41cd586a2d59ec1f}{set\+State}} (\mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}} state)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Fiber_a600311d8bef1d565f02373d425d7e482}{Set\+This}} (\mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}} \texorpdfstring{$\ast$}{*}f)
+\item 
+static \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber\+::ptr}} \mbox{\hyperlink{classsylar_1_1Fiber_a02312c30aeafa6ed7e0143cfe95f21d2}{Get\+This}} ()
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Fiber_a006c6d7886ce3e7f33edba551cd5a8ce}{Yield\+To\+Ready}} ()
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Fiber_ab5ed450bcf33e2d5fdeee8277e2b78e7}{Yield\+To\+Hold}} ()
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1Fiber_a016827c4ba10c52dbd3e466389dd27c7}{Total\+Fibers}} ()
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1Fiber_a6231bf3c60b4adea841575670cdf2fc3}{Get\+Fiber\+Id}} ()
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Fiber_a8cb4bce15e48068c01034f2442050256}{Main\+Func}} ()
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Fiber_a440b94d2c4a71dd68c0f3f0d25880d57}{Caller\+Main\+Func}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsylar_1_1Fiber_afb88c77ea5daaefa6c8fa6bc5b9aa5c1}{Scheduler}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}\label{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097} 
+\index{sylar::Fiber@{sylar::Fiber}!FiberFunc@{FiberFunc}}
+\index{FiberFunc@{FiberFunc}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{FiberFunc}{FiberFunc}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{sylar\+::\+Fiber\+::\+Fiber\+Func}} =  std\+::function$<$void()$>$}
+
+\Hypertarget{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}\label{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86} 
+\index{sylar::Fiber@{sylar::Fiber}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{sylar\+::\+Fiber\+::ptr}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}}$>$}
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523} 
+\index{sylar::Fiber@{sylar::Fiber}!State@{State}}
+\index{State@{State}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{sylar\+::\+Fiber\+::\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INIT@{INIT}!sylar::Fiber@{sylar::Fiber}}\index{sylar::Fiber@{sylar::Fiber}!INIT@{INIT}}}\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a5a6fe5b68c3f97031e573ee5afa1bda3}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a5a6fe5b68c3f97031e573ee5afa1bda3} 
+INIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HOLD@{HOLD}!sylar::Fiber@{sylar::Fiber}}\index{sylar::Fiber@{sylar::Fiber}!HOLD@{HOLD}}}\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a6287bcaf8ba42a1e0134e21d20cda1a8}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a6287bcaf8ba42a1e0134e21d20cda1a8} 
+HOLD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXEC@{EXEC}!sylar::Fiber@{sylar::Fiber}}\index{sylar::Fiber@{sylar::Fiber}!EXEC@{EXEC}}}\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523acc22c1782e42ddc799479ed5e6020c5d}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523acc22c1782e42ddc799479ed5e6020c5d} 
+EXEC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TERM@{TERM}!sylar::Fiber@{sylar::Fiber}}\index{sylar::Fiber@{sylar::Fiber}!TERM@{TERM}}}\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523afe11192b01883279e41e793362388092}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523afe11192b01883279e41e793362388092} 
+TERM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READY@{READY}!sylar::Fiber@{sylar::Fiber}}\index{sylar::Fiber@{sylar::Fiber}!READY@{READY}}}\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a468c79bb239b57c37218c636edd5c049}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a468c79bb239b57c37218c636edd5c049} 
+READY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXCEPT@{EXCEPT}!sylar::Fiber@{sylar::Fiber}}\index{sylar::Fiber@{sylar::Fiber}!EXCEPT@{EXCEPT}}}\Hypertarget{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523aa515d86e87fbe5d46690359f5dd5fe13}\label{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523aa515d86e87fbe5d46690359f5dd5fe13} 
+EXCEPT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1Fiber_afd46ca003a4d7be47922f012472cfedf}\label{classsylar_1_1Fiber_afd46ca003a4d7be47922f012472cfedf} 
+\index{sylar::Fiber@{sylar::Fiber}!Fiber@{Fiber}}
+\index{Fiber@{Fiber}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{Fiber()}{Fiber()}}
+{\footnotesize\ttfamily sylar\+::\+Fiber\+::\+Fiber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{Fiber\+Func}}}]{cb,  }\item[{size\+\_\+t}]{stacksize = {\ttfamily 0},  }\item[{bool}]{use\+\_\+caller = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Fiber_a2e9a01682c9290b34a103b4f41a7e0d6}\label{classsylar_1_1Fiber_a2e9a01682c9290b34a103b4f41a7e0d6} 
+\index{sylar::Fiber@{sylar::Fiber}!````~Fiber@{\texorpdfstring{$\sim$}{\string~}Fiber}}
+\index{````~Fiber@{\texorpdfstring{$\sim$}{\string~}Fiber}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Fiber()}{\string~Fiber()}}
+{\footnotesize\ttfamily sylar\+::\+Fiber\+::\texorpdfstring{$\sim$}{\string~}\+Fiber (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1Fiber_aa9f42925ec8f66eafb481ae453df946b}\label{classsylar_1_1Fiber_aa9f42925ec8f66eafb481ae453df946b} 
+\index{sylar::Fiber@{sylar::Fiber}!back@{back}}
+\index{back@{back}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Fiber_a0e2abad4fd10a7f9f6e16fd51d044285}\label{classsylar_1_1Fiber_a0e2abad4fd10a7f9f6e16fd51d044285} 
+\index{sylar::Fiber@{sylar::Fiber}!call@{call}}
+\index{call@{call}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{call()}{call()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::call (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Fiber_a440b94d2c4a71dd68c0f3f0d25880d57}\label{classsylar_1_1Fiber_a440b94d2c4a71dd68c0f3f0d25880d57} 
+\index{sylar::Fiber@{sylar::Fiber}!CallerMainFunc@{CallerMainFunc}}
+\index{CallerMainFunc@{CallerMainFunc}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{CallerMainFunc()}{CallerMainFunc()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::\+Caller\+Main\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_a6231bf3c60b4adea841575670cdf2fc3}\label{classsylar_1_1Fiber_a6231bf3c60b4adea841575670cdf2fc3} 
+\index{sylar::Fiber@{sylar::Fiber}!GetFiberId@{GetFiberId}}
+\index{GetFiberId@{GetFiberId}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{GetFiberId()}{GetFiberId()}}
+{\footnotesize\ttfamily uint64\+\_\+t sylar\+::\+Fiber\+::\+Get\+Fiber\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_a357f571db2dc90eb942e4e7fef62d251}\label{classsylar_1_1Fiber_a357f571db2dc90eb942e4e7fef62d251} 
+\index{sylar::Fiber@{sylar::Fiber}!getId@{getId}}
+\index{getId@{getId}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily uint64\+\_\+t sylar\+::\+Fiber\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Fiber_a8b2f1e5ba3a5b94fffa55aa601a22e89}\label{classsylar_1_1Fiber_a8b2f1e5ba3a5b94fffa55aa601a22e89} 
+\index{sylar::Fiber@{sylar::Fiber}!getState@{getState}}
+\index{getState@{getState}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}} sylar\+::\+Fiber\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Fiber_a02312c30aeafa6ed7e0143cfe95f21d2}\label{classsylar_1_1Fiber_a02312c30aeafa6ed7e0143cfe95f21d2} 
+\index{sylar::Fiber@{sylar::Fiber}!GetThis@{GetThis}}
+\index{GetThis@{GetThis}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{GetThis()}{GetThis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber\+::ptr}} sylar\+::\+Fiber\+::\+Get\+This (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_a8cb4bce15e48068c01034f2442050256}\label{classsylar_1_1Fiber_a8cb4bce15e48068c01034f2442050256} 
+\index{sylar::Fiber@{sylar::Fiber}!MainFunc@{MainFunc}}
+\index{MainFunc@{MainFunc}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{MainFunc()}{MainFunc()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::\+Main\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_a02c9c0f83efd890d9b9b866e4e47bc1d}\label{classsylar_1_1Fiber_a02c9c0f83efd890d9b9b866e4e47bc1d} 
+\index{sylar::Fiber@{sylar::Fiber}!reset@{reset}}
+\index{reset@{reset}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{Fiber\+Func}}}]{cb }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Fiber_ac3393ce5d300097a41cd586a2d59ec1f}\label{classsylar_1_1Fiber_ac3393ce5d300097a41cd586a2d59ec1f} 
+\index{sylar::Fiber@{sylar::Fiber}!setState@{setState}}
+\index{setState@{setState}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}}}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Fiber_a600311d8bef1d565f02373d425d7e482}\label{classsylar_1_1Fiber_a600311d8bef1d565f02373d425d7e482} 
+\index{sylar::Fiber@{sylar::Fiber}!SetThis@{SetThis}}
+\index{SetThis@{SetThis}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{SetThis()}{SetThis()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::\+Set\+This (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}} \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_a4a1f61001070d3e14c274e98fd68e6d8}\label{classsylar_1_1Fiber_a4a1f61001070d3e14c274e98fd68e6d8} 
+\index{sylar::Fiber@{sylar::Fiber}!swapIn@{swapIn}}
+\index{swapIn@{swapIn}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{swapIn()}{swapIn()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::swap\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Fiber_a43585923f39c2230fb529229a6eb6d3b}\label{classsylar_1_1Fiber_a43585923f39c2230fb529229a6eb6d3b} 
+\index{sylar::Fiber@{sylar::Fiber}!swapOut@{swapOut}}
+\index{swapOut@{swapOut}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{swapOut()}{swapOut()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::swap\+Out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Fiber_a016827c4ba10c52dbd3e466389dd27c7}\label{classsylar_1_1Fiber_a016827c4ba10c52dbd3e466389dd27c7} 
+\index{sylar::Fiber@{sylar::Fiber}!TotalFibers@{TotalFibers}}
+\index{TotalFibers@{TotalFibers}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{TotalFibers()}{TotalFibers()}}
+{\footnotesize\ttfamily uint64\+\_\+t sylar\+::\+Fiber\+::\+Total\+Fibers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_ab5ed450bcf33e2d5fdeee8277e2b78e7}\label{classsylar_1_1Fiber_ab5ed450bcf33e2d5fdeee8277e2b78e7} 
+\index{sylar::Fiber@{sylar::Fiber}!YieldToHold@{YieldToHold}}
+\index{YieldToHold@{YieldToHold}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{YieldToHold()}{YieldToHold()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::\+Yield\+To\+Hold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Fiber_a006c6d7886ce3e7f33edba551cd5a8ce}\label{classsylar_1_1Fiber_a006c6d7886ce3e7f33edba551cd5a8ce} 
+\index{sylar::Fiber@{sylar::Fiber}!YieldToReady@{YieldToReady}}
+\index{YieldToReady@{YieldToReady}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{YieldToReady()}{YieldToReady()}}
+{\footnotesize\ttfamily void sylar\+::\+Fiber\+::\+Yield\+To\+Ready (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classsylar_1_1Fiber_afb88c77ea5daaefa6c8fa6bc5b9aa5c1}\label{classsylar_1_1Fiber_afb88c77ea5daaefa6c8fa6bc5b9aa5c1} 
+\index{sylar::Fiber@{sylar::Fiber}!Scheduler@{Scheduler}}
+\index{Scheduler@{Scheduler}!sylar::Fiber@{sylar::Fiber}}
+\doxysubsubsection{\texorpdfstring{Scheduler}{Scheduler}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{fiber_8h}{fiber.\+h}}\item 
+sylar/\mbox{\hyperlink{fiber_8cpp}{fiber.\+cpp}}\end{DoxyCompactItemize}

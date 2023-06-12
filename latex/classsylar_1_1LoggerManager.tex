@@ -1,0 +1,84 @@
+\doxysection{sylar\+::Logger\+Manager Class Reference}
+\hypertarget{classsylar_1_1LoggerManager}{}\label{classsylar_1_1LoggerManager}\index{sylar::LoggerManager@{sylar::LoggerManager}}
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+
+
+Collaboration diagram for sylar\+::Logger\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classsylar_1_1LoggerManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{classsylar_1_1SpinLock}{Spin\+Lock}} \mbox{\hyperlink{classsylar_1_1LoggerManager_a7ab32e44979bdd74542fad4fab9324db}{Mutex\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1LoggerManager_a3b0cf9733b081be2f37f7810909b82b6}{Logger\+Manager}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger\+::ptr}} \mbox{\hyperlink{classsylar_1_1LoggerManager_aac0d46872b89dba514e0f2de984166fd}{get\+Logger}} (const std\+::string \&name)
+\item 
+void \mbox{\hyperlink{classsylar_1_1LoggerManager_a90522ba9a1a5d712f364d69fd5c702ef}{init}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger\+::ptr}} \mbox{\hyperlink{classsylar_1_1LoggerManager_ad8939973310207965d4ad19c8ee94973}{get\+Root}} () const
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1LoggerManager_ab5589d9694abcd9975d867c96b12bafe}{to\+Yaml\+String}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1LoggerManager_a7ab32e44979bdd74542fad4fab9324db}\label{classsylar_1_1LoggerManager_a7ab32e44979bdd74542fad4fab9324db} 
+\index{sylar::LoggerManager@{sylar::LoggerManager}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::LoggerManager@{sylar::LoggerManager}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classsylar_1_1SpinLock}{Spin\+Lock}} \mbox{\hyperlink{classsylar_1_1LoggerManager_a7ab32e44979bdd74542fad4fab9324db}{sylar\+::\+Logger\+Manager\+::\+Mutex\+Type}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1LoggerManager_a3b0cf9733b081be2f37f7810909b82b6}\label{classsylar_1_1LoggerManager_a3b0cf9733b081be2f37f7810909b82b6} 
+\index{sylar::LoggerManager@{sylar::LoggerManager}!LoggerManager@{LoggerManager}}
+\index{LoggerManager@{LoggerManager}!sylar::LoggerManager@{sylar::LoggerManager}}
+\doxysubsubsection{\texorpdfstring{LoggerManager()}{LoggerManager()}}
+{\footnotesize\ttfamily sylar\+::\+Logger\+Manager\+::\+Logger\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1LoggerManager_aac0d46872b89dba514e0f2de984166fd}\label{classsylar_1_1LoggerManager_aac0d46872b89dba514e0f2de984166fd} 
+\index{sylar::LoggerManager@{sylar::LoggerManager}!getLogger@{getLogger}}
+\index{getLogger@{getLogger}!sylar::LoggerManager@{sylar::LoggerManager}}
+\doxysubsubsection{\texorpdfstring{getLogger()}{getLogger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger\+::ptr}} sylar\+::\+Logger\+Manager\+::get\+Logger (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LoggerManager_ad8939973310207965d4ad19c8ee94973}\label{classsylar_1_1LoggerManager_ad8939973310207965d4ad19c8ee94973} 
+\index{sylar::LoggerManager@{sylar::LoggerManager}!getRoot@{getRoot}}
+\index{getRoot@{getRoot}!sylar::LoggerManager@{sylar::LoggerManager}}
+\doxysubsubsection{\texorpdfstring{getRoot()}{getRoot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger\+::ptr}} sylar\+::\+Logger\+Manager\+::get\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LoggerManager_a90522ba9a1a5d712f364d69fd5c702ef}\label{classsylar_1_1LoggerManager_a90522ba9a1a5d712f364d69fd5c702ef} 
+\index{sylar::LoggerManager@{sylar::LoggerManager}!init@{init}}
+\index{init@{init}!sylar::LoggerManager@{sylar::LoggerManager}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+Manager\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LoggerManager_ab5589d9694abcd9975d867c96b12bafe}\label{classsylar_1_1LoggerManager_ab5589d9694abcd9975d867c96b12bafe} 
+\index{sylar::LoggerManager@{sylar::LoggerManager}!toYamlString@{toYamlString}}
+\index{toYamlString@{toYamlString}!sylar::LoggerManager@{sylar::LoggerManager}}
+\doxysubsubsection{\texorpdfstring{toYamlString()}{toYamlString()}}
+{\footnotesize\ttfamily std\+::string sylar\+::\+Logger\+Manager\+::to\+Yaml\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{log_8h}{log.\+h}}\item 
+sylar/\mbox{\hyperlink{log_8cpp}{log.\+cpp}}\end{DoxyCompactItemize}

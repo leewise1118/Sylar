@@ -1,0 +1,80 @@
+\doxysection{someelse/someelse.cpp File Reference}
+\hypertarget{someelse_8cpp}{}\label{someelse_8cpp}\index{someelse/someelse.cpp@{someelse/someelse.cpp}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{someelse_8cpp_a8acfd23a345aff63c7bcb3da4bd2465a}{epoll\+\_\+create}} (int size)
+\begin{DoxyCompactList}\small\item\em 创建额外的文件描述符，来唯一标识内核中的这个事件 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{someelse_8cpp_a192b9bf39dddbe56b3a79ab2316a968d}{epoll\+\_\+ctl}} (int epfd, int op, int fd, struct epoll\+\_\+event \texorpdfstring{$\ast$}{*}event)
+\begin{DoxyCompactList}\small\item\em 操作epoll的内核事件表 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{someelse_8cpp_aa43d07f8e2b7057990a422a06f55c115}{epoll\+\_\+wait}} (int epfd, struct epoll\+\_\+event \texorpdfstring{$\ast$}{*}events, int maxevents, int timeout)
+\begin{DoxyCompactList}\small\item\em \+:在一段超时时间内等待一组文件描述符上的事件, 如果检测到事件，就将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{someelse_8cpp_a8acfd23a345aff63c7bcb3da4bd2465a}\label{someelse_8cpp_a8acfd23a345aff63c7bcb3da4bd2465a} 
+\index{someelse.cpp@{someelse.cpp}!epoll\_create@{epoll\_create}}
+\index{epoll\_create@{epoll\_create}!someelse.cpp@{someelse.cpp}}
+\doxysubsubsection{\texorpdfstring{epoll\_create()}{epoll\_create()}}
+{\footnotesize\ttfamily int epoll\+\_\+create (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+创建额外的文件描述符，来唯一标识内核中的这个事件 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & 告诉内核事件表需要多大。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 用于其他所有epoll系统调用的第一个参数，以指定要访问的内核事件表 
+\end{DoxyReturn}
+\Hypertarget{someelse_8cpp_a192b9bf39dddbe56b3a79ab2316a968d}\label{someelse_8cpp_a192b9bf39dddbe56b3a79ab2316a968d} 
+\index{someelse.cpp@{someelse.cpp}!epoll\_ctl@{epoll\_ctl}}
+\index{epoll\_ctl@{epoll\_ctl}!someelse.cpp@{someelse.cpp}}
+\doxysubsubsection{\texorpdfstring{epoll\_ctl()}{epoll\_ctl()}}
+{\footnotesize\ttfamily int epoll\+\_\+ctl (\begin{DoxyParamCaption}\item[{int}]{epfd,  }\item[{int}]{op,  }\item[{int}]{fd,  }\item[{struct epoll\+\_\+event \texorpdfstring{$\ast$}{*}}]{event }\end{DoxyParamCaption})}
+
+
+
+操作epoll的内核事件表 
+
+
+\begin{DoxyParams}{Parameters}
+{\em epfd\+:事件表} & \\
+\hline
+{\em op} & 指定操作类型\+: EPOLL\+\_\+\+CTL\+\_\+\+ADD往事件表中注册fd上的事件 EPOLL\+\_\+\+CTL\+\_\+\+MOD修改fd上的注册事件 EPOLL\+\_\+\+CTL\+\_\+\+DEL删除fd上的注册事件 \\
+\hline
+{\em fd} & 要操作的文件描述符 \\
+\hline
+{\em event\+:指定事件} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int\+:操作成功返回0，失败返回-\/1,并设置errno 
+\end{DoxyReturn}
+\Hypertarget{someelse_8cpp_aa43d07f8e2b7057990a422a06f55c115}\label{someelse_8cpp_aa43d07f8e2b7057990a422a06f55c115} 
+\index{someelse.cpp@{someelse.cpp}!epoll\_wait@{epoll\_wait}}
+\index{epoll\_wait@{epoll\_wait}!someelse.cpp@{someelse.cpp}}
+\doxysubsubsection{\texorpdfstring{epoll\_wait()}{epoll\_wait()}}
+{\footnotesize\ttfamily int epoll\+\_\+wait (\begin{DoxyParamCaption}\item[{int}]{epfd,  }\item[{struct epoll\+\_\+event \texorpdfstring{$\ast$}{*}}]{events,  }\item[{int}]{maxevents,  }\item[{int}]{timeout }\end{DoxyParamCaption})}
+
+
+
+\+:在一段超时时间内等待一组文件描述符上的事件, 如果检测到事件，就将所有就绪的事件从内核事件表中复制到它的第二个参数events指向的数组中。 
+
+
+\begin{DoxyParams}{Parameters}
+{\em epfd\+:内核事件表} & \\
+\hline
+{\em events\+:指定事件} & \\
+\hline
+{\em maxevents\+:最多监听的事件个数} & \\
+\hline
+{\em timeout\+:超时时间设置} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int\+:函数成功时返回就绪的文件描述符的个数，失败时返回-\/1并设置errno 
+\end{DoxyReturn}

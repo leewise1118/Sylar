@@ -1,0 +1,141 @@
+\doxysection{sylar\+::Fd\+Ctx Class Reference}
+\hypertarget{classsylar_1_1FdCtx}{}\label{classsylar_1_1FdCtx}\index{sylar::FdCtx@{sylar::FdCtx}}
+
+
+{\ttfamily \#include $<$fd\+\_\+manager.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::Fd\+Ctx\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classsylar_1_1FdCtx__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::Fd\+Ctx\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classsylar_1_1FdCtx__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classsylar_1_1FdCtx_a2bc0456ac99662a3837bae79bc93702e}{ptr}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1FdCtx}{Fd\+Ctx}} $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1FdCtx_a0247f0cc674433bdc1987a06fe48fb34}{Fd\+Ctx}} (int fd)
+\item 
+\mbox{\hyperlink{classsylar_1_1FdCtx_ae671c614e53af7c5ceb40e8dfc0a45e1}{\texorpdfstring{$\sim$}{\string~}\+Fd\+Ctx}} ()
+\item 
+bool \mbox{\hyperlink{classsylar_1_1FdCtx_ad6e7f2b2d6946f85ace9e3c2237c2456}{init}} ()
+\item 
+bool \mbox{\hyperlink{classsylar_1_1FdCtx_ab228b84fc49eac70fdcfaa01a3189b14}{is\+Init}} () const
+\item 
+bool \mbox{\hyperlink{classsylar_1_1FdCtx_af9986ca313fb63a68bbf73f15adfb2ff}{is\+Socket}} () const
+\item 
+bool \mbox{\hyperlink{classsylar_1_1FdCtx_a46f8a7b8409c76bba7a90692de85a297}{is\+Close}} () const
+\item 
+bool \mbox{\hyperlink{classsylar_1_1FdCtx_a734a12816c846353a5c97faafd21a22e}{close}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1FdCtx_a56adbad167928b7090e3b1f457dac872}{set\+User\+Nonblock}} (bool v)
+\item 
+bool \mbox{\hyperlink{classsylar_1_1FdCtx_af09ed2a6e534b1e412940916a18751f3}{get\+User\+Nonblock}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1FdCtx_aa6d966aa221131dd9397d097052debbe}{set\+Timeout}} (int type, uint64\+\_\+t v)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1FdCtx_a794e1f791e88e19005af78565fd665e7}{get\+Timeout}} (int type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1FdCtx_a2bc0456ac99662a3837bae79bc93702e}\label{classsylar_1_1FdCtx_a2bc0456ac99662a3837bae79bc93702e} 
+\index{sylar::FdCtx@{sylar::FdCtx}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1FdCtx_a2bc0456ac99662a3837bae79bc93702e}{sylar\+::\+Fd\+Ctx\+::ptr}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1FdCtx}{Fd\+Ctx}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1FdCtx_a0247f0cc674433bdc1987a06fe48fb34}\label{classsylar_1_1FdCtx_a0247f0cc674433bdc1987a06fe48fb34} 
+\index{sylar::FdCtx@{sylar::FdCtx}!FdCtx@{FdCtx}}
+\index{FdCtx@{FdCtx}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{FdCtx()}{FdCtx()}}
+{\footnotesize\ttfamily sylar\+::\+Fd\+Ctx\+::\+Fd\+Ctx (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1FdCtx_ae671c614e53af7c5ceb40e8dfc0a45e1}\label{classsylar_1_1FdCtx_ae671c614e53af7c5ceb40e8dfc0a45e1} 
+\index{sylar::FdCtx@{sylar::FdCtx}!````~FdCtx@{\texorpdfstring{$\sim$}{\string~}FdCtx}}
+\index{````~FdCtx@{\texorpdfstring{$\sim$}{\string~}FdCtx}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}FdCtx()}{\string~FdCtx()}}
+{\footnotesize\ttfamily sylar\+::\+Fd\+Ctx\+::\texorpdfstring{$\sim$}{\string~}\+Fd\+Ctx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1FdCtx_a734a12816c846353a5c97faafd21a22e}\label{classsylar_1_1FdCtx_a734a12816c846353a5c97faafd21a22e} 
+\index{sylar::FdCtx@{sylar::FdCtx}!close@{close}}
+\index{close@{close}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily bool sylar\+::\+Fd\+Ctx\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1FdCtx_a794e1f791e88e19005af78565fd665e7}\label{classsylar_1_1FdCtx_a794e1f791e88e19005af78565fd665e7} 
+\index{sylar::FdCtx@{sylar::FdCtx}!getTimeout@{getTimeout}}
+\index{getTimeout@{getTimeout}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{getTimeout()}{getTimeout()}}
+{\footnotesize\ttfamily uint64\+\_\+t sylar\+::\+Fd\+Ctx\+::get\+Timeout (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1FdCtx_af09ed2a6e534b1e412940916a18751f3}\label{classsylar_1_1FdCtx_af09ed2a6e534b1e412940916a18751f3} 
+\index{sylar::FdCtx@{sylar::FdCtx}!getUserNonblock@{getUserNonblock}}
+\index{getUserNonblock@{getUserNonblock}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{getUserNonblock()}{getUserNonblock()}}
+{\footnotesize\ttfamily bool sylar\+::\+Fd\+Ctx\+::get\+User\+Nonblock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1FdCtx_ad6e7f2b2d6946f85ace9e3c2237c2456}\label{classsylar_1_1FdCtx_ad6e7f2b2d6946f85ace9e3c2237c2456} 
+\index{sylar::FdCtx@{sylar::FdCtx}!init@{init}}
+\index{init@{init}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool sylar\+::\+Fd\+Ctx\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1FdCtx_a46f8a7b8409c76bba7a90692de85a297}\label{classsylar_1_1FdCtx_a46f8a7b8409c76bba7a90692de85a297} 
+\index{sylar::FdCtx@{sylar::FdCtx}!isClose@{isClose}}
+\index{isClose@{isClose}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{isClose()}{isClose()}}
+{\footnotesize\ttfamily bool sylar\+::\+Fd\+Ctx\+::is\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1FdCtx_ab228b84fc49eac70fdcfaa01a3189b14}\label{classsylar_1_1FdCtx_ab228b84fc49eac70fdcfaa01a3189b14} 
+\index{sylar::FdCtx@{sylar::FdCtx}!isInit@{isInit}}
+\index{isInit@{isInit}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{isInit()}{isInit()}}
+{\footnotesize\ttfamily bool sylar\+::\+Fd\+Ctx\+::is\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1FdCtx_af9986ca313fb63a68bbf73f15adfb2ff}\label{classsylar_1_1FdCtx_af9986ca313fb63a68bbf73f15adfb2ff} 
+\index{sylar::FdCtx@{sylar::FdCtx}!isSocket@{isSocket}}
+\index{isSocket@{isSocket}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{isSocket()}{isSocket()}}
+{\footnotesize\ttfamily bool sylar\+::\+Fd\+Ctx\+::is\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1FdCtx_aa6d966aa221131dd9397d097052debbe}\label{classsylar_1_1FdCtx_aa6d966aa221131dd9397d097052debbe} 
+\index{sylar::FdCtx@{sylar::FdCtx}!setTimeout@{setTimeout}}
+\index{setTimeout@{setTimeout}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{setTimeout()}{setTimeout()}}
+{\footnotesize\ttfamily void sylar\+::\+Fd\+Ctx\+::set\+Timeout (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{uint64\+\_\+t}]{v }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1FdCtx_a56adbad167928b7090e3b1f457dac872}\label{classsylar_1_1FdCtx_a56adbad167928b7090e3b1f457dac872} 
+\index{sylar::FdCtx@{sylar::FdCtx}!setUserNonblock@{setUserNonblock}}
+\index{setUserNonblock@{setUserNonblock}!sylar::FdCtx@{sylar::FdCtx}}
+\doxysubsubsection{\texorpdfstring{setUserNonblock()}{setUserNonblock()}}
+{\footnotesize\ttfamily void sylar\+::\+Fd\+Ctx\+::set\+User\+Nonblock (\begin{DoxyParamCaption}\item[{bool}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{fd__manager_8h}{fd\+\_\+manager.\+h}}\item 
+sylar/\mbox{\hyperlink{fd__manager_8cpp}{fd\+\_\+manager.\+cpp}}\end{DoxyCompactItemize}

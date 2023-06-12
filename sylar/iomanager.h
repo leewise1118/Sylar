@@ -102,9 +102,9 @@ class IOManager : public Scheduler, public TimerManager {
     void contextResize( size_t size );
 
   private:
-    int m_epfd = 0;                                  // epoll文件句柄
-    int m_tickleFds[ 2 ];                            // pipe文件句柄
-    std::atomic<size_t> m_pendingEventCount = { 0 }; // 当前等待执行的事件数量
+    int m_epfd = 0;                               // epoll文件句柄
+    int m_tickleFds[ 2 ];                         // pipe文件句柄
+    std::atomic<size_t> m_pendingEventCount{ 0 }; // 当前等待执行的事件数量
     MutexType                m_mutex;
     std::vector<FdContext *> m_fdContexts; // socket事件上下文容器
 };

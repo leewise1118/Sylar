@@ -1,0 +1,211 @@
+\doxysection{sylar\+::Logger Class Reference}
+\hypertarget{classsylar_1_1Logger}{}\label{classsylar_1_1Logger}\index{sylar::Logger@{sylar::Logger}}
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::Logger\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classsylar_1_1Logger__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::Logger\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classsylar_1_1Logger__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{ptr}}
+\item 
+typedef \mbox{\hyperlink{classsylar_1_1SpinLock}{Spin\+Lock}} \mbox{\hyperlink{classsylar_1_1Logger_a836d6dd7f53540b324b40cd11f45b1f7}{Mutex\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1Logger_aedeb6df93457a283ca8685fb9e0ebc06}{Logger}} (const std\+::string \&name=\"{}root\"{})
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a7d79016bac4db1cb3f96f75fbb1dd24c}{log}} (\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} level, \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} \&event)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_afd444ae2c8fe2eed75b40f816b9dc13d}{debug}} (\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a174c80350e2eb65a122c6dee5b04e138}{info}} (\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_af7d497a334cfe29f35799a2a36f6222b}{warn}} (\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a7c2b57e31bea9635d0ab7265f5d574cb}{error}} (\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a349e94ae1b30ac2c7a18bceb7015babc}{fatal}} (\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_ac8879660f7fd549e467084a309f24cd4}{add\+Appender}} (\mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{Log\+Appender\+::ptr}} appender)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a66beed5f8de77a9e4e56767086bca079}{del\+Appender}} (\mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{Log\+Appender\+::ptr}} appender)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a4c8e15330062585251acceb4acaebd1b}{clear\+Appenders}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} \mbox{\hyperlink{classsylar_1_1Logger_a7ef4982f170be398f325485a18311510}{get\+Level}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_ad59d4d435fe0569a02a89756db4db102}{set\+Level}} (\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} level)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a0920f4007d4ca5cbf53d21bf229099cd}{set\+Formatter}} (\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} val)
+\item 
+void \mbox{\hyperlink{classsylar_1_1Logger_a601281d2bfb4f852b460b24c115f7352}{set\+Formatter}} (const std\+::string \&val)
+\item 
+\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} \mbox{\hyperlink{classsylar_1_1Logger_a0f640748f679c4c752b00551d5e0cae6}{get\+Formatter}} () const
+\item 
+const std\+::string \& \mbox{\hyperlink{classsylar_1_1Logger_a7a8352840ebd60ab6f2205fd44131310}{get\+Name}} () const
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1Logger_a6867fe27a7f11e85a9eb1f1d3155cc98}{to\+Yaml\+String}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsylar_1_1Logger_ab315504a6dd6a6c8d2514affb54a9cf2}{Logger\+Manager}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1Logger_a836d6dd7f53540b324b40cd11f45b1f7}\label{classsylar_1_1Logger_a836d6dd7f53540b324b40cd11f45b1f7} 
+\index{sylar::Logger@{sylar::Logger}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classsylar_1_1SpinLock}{Spin\+Lock}} \mbox{\hyperlink{classsylar_1_1Logger_a836d6dd7f53540b324b40cd11f45b1f7}{sylar\+::\+Logger\+::\+Mutex\+Type}}}
+
+\Hypertarget{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}\label{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3} 
+\index{sylar::Logger@{sylar::Logger}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1Logger}{Logger}}$>$ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{sylar\+::\+Logger\+::ptr}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1Logger_aedeb6df93457a283ca8685fb9e0ebc06}\label{classsylar_1_1Logger_aedeb6df93457a283ca8685fb9e0ebc06} 
+\index{sylar::Logger@{sylar::Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{Logger()}{Logger()}}
+{\footnotesize\ttfamily sylar\+::\+Logger\+::\+Logger (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name = {\ttfamily \"{}root\"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1Logger_ac8879660f7fd549e467084a309f24cd4}\label{classsylar_1_1Logger_ac8879660f7fd549e467084a309f24cd4} 
+\index{sylar::Logger@{sylar::Logger}!addAppender@{addAppender}}
+\index{addAppender@{addAppender}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{addAppender()}{addAppender()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::add\+Appender (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{Log\+Appender\+::ptr}}}]{appender }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a4c8e15330062585251acceb4acaebd1b}\label{classsylar_1_1Logger_a4c8e15330062585251acceb4acaebd1b} 
+\index{sylar::Logger@{sylar::Logger}!clearAppenders@{clearAppenders}}
+\index{clearAppenders@{clearAppenders}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{clearAppenders()}{clearAppenders()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::clear\+Appenders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_afd444ae2c8fe2eed75b40f816b9dc13d}\label{classsylar_1_1Logger_afd444ae2c8fe2eed75b40f816b9dc13d} 
+\index{sylar::Logger@{sylar::Logger}!debug@{debug}}
+\index{debug@{debug}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{debug()}{debug()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::debug (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a66beed5f8de77a9e4e56767086bca079}\label{classsylar_1_1Logger_a66beed5f8de77a9e4e56767086bca079} 
+\index{sylar::Logger@{sylar::Logger}!delAppender@{delAppender}}
+\index{delAppender@{delAppender}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{delAppender()}{delAppender()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::del\+Appender (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{Log\+Appender\+::ptr}}}]{appender }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a7c2b57e31bea9635d0ab7265f5d574cb}\label{classsylar_1_1Logger_a7c2b57e31bea9635d0ab7265f5d574cb} 
+\index{sylar::Logger@{sylar::Logger}!error@{error}}
+\index{error@{error}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a349e94ae1b30ac2c7a18bceb7015babc}\label{classsylar_1_1Logger_a349e94ae1b30ac2c7a18bceb7015babc} 
+\index{sylar::Logger@{sylar::Logger}!fatal@{fatal}}
+\index{fatal@{fatal}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{fatal()}{fatal()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::fatal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a0f640748f679c4c752b00551d5e0cae6}\label{classsylar_1_1Logger_a0f640748f679c4c752b00551d5e0cae6} 
+\index{sylar::Logger@{sylar::Logger}!getFormatter@{getFormatter}}
+\index{getFormatter@{getFormatter}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{getFormatter()}{getFormatter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} sylar\+::\+Logger\+::get\+Formatter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Logger_a7ef4982f170be398f325485a18311510}\label{classsylar_1_1Logger_a7ef4982f170be398f325485a18311510} 
+\index{sylar::Logger@{sylar::Logger}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{getLevel()}{getLevel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} sylar\+::\+Logger\+::get\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Logger_a7a8352840ebd60ab6f2205fd44131310}\label{classsylar_1_1Logger_a7a8352840ebd60ab6f2205fd44131310} 
+\index{sylar::Logger@{sylar::Logger}!getName@{getName}}
+\index{getName@{getName}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const std\+::string \& sylar\+::\+Logger\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Logger_a174c80350e2eb65a122c6dee5b04e138}\label{classsylar_1_1Logger_a174c80350e2eb65a122c6dee5b04e138} 
+\index{sylar::Logger@{sylar::Logger}!info@{info}}
+\index{info@{info}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a7d79016bac4db1cb3f96f75fbb1dd24c}\label{classsylar_1_1Logger_a7d79016bac4db1cb3f96f75fbb1dd24c} 
+\index{sylar::Logger@{sylar::Logger}!log@{log}}
+\index{log@{log}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}}}]{level,  }\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} \&}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a601281d2bfb4f852b460b24c115f7352}\label{classsylar_1_1Logger_a601281d2bfb4f852b460b24c115f7352} 
+\index{sylar::Logger@{sylar::Logger}!setFormatter@{setFormatter}}
+\index{setFormatter@{setFormatter}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{setFormatter()}{setFormatter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::set\+Formatter (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{val }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_a0920f4007d4ca5cbf53d21bf229099cd}\label{classsylar_1_1Logger_a0920f4007d4ca5cbf53d21bf229099cd} 
+\index{sylar::Logger@{sylar::Logger}!setFormatter@{setFormatter}}
+\index{setFormatter@{setFormatter}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{setFormatter()}{setFormatter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::set\+Formatter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}}}]{val }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_ad59d4d435fe0569a02a89756db4db102}\label{classsylar_1_1Logger_ad59d4d435fe0569a02a89756db4db102} 
+\index{sylar::Logger@{sylar::Logger}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::set\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}}}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Logger_a6867fe27a7f11e85a9eb1f1d3155cc98}\label{classsylar_1_1Logger_a6867fe27a7f11e85a9eb1f1d3155cc98} 
+\index{sylar::Logger@{sylar::Logger}!toYamlString@{toYamlString}}
+\index{toYamlString@{toYamlString}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{toYamlString()}{toYamlString()}}
+{\footnotesize\ttfamily std\+::string sylar\+::\+Logger\+::to\+Yaml\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Logger_af7d497a334cfe29f35799a2a36f6222b}\label{classsylar_1_1Logger_af7d497a334cfe29f35799a2a36f6222b} 
+\index{sylar::Logger@{sylar::Logger}!warn@{warn}}
+\index{warn@{warn}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{warn()}{warn()}}
+{\footnotesize\ttfamily void sylar\+::\+Logger\+::warn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classsylar_1_1Logger_ab315504a6dd6a6c8d2514affb54a9cf2}\label{classsylar_1_1Logger_ab315504a6dd6a6c8d2514affb54a9cf2} 
+\index{sylar::Logger@{sylar::Logger}!LoggerManager@{LoggerManager}}
+\index{LoggerManager@{LoggerManager}!sylar::Logger@{sylar::Logger}}
+\doxysubsubsection{\texorpdfstring{LoggerManager}{LoggerManager}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classsylar_1_1LoggerManager}{Logger\+Manager}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{log_8h}{log.\+h}}\item 
+sylar/\mbox{\hyperlink{log_8cpp}{log.\+cpp}}\end{DoxyCompactItemize}

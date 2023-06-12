@@ -1,0 +1,36 @@
+\doxysection{sylar/util.cpp File Reference}
+\hypertarget{util_8cpp}{}\label{util_8cpp}\index{sylar/util.cpp@{sylar/util.cpp}}
+{\ttfamily \#include \"{}fiber.\+h\"{}}\newline
+{\ttfamily \#include \"{}util.\+h\"{}}\newline
+{\ttfamily \#include $<$execinfo.\+h$>$}\newline
+{\ttfamily \#include $<$sys/select.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/syscall.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for util.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{util_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacesylar}{sylar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+pid\+\_\+t \mbox{\hyperlink{namespacesylar_a7e8a51657b5b5289d1c530f5914bcee8}{sylar\+::\+Get\+Thread\+Id}} ()
+\item 
+uint64\+\_\+t \mbox{\hyperlink{namespacesylar_a83fa12d12d237c60b894483ed72d0527}{sylar\+::\+Get\+Fiber\+Id}} ()
+\item 
+void \mbox{\hyperlink{namespacesylar_a2fba053e3f781565d491e5cb8fb60740}{sylar\+::\+Backtrace}} (std\+::vector$<$ std\+::string $>$ \&bt, int size, int skip)
+\item 
+std\+::string \mbox{\hyperlink{namespacesylar_a63cbbff6b89d882c565104bdacb63f06}{sylar\+::\+Backtrace\+To\+String}} (int size, int skip, const std\+::string \&prefix)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{namespacesylar_ae39a238868576cbc0c1fac03221e3d60}{sylar\+::\+Get\+Current\+MS}} ()
+\item 
+uint64\+\_\+t \mbox{\hyperlink{namespacesylar_aa2c597c6caae5df27aa7cc95c75fadfe}{sylar\+::\+Get\+Current\+US}} ()
+\end{DoxyCompactItemize}

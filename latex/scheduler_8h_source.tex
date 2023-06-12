@@ -1,0 +1,142 @@
+\doxysection{scheduler.\+h}
+\hypertarget{scheduler_8h_source}{}\label{scheduler_8h_source}\index{sylar/scheduler.h@{sylar/scheduler.h}}
+\mbox{\hyperlink{scheduler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fiber_8h}{fiber.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{thread_8h}{thread.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ 协程调度模块\ scheduler}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1-\/N\ \ \ \ \ \ \ \ 1-\/M}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ scheduler\ -\/-\/>\ thread\ -\/-\/-\/>\ fiber}}
+\DoxyCodeLine{00012\ \textcolor{comment}{}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ 1.\ 线程池,\ 分配一组线程}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ 2.\ 协程调度器，\ 将协程指定到相应的线程上执行}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}}\ \{}
+\DoxyCodeLine{00021\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{struct\ }Task\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }TaskFunc\ =\ std::function<void()>;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber::ptr}}\ fiber;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ TaskFunc\ \ \ cb;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ threadId;\ \textcolor{comment}{//\ 绑定的线程id}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ Task(\ \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber::ptr}}\ f,\ \textcolor{keywordtype}{int}\ thr\ )}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ :\ fiber(\ f\ )}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ threadId(\ thr\ )\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Task(\ \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber::ptr}}\ *f,\ \textcolor{keywordtype}{int}\ thr\ )}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ :\ threadId(\ thr\ )\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ fiber.swap(\ *f\ );}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Task(\ TaskFunc\ f,\ \textcolor{keywordtype}{int}\ thr\ )}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ :\ cb(\ f\ )}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ threadId(\ thr\ )\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ Task(\ TaskFunc\ *f,\ \textcolor{keywordtype}{int}\ thr\ )}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ :\ threadId(\ thr\ )\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ cb.swap(\ *f\ );}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Task()}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ :\ threadId(\ -\/1\ )\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ reset()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ fiber\ \ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ cb\ \ \ \ \ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ threadId\ =\ -\/1;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1Scheduler_a877fc600416afb8d4106d473f49ea528}{ptr}}\ \ \ \ \ \ \ =\ std::shared\_ptr<Scheduler>;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1Mutex}{MutexType}}\ =\ \mbox{\hyperlink{classsylar_1_1Mutex}{Mutex}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}}(\ \textcolor{keywordtype}{size\_t}\ threads\ =\ 1,\ \textcolor{keywordtype}{bool}\ use\_caller\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&name\ =\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsylar_1_1Scheduler_a581bc46880ca5f5e209db0e38a8b2814}{\string~Scheduler}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_a028c935d19b263bd0c49c5f65201e8b5}{start}}();}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_aa1f195d4d6862200f7a979200692d3ef}{stop}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classsylar_1_1Scheduler_a0a9bb7fe898842720e1ef8e9eb3b1505}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}}\ *\mbox{\hyperlink{classsylar_1_1Scheduler_af49c48071c9523d1ab4bc11edf409f29}{GetThis}}();}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}}\ \ \ \ \ *\mbox{\hyperlink{classsylar_1_1Scheduler_a8b802736f5c20b477def0838b92804cf}{GetMainFiber}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ FiberOrCb>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_acd54348eec0012357cb2b83a0010a534}{schedule}}(\ FiberOrCb\ fc,\ \textcolor{keywordtype}{int}\ thread\ =\ -\/1\ )\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ need\_tickle\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{MutexType::Lock}}\ lock(\ m\_mutex\ );}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ need\_tickle\ =\ scheduleNoLock(\ fc,\ thread\ );}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 如果是空闲状态下的第一个新任务，则工作}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ need\_tickle\ )\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_a142d8cd454d6a8471278506c335302ae}{tickle}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ InputIterator>}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_ae73f587c00445ca0c05005f80094d2a8}{schedule}}(\ InputIterator\ begin,\ InputIterator\ end\ )\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ need\_tickle\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{MutexType::Lock}}\ lock(\ m\_mutex\ );}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ begin\ !=\ end\ )\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ need\_tickle\ =\ scheduleNoLock(\ \&*begin,\ -\/1\ )\ ||\ need\_tickle;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++begin;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ need\_tickle\ )\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_a142d8cd454d6a8471278506c335302ae}{tickle}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ FiberOrCb>\ \textcolor{keywordtype}{bool}\ scheduleNoLock(\ FiberOrCb\ fc,\ \textcolor{keywordtype}{int}\ thread\ )\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ need\_tickle\ =\ m\_fibers.empty();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ Task\ task(\ fc,\ thread\ );}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ task.fiber\ ||\ task.cb\ )\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ m\_fibers.push\_back(\ task\ );}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ need\_tickle;}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_a142d8cd454d6a8471278506c335302ae}{tickle}}();\ \textcolor{comment}{//\ 通知协程调度器有新任务}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_ac87e22634869414e4b493685cbbf82e2}{run}}();\ \ \ \ \textcolor{comment}{//\ 协程调度函数}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1Scheduler_ae61cba3e8e7320d441c295b6183bba55}{stopping}}();}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_a669db8fa5f3ca3d0595c9858b903fc71}{idle}}();\ \textcolor{comment}{//\ 协程无任务可调度时执行idle协程}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Scheduler_aab919e867c6b4dac93a6f810551e9def}{setThis}}();}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1Scheduler_abd6c9d9fc49ac0c095b284761fa7de13}{hasIdleThread}}()\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsylar_1_1Scheduler_a51cab9237c299fc30f537dc9fd4935db}{m\_idleThreadCount}}\ >\ 0;}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_afcb306c3a47a04ade1daf63f64a11fe5}{MutexType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex;}
+\DoxyCodeLine{00147\ \ \ \ \ std::vector<Thread::ptr>\ \ \ \ \ \ \ m\_threads;}
+\DoxyCodeLine{00148\ \ \ \ \ std::list<Task>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_fibers;}
+\DoxyCodeLine{00149\ \ \ \ \ std::map<int,\ std::list<Task>>\ m\_thrFibers;}
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber::ptr}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rootFiber;}
+\DoxyCodeLine{00151\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_name;}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00154\ \ \ \ \ std::vector<int>\ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_a14da3ea7c8a253f2bc9a199e7975ef91}{m\_threadIds}};}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_a8bcf2c2c1b89fcd3ee2fec70b42987ce}{m\_threadCount}}\ =\ 0;}
+\DoxyCodeLine{00156\ \ \ \ \ std::atomic<size\_t>\ \mbox{\hyperlink{classsylar_1_1Scheduler_a837fcf7e9403f859813cf830d2efe306}{m\_activeThreadCount}}\{\ 0\ \};}
+\DoxyCodeLine{00157\ \ \ \ \ std::atomic<size\_t>\ \mbox{\hyperlink{classsylar_1_1Scheduler_a51cab9237c299fc30f537dc9fd4935db}{m\_idleThreadCount}}\{\ 0\ \};}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_ab40c5cd7c4d39a1bed431781f299b1ee}{m\_stopping}}\ \ \ =\ \textcolor{keyword}{true};\ \ \textcolor{comment}{//\ 执行停止状态}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_a857b3c4ea979fe4ccdea1a94dc5c8aae}{m\_autoStop}}\ \ \ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ 是否自动停止}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler_ad798d9881a2285fcb55e0dc3b60708f0}{m\_rootThread}}\ =\ 0;}
+\DoxyCodeLine{00161\ \};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+
+\end{DoxyCode}

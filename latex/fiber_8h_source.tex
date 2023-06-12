@@ -1,0 +1,87 @@
+\doxysection{fiber.\+h}
+\hypertarget{fiber_8h_source}{}\label{fiber_8h_source}\index{sylar/fiber.h@{sylar/fiber.h}}
+\mbox{\hyperlink{fiber_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{macro_8h}{macro.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{thread_8h}{thread.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <system\_error>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <ucontext.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ 继承enable\_shared\_from\_this类，获取当前类的智能指针，但是不可以在栈上去创建对象了，因为它一定要是智能指针的成员}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}}\ :\ \textcolor{keyword}{public}\ std::enable\_shared\_from\_this<Fiber>\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{ptr}}\ \ \ \ \ \ \ =\ std::shared\_ptr<Fiber>;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{FiberFunc}}\ =\ std::function<void()>;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a5a6fe5b68c3f97031e573ee5afa1bda3}{INIT}},\ \ \textcolor{comment}{//\ 初始化状态}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a6287bcaf8ba42a1e0134e21d20cda1a8}{HOLD}},\ \ \textcolor{comment}{//\ 暂停状态}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523acc22c1782e42ddc799479ed5e6020c5d}{EXEC}},\ \ \textcolor{comment}{//\ 执行状态}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523afe11192b01883279e41e793362388092}{TERM}},\ \ \textcolor{comment}{//\ 结束状态}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a468c79bb239b57c37218c636edd5c049}{READY}},\ \textcolor{comment}{//\ 就绪状态}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523aa515d86e87fbe5d46690359f5dd5fe13}{EXCEPT}}\ \textcolor{comment}{//\ 异常状态}}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}}(\ \mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{FiberFunc}}\ cb,\ \textcolor{keywordtype}{size\_t}\ stacksize\ =\ 0,\ \textcolor{keywordtype}{bool}\ use\_caller\ =\ \textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a2e9a01682c9290b34a103b4f41a7e0d6}{\string~Fiber}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ 重置协程函数，并重置状态}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ INIT,\ TERM}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a02c9c0f83efd890d9b9b866e4e47bc1d}{reset}}(\ \mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{FiberFunc}}\ cb\ );}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ 切换到当前协程执行}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a4a1f61001070d3e14c274e98fd68e6d8}{swapIn}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ 切换到后台执行}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a43585923f39c2230fb529229a6eb6d3b}{swapOut}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a0e2abad4fd10a7f9f6e16fd51d044285}{call}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_aa9f42925ec8f66eafb481ae453df946b}{back}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classsylar_1_1Fiber_a357f571db2dc90eb942e4e7fef62d251}{getId}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_id;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}}\ \mbox{\hyperlink{classsylar_1_1Fiber_a8b2f1e5ba3a5b94fffa55aa601a22e89}{getState}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_state;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_ac3393ce5d300097a41cd586a2d59ec1f}{setState}}(\ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}}\ state\ )\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ m\_state\ =\ state;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ 设置当前协程}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a600311d8bef1d565f02373d425d7e482}{SetThis}}(\ \mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}}\ *f\ );}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ 返回当前协程}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber::ptr}}\ \mbox{\hyperlink{classsylar_1_1Fiber_a02312c30aeafa6ed7e0143cfe95f21d2}{GetThis}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ 协程切换到后台，并且设置为Ready状态}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a006c6d7886ce3e7f33edba551cd5a8ce}{YieldToReady}}();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ 协程切换到后台，并且设置为Hold状态}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_ab5ed450bcf33e2d5fdeee8277e2b78e7}{YieldToHold}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ 总协程数量}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ uint64\_t\ \mbox{\hyperlink{classsylar_1_1Fiber_a016827c4ba10c52dbd3e466389dd27c7}{TotalFibers}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ uint64\_t\ \mbox{\hyperlink{classsylar_1_1Fiber_a6231bf3c60b4adea841575670cdf2fc3}{GetFiberId}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a8cb4bce15e48068c01034f2442050256}{MainFunc}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Fiber_a440b94d2c4a71dd68c0f3f0d25880d57}{CallerMainFunc}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00070\ \ \ \ \ uint64\_t\ \ \ m\_id\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ uint32\_t\ \ \ m\_stacksize\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523}{State}}\ \ \ \ \ \ m\_state\ \ \ \ \ =\ \mbox{\hyperlink{classsylar_1_1Fiber_a4fa17489879111742d2605389f0ef523a5a6fe5b68c3f97031e573ee5afa1bda3}{INIT}};}
+\DoxyCodeLine{00073\ \ \ \ \ ucontext\_t\ m\_ctx;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ *m\_stack\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_ac255b49d4e8d6f350f8aa3b5e1206097}{FiberFunc}}\ \ m\_cb;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}}();}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+
+\end{DoxyCode}

@@ -1,3 +1,4 @@
+#include "hook.h"
 #include "log.h"
 #include "macro.h"
 #include "scheduler.h"
@@ -118,6 +119,7 @@ void Scheduler::stop() {
 }
 void Scheduler::run() {
     SYLAR_LOG_DEBUG( g_logger ) << m_name << " run";
+    set_hook_enable( true );
     setThis();
     // 判断线程是否在线程池里,如果不在，则设置主协程
     if ( GetThreadId() != m_rootThread ) {

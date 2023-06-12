@@ -1,0 +1,33 @@
+\doxysection{macro.\+h}
+\hypertarget{macro_8h_source}{}\label{macro_8h_source}\index{sylar/macro.h@{sylar/macro.h}}
+\mbox{\hyperlink{macro_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{util_8h}{util.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ SYLAR\_ASSERT(\ x\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \ \ \ if\ (\ !(\ x\ )\ )\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ SYLAR\_LOG\_ERROR(\ SYLAR\_LOG\_ROOT()\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}ASSERTION:\ "{}}\ \#x\ <<\ "{}\(\backslash\)nbacktrace:\(\backslash\)n"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ sylar::BacktraceToString(\ 100,\ 2,\ "{}\ \ \ "{}\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ assert(\ x\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SYLAR\_ASSERT2(\ x,\ w\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ if\ (\ !(\ x\ )\ )\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ SYLAR\_LOG\_ERROR(\ SYLAR\_LOG\_ROOT()\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}ASSERTION:\ "{}}\ \#x\ <<\ "{}\(\backslash\)n"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ w\ <<\ "{}\(\backslash\)nbacktrace:\(\backslash\)n"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ sylar::BacktraceToString(\ 100,\ 2,\ "{}\ \ \ "{}\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ assert(\ x\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ LIKCLY宏的封装，告诉编译器优化，条件大概率成立}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ SYLAR\_LIKELY(\ x\ )\ \_\_builtin\_expect(\ !!(\ x\ ),\ 1\ )}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ LIKCLY宏的封装，告诉编译器优化，条件大概率不成立}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SYLAR\_UNLIKELY(\ x\ )\ \_\_builtin\_expect(\ !!(\ x\ ),\ 0\ )}}
+
+\end{DoxyCode}

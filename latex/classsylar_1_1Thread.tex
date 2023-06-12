@@ -1,0 +1,111 @@
+\doxysection{sylar\+::Thread Class Reference}
+\hypertarget{classsylar_1_1Thread}{}\label{classsylar_1_1Thread}\index{sylar::Thread@{sylar::Thread}}
+
+
+{\ttfamily \#include $<$thread.\+h$>$}
+
+
+
+Collaboration diagram for sylar\+::Thread\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{classsylar_1_1Thread__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}} $>$ \mbox{\hyperlink{classsylar_1_1Thread_ac3f80069fd34a46d43f3deb182d0862a}{ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1Thread_a21423020cfee611288713ec0fd4e5db6}{Thread}} (std\+::function$<$ void()$>$ cb, const std\+::string \&name)
+\item 
+\mbox{\hyperlink{classsylar_1_1Thread_ae03879c4a90c8cbd70f22bb5af6e551d}{\texorpdfstring{$\sim$}{\string~}\+Thread}} ()
+\item 
+pid\+\_\+t \mbox{\hyperlink{classsylar_1_1Thread_ac4cce4866ea05e18c198006933398b60}{get\+Id}} () const
+\item 
+const std\+::string \& \mbox{\hyperlink{classsylar_1_1Thread_a114869b716d2ce1ea2b0c8a25c5008a3}{get\+Name}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1Thread_a51e83a092b106aa490dfc4ffdc47fa3d}{join}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classsylar_1_1Thread}{Thread}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsylar_1_1Thread_adbf1aae7492d486ef8d13affa049642b}{Get\+This}} ()
+\item 
+static const std\+::string \& \mbox{\hyperlink{classsylar_1_1Thread_ae4ddc8a49c1624d048ffb3fdbff04deb}{Get\+Name}} ()
+\item 
+static void \mbox{\hyperlink{classsylar_1_1Thread_ac75f0a058c7fcf020863ec859b3dc614}{Set\+Name}} (const std\+::string \&name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1Thread_ac3f80069fd34a46d43f3deb182d0862a}\label{classsylar_1_1Thread_ac3f80069fd34a46d43f3deb182d0862a} 
+\index{sylar::Thread@{sylar::Thread}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1Thread}{Thread}}$>$ \mbox{\hyperlink{classsylar_1_1Thread_ac3f80069fd34a46d43f3deb182d0862a}{sylar\+::\+Thread\+::ptr}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1Thread_a21423020cfee611288713ec0fd4e5db6}\label{classsylar_1_1Thread_a21423020cfee611288713ec0fd4e5db6} 
+\index{sylar::Thread@{sylar::Thread}!Thread@{Thread}}
+\index{Thread@{Thread}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{Thread()}{Thread()}}
+{\footnotesize\ttfamily sylar\+::\+Thread\+::\+Thread (\begin{DoxyParamCaption}\item[{std\+::function$<$ void()$>$}]{cb,  }\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Thread_ae03879c4a90c8cbd70f22bb5af6e551d}\label{classsylar_1_1Thread_ae03879c4a90c8cbd70f22bb5af6e551d} 
+\index{sylar::Thread@{sylar::Thread}!````~Thread@{\texorpdfstring{$\sim$}{\string~}Thread}}
+\index{````~Thread@{\texorpdfstring{$\sim$}{\string~}Thread}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Thread()}{\string~Thread()}}
+{\footnotesize\ttfamily sylar\+::\+Thread\+::\texorpdfstring{$\sim$}{\string~}\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1Thread_ac4cce4866ea05e18c198006933398b60}\label{classsylar_1_1Thread_ac4cce4866ea05e18c198006933398b60} 
+\index{sylar::Thread@{sylar::Thread}!getId@{getId}}
+\index{getId@{getId}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily pid\+\_\+t sylar\+::\+Thread\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Thread_ae4ddc8a49c1624d048ffb3fdbff04deb}\label{classsylar_1_1Thread_ae4ddc8a49c1624d048ffb3fdbff04deb} 
+\index{sylar::Thread@{sylar::Thread}!GetName@{GetName}}
+\index{GetName@{GetName}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{GetName()}{GetName()}}
+{\footnotesize\ttfamily const std\+::string \& sylar\+::\+Thread\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Thread_a114869b716d2ce1ea2b0c8a25c5008a3}\label{classsylar_1_1Thread_a114869b716d2ce1ea2b0c8a25c5008a3} 
+\index{sylar::Thread@{sylar::Thread}!getName@{getName}}
+\index{getName@{getName}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const std\+::string \& sylar\+::\+Thread\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1Thread_adbf1aae7492d486ef8d13affa049642b}\label{classsylar_1_1Thread_adbf1aae7492d486ef8d13affa049642b} 
+\index{sylar::Thread@{sylar::Thread}!GetThis@{GetThis}}
+\index{GetThis@{GetThis}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{GetThis()}{GetThis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Thread}{Thread}} \texorpdfstring{$\ast$}{*} sylar\+::\+Thread\+::\+Get\+This (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classsylar_1_1Thread_a51e83a092b106aa490dfc4ffdc47fa3d}\label{classsylar_1_1Thread_a51e83a092b106aa490dfc4ffdc47fa3d} 
+\index{sylar::Thread@{sylar::Thread}!join@{join}}
+\index{join@{join}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily void sylar\+::\+Thread\+::join (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1Thread_ac75f0a058c7fcf020863ec859b3dc614}\label{classsylar_1_1Thread_ac75f0a058c7fcf020863ec859b3dc614} 
+\index{sylar::Thread@{sylar::Thread}!SetName@{SetName}}
+\index{SetName@{SetName}!sylar::Thread@{sylar::Thread}}
+\doxysubsubsection{\texorpdfstring{SetName()}{SetName()}}
+{\footnotesize\ttfamily void sylar\+::\+Thread\+::\+Set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{thread_8h}{thread.\+h}}\item 
+sylar/\mbox{\hyperlink{thread_8cpp}{thread.\+cpp}}\end{DoxyCompactItemize}

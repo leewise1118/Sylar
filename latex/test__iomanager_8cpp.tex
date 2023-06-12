@@ -1,0 +1,78 @@
+\doxysection{tests/test\+\_\+iomanager.cpp File Reference}
+\hypertarget{test__iomanager_8cpp}{}\label{test__iomanager_8cpp}\index{tests/test\_iomanager.cpp@{tests/test\_iomanager.cpp}}
+{\ttfamily \#include \"{}../sylar/iomanager.\+h\"{}}\newline
+{\ttfamily \#include \"{}../sylar/sylar.\+h\"{}}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$boost/range/iterator\+\_\+range\+\_\+core.\+hpp$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sys/epoll.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+Include dependency graph for test\+\_\+iomanager.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__iomanager_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{test__iomanager_8cpp_a8f9d5c9ab5b5f1d36071f0d69261e5ef}{test\+\_\+fiber}} ()
+\item 
+void \mbox{\hyperlink{test__iomanager_8cpp_a1440a7779ac56f47a3f355ce4a8c7da0}{test1}} ()
+\item 
+void \mbox{\hyperlink{test__iomanager_8cpp_aaebf8e553939222f4e0682af515b3674}{test\+\_\+timer}} ()
+\item 
+int \mbox{\hyperlink{test__iomanager_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{sylar\+::\+Logger\+::ptr}} \mbox{\hyperlink{test__iomanager_8cpp_a1b5b87cae870fbca16d5fecee001ba7a}{g\+\_\+logger}} = \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\+\_\+\+LOG\+\_\+\+ROOT}}()
+\item 
+int \mbox{\hyperlink{test__iomanager_8cpp_a5903d0b282fc5eae503de618f896b5e1}{sock}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{test__iomanager_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{test__iomanager_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{test\_iomanager.cpp@{test\_iomanager.cpp}!main@{main}}
+\index{main@{main}!test\_iomanager.cpp@{test\_iomanager.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{test__iomanager_8cpp_a1440a7779ac56f47a3f355ce4a8c7da0}\label{test__iomanager_8cpp_a1440a7779ac56f47a3f355ce4a8c7da0} 
+\index{test\_iomanager.cpp@{test\_iomanager.cpp}!test1@{test1}}
+\index{test1@{test1}!test\_iomanager.cpp@{test\_iomanager.cpp}}
+\doxysubsubsection{\texorpdfstring{test1()}{test1()}}
+{\footnotesize\ttfamily void test1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{test__iomanager_8cpp_a8f9d5c9ab5b5f1d36071f0d69261e5ef}\label{test__iomanager_8cpp_a8f9d5c9ab5b5f1d36071f0d69261e5ef} 
+\index{test\_iomanager.cpp@{test\_iomanager.cpp}!test\_fiber@{test\_fiber}}
+\index{test\_fiber@{test\_fiber}!test\_iomanager.cpp@{test\_iomanager.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_fiber()}{test\_fiber()}}
+{\footnotesize\ttfamily void test\+\_\+fiber (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{test__iomanager_8cpp_aaebf8e553939222f4e0682af515b3674}\label{test__iomanager_8cpp_aaebf8e553939222f4e0682af515b3674} 
+\index{test\_iomanager.cpp@{test\_iomanager.cpp}!test\_timer@{test\_timer}}
+\index{test\_timer@{test\_timer}!test\_iomanager.cpp@{test\_iomanager.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_timer()}{test\_timer()}}
+{\footnotesize\ttfamily void test\+\_\+timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{test__iomanager_8cpp_a1b5b87cae870fbca16d5fecee001ba7a}\label{test__iomanager_8cpp_a1b5b87cae870fbca16d5fecee001ba7a} 
+\index{test\_iomanager.cpp@{test\_iomanager.cpp}!g\_logger@{g\_logger}}
+\index{g\_logger@{g\_logger}!test\_iomanager.cpp@{test\_iomanager.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_logger}{g\_logger}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{sylar\+::\+Logger\+::ptr}} g\+\_\+logger = \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\+\_\+\+LOG\+\_\+\+ROOT}}()}
+
+\Hypertarget{test__iomanager_8cpp_a5903d0b282fc5eae503de618f896b5e1}\label{test__iomanager_8cpp_a5903d0b282fc5eae503de618f896b5e1} 
+\index{test\_iomanager.cpp@{test\_iomanager.cpp}!sock@{sock}}
+\index{sock@{sock}!test\_iomanager.cpp@{test\_iomanager.cpp}}
+\doxysubsubsection{\texorpdfstring{sock}{sock}}
+{\footnotesize\ttfamily int sock = 0}
+

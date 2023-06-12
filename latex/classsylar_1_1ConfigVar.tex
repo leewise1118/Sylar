@@ -1,0 +1,193 @@
+\doxysection{sylar\+::Config\+Var\texorpdfstring{$<$}{<} T, From\+Str, To\+Str \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classsylar_1_1ConfigVar}{}\label{classsylar_1_1ConfigVar}\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+
+
+{\ttfamily \#include $<$config.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::Config\+Var\texorpdfstring{$<$}{<} T, From\+Str, To\+Str \texorpdfstring{$>$}{>}\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classsylar_1_1ConfigVar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::Config\+Var\texorpdfstring{$<$}{<} T, From\+Str, To\+Str \texorpdfstring{$>$}{>}\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classsylar_1_1ConfigVar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}} \mbox{\hyperlink{classsylar_1_1ConfigVar_a5f77c5801f772ed4fea0af74155bff3a}{Mutex\+Type}}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1ConfigVar}{Config\+Var}} $>$ \mbox{\hyperlink{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795}{ptr}}
+\item 
+typedef std\+::function$<$ void(const T \&old\+\_\+value, const T \&new\+\_\+value)$>$ \mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\+\_\+change\+\_\+cb}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classsylar_1_1ConfigVarBase}{sylar\+::\+Config\+Var\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1ConfigVarBase}{Config\+Var\+Base}} $>$ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1ConfigVar_a9c5915ab6991ddf8599384ebd1d2f065}{Config\+Var}} (const std\+::string \&name, const T \&default\+\_\+value, const std\+::string \&description=\"{}\"{})
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1ConfigVar_ab7f80240eb387bf8c3c7fb63b768da1d}{to\+String}} () override
+\item 
+bool \mbox{\hyperlink{classsylar_1_1ConfigVar_a977245d654a3d6d31be8e1b99846ad4b}{from\+String}} (const std\+::string \&val) override
+\item 
+const T \mbox{\hyperlink{classsylar_1_1ConfigVar_acef1a5354310a25b25238fc6ac31105e}{get\+Value}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1ConfigVar_a0efde2e43919caa1d60b25022baf34d8}{set\+Value}} (const T \&v)
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1ConfigVar_a0d5ccdbfa6b67de8c4e7d989ed2de90f}{get\+Type\+Name}} () const override
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1ConfigVar_a4cb77987924fdae7b5036990a0182ea6}{add\+Listener}} (\mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\+\_\+change\+\_\+cb}} cb)
+\item 
+void \mbox{\hyperlink{classsylar_1_1ConfigVar_a99f10a04e93a9cc859e7d10129146dab}{del\+Listener}} (uint64\+\_\+t key)
+\item 
+void \mbox{\hyperlink{classsylar_1_1ConfigVar_a85029db1324a67e4ecfdd8aac081ce44}{clear\+Listener}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\+\_\+change\+\_\+cb}} \mbox{\hyperlink{classsylar_1_1ConfigVar_a7e04703e538bb4f6189e8f5425ce654a}{get\+Listener}} (uint64\+\_\+t key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classsylar_1_1ConfigVarBase}{sylar\+::\+Config\+Var\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1ConfigVarBase_a39cef3e573a7a5c9dcbe94683bde346f}{Config\+Var\+Base}} (const std\+::string \&name, const std\+::string \&description=\"{}\"{})
+\item 
+const std\+::string \& \mbox{\hyperlink{classsylar_1_1ConfigVarBase_aa404a47e82ef657f5e966440a319bf88}{get\+Name}} () const
+\item 
+const std\+::string \& \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a22c1ba4557b7099013f3effa24019c41}{get\+Description}} () const
+\item 
+virtual std\+::string \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a5f8b4b6e0f6fbed4790f31981b8f190c}{to\+String}} ()=0
+\item 
+virtual bool \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a747792b1cfc384a30b1c8f090d9af6b6}{from\+String}} (const std\+::string \&val)=0
+\item 
+virtual std\+::string \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a47480d264f9c7e55d6ebb0dfcc99b81a}{get\+Type\+Name}} () const =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1ConfigVar_a5f77c5801f772ed4fea0af74155bff3a}\label{classsylar_1_1ConfigVar_a5f77c5801f772ed4fea0af74155bff3a} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+typedef \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}} \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::\+Mutex\+Type}
+
+\Hypertarget{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}\label{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!on\_change\_cb@{on\_change\_cb}}
+\index{on\_change\_cb@{on\_change\_cb}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{on\_change\_cb}{on\_change\_cb}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+typedef std\+::function$<$void( const T \&old\+\_\+value, const T \&new\+\_\+value )$>$ \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::on\+\_\+change\+\_\+cb}
+
+\Hypertarget{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795}\label{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+typedef std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1ConfigVar}{Config\+Var}}$>$ \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::ptr}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1ConfigVar_a9c5915ab6991ddf8599384ebd1d2f065}\label{classsylar_1_1ConfigVar_a9c5915ab6991ddf8599384ebd1d2f065} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!ConfigVar@{ConfigVar}}
+\index{ConfigVar@{ConfigVar}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{ConfigVar()}{ConfigVar()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+\mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::\+Config\+Var (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const T \&}]{default\+\_\+value,  }\item[{const std\+::string \&}]{description = {\ttfamily \"{}\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1ConfigVar_a4cb77987924fdae7b5036990a0182ea6}\label{classsylar_1_1ConfigVar_a4cb77987924fdae7b5036990a0182ea6} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!addListener@{addListener}}
+\index{addListener@{addListener}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{addListener()}{addListener()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::add\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\+\_\+change\+\_\+cb}}}]{cb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1ConfigVar_a85029db1324a67e4ecfdd8aac081ce44}\label{classsylar_1_1ConfigVar_a85029db1324a67e4ecfdd8aac081ce44} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!clearListener@{clearListener}}
+\index{clearListener@{clearListener}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{clearListener()}{clearListener()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+void \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::clear\+Listener (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1ConfigVar_a99f10a04e93a9cc859e7d10129146dab}\label{classsylar_1_1ConfigVar_a99f10a04e93a9cc859e7d10129146dab} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!delListener@{delListener}}
+\index{delListener@{delListener}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{delListener()}{delListener()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+void \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::del\+Listener (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1ConfigVar_a977245d654a3d6d31be8e1b99846ad4b}\label{classsylar_1_1ConfigVar_a977245d654a3d6d31be8e1b99846ad4b} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!fromString@{fromString}}
+\index{fromString@{fromString}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{fromString()}{fromString()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+bool \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::from\+String (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a747792b1cfc384a30b1c8f090d9af6b6}{sylar\+::\+Config\+Var\+Base}}.
+
+\Hypertarget{classsylar_1_1ConfigVar_a7e04703e538bb4f6189e8f5425ce654a}\label{classsylar_1_1ConfigVar_a7e04703e538bb4f6189e8f5425ce654a} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!getListener@{getListener}}
+\index{getListener@{getListener}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{getListener()}{getListener()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+\mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\+\_\+change\+\_\+cb}} \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::get\+Listener (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1ConfigVar_a0d5ccdbfa6b67de8c4e7d989ed2de90f}\label{classsylar_1_1ConfigVar_a0d5ccdbfa6b67de8c4e7d989ed2de90f} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!getTypeName@{getTypeName}}
+\index{getTypeName@{getTypeName}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{getTypeName()}{getTypeName()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+std\+::string \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::get\+Type\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a47480d264f9c7e55d6ebb0dfcc99b81a}{sylar\+::\+Config\+Var\+Base}}.
+
+\Hypertarget{classsylar_1_1ConfigVar_acef1a5354310a25b25238fc6ac31105e}\label{classsylar_1_1ConfigVar_acef1a5354310a25b25238fc6ac31105e} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!getValue@{getValue}}
+\index{getValue@{getValue}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+const T \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1ConfigVar_a0efde2e43919caa1d60b25022baf34d8}\label{classsylar_1_1ConfigVar_a0efde2e43919caa1d60b25022baf34d8} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!setValue@{setValue}}
+\index{setValue@{setValue}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+void \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::set\+Value (\begin{DoxyParamCaption}\item[{const T \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1ConfigVar_ab7f80240eb387bf8c3c7fb63b768da1d}\label{classsylar_1_1ConfigVar_ab7f80240eb387bf8c3c7fb63b768da1d} 
+\index{sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}!toString@{toString}}
+\index{toString@{toString}!sylar::ConfigVar$<$ T, FromStr, ToStr $>$@{sylar::ConfigVar$<$ T, FromStr, ToStr $>$}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily template$<$class T , class From\+Str  = Lexical\+Cast$<$std\+::string, T$>$, class To\+Str  = Lexical\+Cast$<$\+T, std\+::string$>$$>$ \\
+std\+::string \mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ T, From\+Str, To\+Str $>$\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a5f8b4b6e0f6fbed4790f31981b8f190c}{sylar\+::\+Config\+Var\+Base}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{config_8h}{config.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,311 @@
+\doxysection{log.\+h}
+\hypertarget{log_8h_source}{}\label{log_8h_source}\index{sylar/log.h@{sylar/log.h}}
+\mbox{\hyperlink{log_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{singleton_8h}{singleton.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{thread_8h}{thread.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{util_8h}{util.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_LEVEL(\ logger,\ level\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ \ \ if\ (\ level\ >=\ logger-\/>getLevel()\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ sylar::LogEventWarp(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ sylar::LogEvent::ptr(\ new\ sylar::LogEvent(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ logger,\ level,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ 0,\ sylar::GetThreadId(),\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ sylar::GetFiberId(),\ time(\ 0\ ),\ sylar::Thread::GetName()\ )\ )\ )\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .getSS()}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_DEBUG(\ logger\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_LEVEL(\ logger,\ sylar::LogLevel::DEBUG\ )}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_INFO(\ logger\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_LEVEL(\ logger,\ sylar::LogLevel::INFO\ )}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_WARN(\ logger\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_LEVEL(\ logger,\ sylar::LogLevel::WARN\ )}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_ERROR(\ logger\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_LEVEL(\ logger,\ sylar::LogLevel::ERROR\ )}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FATAL(\ logger\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_LEVEL(\ logger,\ sylar::LogLevel::FATAL\ )}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FMT\_LEVEL(\ logger,\ level,\ fmt,\ ...\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \ \ if\ (\ logger-\/>getLevel()\ <=\ level\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ sylar::LogEventWrap(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ sylar::LogEvent::ptr(\ new\ sylar::LogEvent(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ logger,\ level,\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ 0,\ sylar::GetThreadId(),\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ sylar::GetFiberId(),\ time(\ 0\ ),\ sylar::Thread::GetName()\ )\ )\ )\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .getEvent()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ -\/>format(\ fmt,\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FMT\_DEBUG(\ logger,\ fmt,\ ...\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_FMT\_LEVEL(\ logger,\ sylar::LogLevel::DEBUG,\ fmt,\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FMT\_INFO(\ logger,\ fmt,\ ...\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_FMT\_LEVEL(\ logger,\ sylar::LogLevel::INFO,\ fmt,\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FMT\_WARN(\ logger,\ fmt,\ ...\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_FMT\_LEVEL(\ logger,\ sylar::LogLevel::WARN,\ fmt,\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FMT\_ERROR(\ logger,\ fmt,\ ...\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_FMT\_LEVEL(\ logger,\ sylar::LogLevel::ERROR,\ fmt,\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_FMT\_FATAL(\ logger,\ fmt,\ ...\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ SYLAR\_LOG\_FMT\_LEVEL(\ logger,\ sylar::LogLevel::FATAL,\ fmt,\ \_\_VA\_ARGS\_\_\ )}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_ROOT()\ sylar::LoggerMgr::GetInstance()-\/>getRoot()}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ SYLAR\_LOG\_NAME(\ name\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \ \ sylar::LoggerMgr::GetInstance()-\/>getLogger(\ name\ )}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{class\ }Logger;}
+\DoxyCodeLine{00086\ \textcolor{keyword}{class\ }LoggerManager;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ 日志级别}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LogLevel}{LogLevel}}\ \{}
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Level}}\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271ba0f47c5854e7d3984be2d47c22c6bfde1}{UNKNOW}}\ =\ 0,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271bae2625cd4626664fa9b0fdf6b938768e7}{DEBUG}}\ \ =\ 1,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271ba9e836b2483673ae6fbe3feef491ea99c}{INFO}}\ \ \ =\ 2,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271bad21caa6f8ec6a8cd43a97466d1f8a950}{WARN}}\ \ \ =\ 3,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271bafe503f7b664202f76e0e86e462f8e4f2}{ERROR}}\ \ =\ 4,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271ba09c3b978d8f374a13e28ff351e00949e}{FATAL}}\ \ =\ 5}
+\DoxyCodeLine{00098\ \ \ \ \ \};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \ \ \ \ *\mbox{\hyperlink{classsylar_1_1LogLevel_afdaae0e121441591b8578718ad63de81}{ToString}}(\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level\ );}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ \mbox{\hyperlink{classsylar_1_1LogLevel_a1b1b8f12b32a514e4eec590a0d6e0a34}{FromString}}(\ \textcolor{keyword}{const}\ std::string\ \&str\ );}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LogEvent}{LogEvent}}\ \{}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<LogEvent>\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{ptr}};}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEvent}{LogEvent}}(\ std::shared\_ptr<Logger>\ logger,\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file,\ int32\_t\ line,\ uint32\_t\ elapes,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ thread\_id,\ uint32\_t\ fiber\_id,\ uint64\_t\ time,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&thread\_name\ );}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{classsylar_1_1LogEvent_a7d850e140794b4ba223890f5f98f729a}{getFile}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_file;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ int32\_t\ \mbox{\hyperlink{classsylar_1_1LogEvent_ab1df35550e5e274c398cc612fe177607}{getLine}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_line;}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classsylar_1_1LogEvent_ab4ef746304d5f2fd749a0bc3366fc72d}{getElapse}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_elapse;}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classsylar_1_1LogEvent_a505967bcd9112c3f869146c1e11955ad}{getTheadId}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_threadId;}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classsylar_1_1LogEvent_aee373b68ef27604cbfda4375822285f8}{getFiberId}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fiberId;}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classsylar_1_1LogEvent_a83cb90842b18d39975849070c8a4c25f}{getTime}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_time;}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LogEvent_a13a44ff908b0afa2b782c0936b799330}{getContent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ss.str();}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ std::stringstream\ \&\mbox{\hyperlink{classsylar_1_1LogEvent_a9f1b1a241920538461ad3047f1784e40}{getSS}}()\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_ss;}
+\DoxyCodeLine{00133\ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LogEvent_ac829de3a164cc27fd6d2f29c30e82810}{getThreadName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_threadName;}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ std::shared\_ptr<Logger>\ \mbox{\hyperlink{classsylar_1_1LogEvent_a19800a6a9aafe50254896fc772dfd4c7}{getLogger}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_logger;}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ \mbox{\hyperlink{classsylar_1_1LogEvent_a661f70eb36b2cc1dcca4f3dd602087ed}{getLevel}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_level;}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1LogEvent_a6730af6d53112c4731a7779cf0e38bc4}{format}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fmt\ );}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ *m\_file\ \ \ \ \ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ 文件名}}
+\DoxyCodeLine{00148\ \ \ \ \ int32\_t\ \ \ \ \ \ \ \ \ \ \ m\_line\ \ \ \ \ =\ 0;\ \ \ \ \ \ \ \textcolor{comment}{//\ 行号}}
+\DoxyCodeLine{00149\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ m\_elapse\ \ \ =\ 0;\ \textcolor{comment}{//\ 程序启动开始到现在的毫秒数}}
+\DoxyCodeLine{00150\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ m\_threadId\ =\ 0;\ \textcolor{comment}{//\ 线程id}}
+\DoxyCodeLine{00151\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ m\_fiberId\ \ =\ 0;\ \textcolor{comment}{//\ 协程id}}
+\DoxyCodeLine{00152\ \ \ \ \ uint64\_t\ \ \ \ \ \ \ \ \ \ m\_time\ \ \ \ \ =\ 0;\ \textcolor{comment}{//\ 时间戳}}
+\DoxyCodeLine{00153\ \ \ \ \ std::stringstream\ m\_ss;}
+\DoxyCodeLine{00154\ \ \ \ \ std::string\ \ \ \ \ \ \ m\_threadName;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ std::shared\_ptr<Logger>\ m\_logger;}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ \ \ \ \ \ \ \ \ m\_level;}
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LogEventWarp}{LogEventWarp}}\ \{}
+\DoxyCodeLine{00161\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEventWarp}{LogEventWarp}}(\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ e\ );}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEventWarp_af175822bc38c285e3c4aaa0a127dab87}{\string~LogEventWarp}}();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ std::stringstream\ \&\mbox{\hyperlink{classsylar_1_1LogEventWarp_ad818231a603446c27c61a4cd50368cd8}{getSS}}();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ m\_event;}
+\DoxyCodeLine{00169\ \};}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ 日志格式器}}
+\DoxyCodeLine{00171\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LogFormatter}{LogFormatter}}\ \{}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<LogFormatter>\ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{ptr}};}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogFormatter}{LogFormatter}}(}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&pattern\ =}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\%d\{\%Y-\/\%m-\/\%d\ \%H:\%M:\%S\}\%T\%t\%T\%F\%T[\%p]\%T[\%c]\%T\%f:\%l\%T\%m\%n"{}}\ );}
+\DoxyCodeLine{00177\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LogFormatter_a83b31fbad9724e424a9e2d327698311d}{format}}(\ std::shared\_ptr<Logger>\ logger,\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ );}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogFormatter_a89c12e29d7cf73a3d93a98fd53683801}{isError}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_error;}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{classsylar_1_1LogFormatter_a283df40ecc8dbbc9a36d3f6dab739eb2}{getPattern}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pattern;}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LogFormatter_1_1FormatItem}{FormatItem}}\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<FormatItem>\ \mbox{\hyperlink{classsylar_1_1LogFormatter_1_1FormatItem_ad93e3dca34abd8e81366a141f67dbd95}{ptr}};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsylar_1_1LogFormatter_1_1FormatItem_a544cbe279f0d12da07483ebfe34f5cd5}{\string~FormatItem}}()\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1LogFormatter_1_1FormatItem_a02024378a41ed3a7ec59f49009b577d5}{format}}(\ std::ostream\ \&os,\ std::shared\_ptr<Logger>\ logger,}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ )\ =\ 0;}
+\DoxyCodeLine{00194\ \ \ \ \ \};}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1LogFormatter_a84b8213e503570f4de1655028f7debf3}{init}}();}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ 日志格式模板}}
+\DoxyCodeLine{00199\ \ \ \ \ std::string\ m\_pattern;}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{//\ 日志解析后的格式}}
+\DoxyCodeLine{00201\ \ \ \ \ std::vector<FormatItem::ptr>\ m\_items;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ 是否有错误}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_error\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00204\ \};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ 日志输出地}}
+\DoxyCodeLine{00207\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LogAppender}{LogAppender}}\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Logger}{Logger}};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<LogAppender>\ \mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{ptr}};}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsylar_1_1SpinLock}{SpinLock}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98}{MutexType}};}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsylar_1_1LogAppender_ae138dc2ce082f7831c2605bff9cf1d6b}{\string~LogAppender}}()\{\};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1LogAppender_ad49c2fa9abee897253b493323c47fcdd}{log}}(\ std::shared\_ptr<Logger>\ logger,\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ )\ =\ 0;}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogAppender_ade49666352b105396992ddd7099cabb9}{setFormatter}}(\ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{LogFormatter::ptr}}\ val\ );}
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{LogFormatter::ptr}}\ \mbox{\hyperlink{classsylar_1_1LogAppender_acdbd919ff4eb7e7f476e913fb32b82a7}{getFormatter}}();}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1LogAppender_a6559a10346f097fa8eed13571c9bf5a1}{setLevel}}(\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level\ )\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogAppender_a4e1088a64778dda4d6813275bfb763a1}{m\_level}}\ =\ level;}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classsylar_1_1LogAppender_a7d03db71a8d7593dc6c4de7b7c42a452}{toYamlString}}()\ =\ 0;}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ \ \ \mbox{\hyperlink{classsylar_1_1LogAppender_a4e1088a64778dda4d6813275bfb763a1}{m\_level}}\ =\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271bae2625cd4626664fa9b0fdf6b938768e7}{LogLevel::DEBUG}};}
+\DoxyCodeLine{00227\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{LogFormatter::ptr}}\ \mbox{\hyperlink{classsylar_1_1LogAppender_a6174f622ce2f4d687612912dcb427dd5}{m\_formatter}};}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogAppender_ad39f1d5bd9c5e46bb8e8bd7fe7d44a4e}{m\_hasFormatter}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1SpinLock}{MutexType}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogAppender_a89fc441dde93af5e145e660961630918}{m\_mutex}};}
+\DoxyCodeLine{00230\ \};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ 日志器}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Logger}{Logger}}\ :\ \textcolor{keyword}{public}\ std::enable\_shared\_from\_this<Logger>\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LoggerManager}{LoggerManager}};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<Logger>\ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{ptr}};}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsylar_1_1SpinLock}{SpinLock}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a836d6dd7f53540b324b40cd11f45b1f7}{MutexType}};}
+\DoxyCodeLine{00239\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}}(\ \textcolor{keyword}{const}\ std::string\ \&name\ =\ \textcolor{stringliteral}{"{}root"{}}\ );}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_a7d79016bac4db1cb3f96f75fbb1dd24c}{log}}(\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ \&event\ );}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_afd444ae2c8fe2eed75b40f816b9dc13d}{debug}}(\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ );}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_a174c80350e2eb65a122c6dee5b04e138}{info}}(\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ );}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_af7d497a334cfe29f35799a2a36f6222b}{warn}}(\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ );}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_a7c2b57e31bea9635d0ab7265f5d574cb}{error}}(\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ );}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_a349e94ae1b30ac2c7a18bceb7015babc}{fatal}}(\ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ );}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_ac8879660f7fd549e467084a309f24cd4}{addAppender}}(\ \mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{LogAppender::ptr}}\ appender\ );}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a66beed5f8de77a9e4e56767086bca079}{delAppender}}(\ \mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{LogAppender::ptr}}\ appender\ );}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a4c8e15330062585251acceb4acaebd1b}{clearAppenders}}();}
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ \mbox{\hyperlink{classsylar_1_1Logger_a7ef4982f170be398f325485a18311510}{getLevel}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_level;}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Logger_ad59d4d435fe0569a02a89756db4db102}{setLevel}}(\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level\ )\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ m\_level\ =\ level;}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a0920f4007d4ca5cbf53d21bf229099cd}{setFormatter}}(\ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{LogFormatter::ptr}}\ val\ );}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a0920f4007d4ca5cbf53d21bf229099cd}{setFormatter}}(\ \textcolor{keyword}{const}\ std::string\ \&val\ );}
+\DoxyCodeLine{00259\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{LogFormatter::ptr}}\ \mbox{\hyperlink{classsylar_1_1Logger_a0f640748f679c4c752b00551d5e0cae6}{getFormatter}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_formatter;}
+\DoxyCodeLine{00261\ \ \ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classsylar_1_1Logger_a7a8352840ebd60ab6f2205fd44131310}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1Logger_a6867fe27a7f11e85a9eb1f1d3155cc98}{toYamlString}}();}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00270\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_name;\ \ \ \ \ \ \textcolor{comment}{//\ 日志名称}}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ \ \ \ \ \ \ \ \ \ \ \ \ m\_level;\ \ \ \ \ \textcolor{comment}{//\ 日志级别}}
+\DoxyCodeLine{00272\ \ \ \ \ std::list<LogAppender::ptr>\ m\_appenders;\ \textcolor{comment}{//\ Appender集合}}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{LogFormatter::ptr}}\ \ \ \ \ \ \ \ \ \ \ m\_formatter;}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger::ptr}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_root;}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a836d6dd7f53540b324b40cd11f45b1f7}{MutexType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex;}
+\DoxyCodeLine{00276\ \};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{comment}{//\ 输出到控制台的Appender}}
+\DoxyCodeLine{00279\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1StdoutLogAppender}{StdoutLogAppender}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsylar_1_1LogAppender}{LogAppender}}\ \{}
+\DoxyCodeLine{00280\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<StdoutLogAppender>\ \mbox{\hyperlink{classsylar_1_1StdoutLogAppender_a76acd48873c187b8f2bed7759ed6254e}{ptr}};}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1StdoutLogAppender_a757e048e7a3ef22cf51a1bd39e69a4f8}{log}}(\ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger::ptr}}\ logger,\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ )\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00284\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1StdoutLogAppender_abf908e01cdd38cb8b84005a761154638}{toYamlString}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00285\ \};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{comment}{//\ 定义输出到文件的Appender}}
+\DoxyCodeLine{00288\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1FileLogAppender}{FileLogAppender}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsylar_1_1LogAppender}{LogAppender}}\ \{}
+\DoxyCodeLine{00289\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<FileLogAppender>\ \mbox{\hyperlink{classsylar_1_1FileLogAppender_ad6b899a8bb5624637931fead3c01d0ff}{ptr}};}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FileLogAppender}{FileLogAppender}}(\ \textcolor{keyword}{const}\ std::string\ \&filename\ );}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1FileLogAppender_a674cfe24a903443eda2a60238d9f8b87}{log}}(\ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger::ptr}}\ logger,\ \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{LogLevel::Level}}\ level,}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{LogEvent::ptr}}\ event\ )\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{//\ 重新打开文件，文件打开成功返回true}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FileLogAppender_a18a5acae7152079467b070135a67207a}{reopen}}();}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1FileLogAppender_aea43a854b2a2f7fe4f5be9eccbf0137f}{toYamlString}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00300\ \ \ \ \ std::string\ \ \ m\_filename;}
+\DoxyCodeLine{00301\ \ \ \ \ std::ofstream\ m\_filestream;}
+\DoxyCodeLine{00302\ \ \ \ \ uint64\_t\ \ \ \ \ \ m\_lastTime\ =\ 0;}
+\DoxyCodeLine{00303\ \};}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{comment}{//\ 日志管理类}}
+\DoxyCodeLine{00306\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LoggerManager}{LoggerManager}}\ \{}
+\DoxyCodeLine{00307\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsylar_1_1SpinLock}{SpinLock}}\ \mbox{\hyperlink{classsylar_1_1LoggerManager_a7ab32e44979bdd74542fad4fab9324db}{MutexType}};}
+\DoxyCodeLine{00309\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LoggerManager_a3b0cf9733b081be2f37f7810909b82b6}{LoggerManager}}();}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger::ptr}}\ \mbox{\hyperlink{classsylar_1_1LoggerManager_aac0d46872b89dba514e0f2de984166fd}{getLogger}}(\ \textcolor{keyword}{const}\ std::string\ \&name\ );}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LoggerManager_a90522ba9a1a5d712f364d69fd5c702ef}{init}}();}
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger::ptr}}\ \mbox{\hyperlink{classsylar_1_1LoggerManager_ad8939973310207965d4ad19c8ee94973}{getRoot}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_root;}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LoggerManager_ab5589d9694abcd9975d867c96b12bafe}{toYamlString}}();}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00320\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{Logger::ptr}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_root;}
+\DoxyCodeLine{00321\ \ \ \ \ std::map<std::string,\ Logger::ptr>\ m\_loggers;}
+\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LoggerManager_a7ab32e44979bdd74542fad4fab9324db}{MutexType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex;}
+\DoxyCodeLine{00323\ \};}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsylar_1_1Singleton}{sylar::Singleton<LoggerManager>}}\ \mbox{\hyperlink{namespacesylar_a4a808333871328d8fc38e2504000a6fc}{LoggerMgr}};}
+\DoxyCodeLine{00326\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+
+\end{DoxyCode}

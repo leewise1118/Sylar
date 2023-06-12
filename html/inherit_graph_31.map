@@ -1,0 +1,29 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classsylar_1_1LogFormatter_1_1FormatItem.html" title=" " alt="" coords="5,294,139,333"/>
+<area shape="rect" id="Node000001" href="$classsylar_1_1DateTimeFormatItem.html" title=" " alt="" coords="196,5,376,30"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="75,279,86,226,106,162,138,97,160,67,185,41,205,28,208,33,188,45,164,70,143,100,111,164,91,228,80,280"/>
+<area shape="rect" id="Node000002" href="$classsylar_1_1ElapseFormatItem.html" title=" " alt="" coords="204,55,368,79"/>
+<area shape="poly" id="edge9_Node000000_Node000002" title=" " alt="" coords="79,280,92,237,114,185,144,134,163,111,185,90,206,78,209,82,188,94,167,114,148,137,118,188,97,238,84,281"/>
+<area shape="rect" id="Node000003" href="$classsylar_1_1FiberIdFormatItem.html" title=" " alt="" coords="204,104,368,129"/>
+<area shape="poly" id="edge10_Node000000_Node000003" title=" " alt="" coords="84,279,100,246,122,208,151,171,185,139,209,127,212,132,188,144,154,175,127,211,105,249,89,282"/>
+<area shape="rect" id="Node000004" href="$classsylar_1_1FilenameFormatItem.html" title=" " alt="" coords="198,153,374,178"/>
+<area shape="poly" id="edge11_Node000000_Node000004" title=" " alt="" coords="93,280,132,233,157,209,185,189,213,176,215,181,188,193,161,213,136,236,97,284"/>
+<area shape="rect" id="Node000005" href="$classsylar_1_1LevelFormatItem.html" title=" " alt="" coords="209,203,363,227"/>
+<area shape="poly" id="edge12_Node000000_Node000005" title=" " alt="" coords="109,283,145,259,186,238,222,225,223,230,188,243,148,264,112,288"/>
+<area shape="rect" id="Node000006" href="$classsylar_1_1LineFormatItem.html" title=" " alt="" coords="212,252,360,277"/>
+<area shape="poly" id="edge13_Node000000_Node000006" title=" " alt="" coords="153,292,229,275,230,280,154,298"/>
+<area shape="rect" id="Node000007" href="$classsylar_1_1MessageFormatItem.html" title=" " alt="" coords="198,301,374,326"/>
+<area shape="poly" id="edge14_Node000000_Node000007" title=" " alt="" coords="154,311,197,311,197,316,154,316"/>
+<area shape="rect" id="Node000008" href="$classsylar_1_1NameFormatItem.html" title=" " alt="" coords="207,351,365,375"/>
+<area shape="poly" id="edge15_Node000000_Node000008" title=" " alt="" coords="154,330,230,347,229,353,153,335"/>
+<area shape="rect" id="Node000009" href="$classsylar_1_1NewLineFormatItem.html" title=" " alt="" coords="199,400,373,425"/>
+<area shape="poly" id="edge16_Node000000_Node000009" title=" " alt="" coords="112,340,148,363,188,385,223,397,222,402,186,389,145,368,109,344"/>
+<area shape="rect" id="Node000010" href="$classsylar_1_1StringFormatItem.html" title=" " alt="" coords="207,449,365,474"/>
+<area shape="poly" id="edge17_Node000000_Node000010" title=" " alt="" coords="97,344,136,391,161,414,188,434,215,446,213,451,185,439,157,418,132,395,93,347"/>
+<area shape="rect" id="Node000011" href="$classsylar_1_1TabFormatItem.html" title=" " alt="" coords="214,499,358,523"/>
+<area shape="poly" id="edge18_Node000000_Node000011" title=" " alt="" coords="89,346,105,379,127,416,154,453,188,483,215,497,212,502,185,488,151,456,122,419,100,381,84,348"/>
+<area shape="rect" id="Node000012" href="$classsylar_1_1ThreadIdFormatItem.html" title=" " alt="" coords="199,548,373,573"/>
+<area shape="poly" id="edge19_Node000000_Node000012" title=" " alt="" coords="84,346,97,389,118,440,148,490,167,513,188,533,209,545,206,550,185,537,163,517,144,493,114,442,92,391,79,348"/>
+<area shape="rect" id="Node000013" href="$classsylar_1_1ThreadNameFormatItem.html" title=" " alt="" coords="187,597,385,622"/>
+<area shape="poly" id="edge20_Node000000_Node000013" title=" " alt="" coords="80,347,91,400,111,463,143,528,164,557,188,582,208,594,205,599,185,586,160,560,138,530,106,465,86,401,75,348"/>
+</map>

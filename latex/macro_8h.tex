@@ -1,0 +1,78 @@
+\doxysection{sylar/macro.h File Reference}
+\hypertarget{macro_8h}{}\label{macro_8h}\index{sylar/macro.h@{sylar/macro.h}}
+{\ttfamily \#include \"{}util.\+h\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for macro.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{macro_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{macro_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{macro_8h_a8a2348af23f3f851e5d82627eff1ee44}{SYLAR\+\_\+\+ASSERT}}(x)
+\item 
+\#define \mbox{\hyperlink{macro_8h_a1d827e5ee32bdf91a8c67a846c2208fb}{SYLAR\+\_\+\+ASSERT2}}(x,  w)
+\item 
+\#define \mbox{\hyperlink{macro_8h_aaf0cf5c7522dc07497c5278d5902951c}{SYLAR\+\_\+\+LIKELY}}(x)~\+\_\+\+\_\+builtin\+\_\+expect( !!( x ), 1 )
+\item 
+\#define \mbox{\hyperlink{macro_8h_a977d7654fdb6aa5fcf6764a3ec800bbb}{SYLAR\+\_\+\+UNLIKELY}}(x)~\+\_\+\+\_\+builtin\+\_\+expect( !!( x ), 0 )
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{macro_8h_a8a2348af23f3f851e5d82627eff1ee44}\label{macro_8h_a8a2348af23f3f851e5d82627eff1ee44} 
+\index{macro.h@{macro.h}!SYLAR\_ASSERT@{SYLAR\_ASSERT}}
+\index{SYLAR\_ASSERT@{SYLAR\_ASSERT}!macro.h@{macro.h}}
+\doxysubsubsection{\texorpdfstring{SYLAR\_ASSERT}{SYLAR\_ASSERT}}
+{\footnotesize\ttfamily \#define SYLAR\+\_\+\+ASSERT(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\ !(\ x\ )\ )\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ SYLAR\_LOG\_ERROR(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ASSERTION:\ "{}}\ \#x\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nbacktrace:\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ \mbox{\hyperlink{namespacesylar_a63cbbff6b89d882c565104bdacb63f06}{sylar::BacktraceToString}}(\ 100,\ 2,\ \textcolor{stringliteral}{"{}\ \ \ "{}}\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ assert(\ x\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{macro_8h_a1d827e5ee32bdf91a8c67a846c2208fb}\label{macro_8h_a1d827e5ee32bdf91a8c67a846c2208fb} 
+\index{macro.h@{macro.h}!SYLAR\_ASSERT2@{SYLAR\_ASSERT2}}
+\index{SYLAR\_ASSERT2@{SYLAR\_ASSERT2}!macro.h@{macro.h}}
+\doxysubsubsection{\texorpdfstring{SYLAR\_ASSERT2}{SYLAR\_ASSERT2}}
+{\footnotesize\ttfamily \#define SYLAR\+\_\+\+ASSERT2(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{w }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\ !(\ x\ )\ )\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ SYLAR\_LOG\_ERROR(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ASSERTION:\ "{}}\ \#x\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ w\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nbacktrace:\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ \mbox{\hyperlink{namespacesylar_a63cbbff6b89d882c565104bdacb63f06}{sylar::BacktraceToString}}(\ 100,\ 2,\ \textcolor{stringliteral}{"{}\ \ \ "{}}\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ assert(\ x\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{macro_8h_aaf0cf5c7522dc07497c5278d5902951c}\label{macro_8h_aaf0cf5c7522dc07497c5278d5902951c} 
+\index{macro.h@{macro.h}!SYLAR\_LIKELY@{SYLAR\_LIKELY}}
+\index{SYLAR\_LIKELY@{SYLAR\_LIKELY}!macro.h@{macro.h}}
+\doxysubsubsection{\texorpdfstring{SYLAR\_LIKELY}{SYLAR\_LIKELY}}
+{\footnotesize\ttfamily \#define SYLAR\+\_\+\+LIKELY(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+expect( !!( x ), 1 )}
+
+\Hypertarget{macro_8h_a977d7654fdb6aa5fcf6764a3ec800bbb}\label{macro_8h_a977d7654fdb6aa5fcf6764a3ec800bbb} 
+\index{macro.h@{macro.h}!SYLAR\_UNLIKELY@{SYLAR\_UNLIKELY}}
+\index{SYLAR\_UNLIKELY@{SYLAR\_UNLIKELY}!macro.h@{macro.h}}
+\doxysubsubsection{\texorpdfstring{SYLAR\_UNLIKELY}{SYLAR\_UNLIKELY}}
+{\footnotesize\ttfamily \#define SYLAR\+\_\+\+UNLIKELY(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+expect( !!( x ), 0 )}
+

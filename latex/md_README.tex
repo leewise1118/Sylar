@@ -1,0 +1,40 @@
+\chapter{Sylar}
+\hypertarget{md_README}{}\label{md_README}\index{Sylar@{Sylar}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+ \hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{2023-\/05-\/15}{2023-05-15}}\label{md_README_autotoc_md1}
+感觉从\+IOManager到timer都有问题，不知道协程调度出了问题没，迷茫了。\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{2023-\/05-\/16}{2023-05-16}}\label{md_README_autotoc_md2}
+从协程开始理清思路！！\hypertarget{md_README_autotoc_md3}{}\doxysubsection{\texorpdfstring{协程}{协程}}\label{md_README_autotoc_md3}
+首先是协程，协程本质上可以看看作是一个函数，只是协程在执行过程中可以退出(yield)，并且在适当实际恢复运行(resume)，在这段时间里，其他协程可以获得\+CPU并运行。协程模块使用的是非对称协程模型，即子协程智能与线程主协程进行切换，而不能与另外一个子协程切换，子协程程序结束后，一定要再切回到主协程。协程模块依赖于ucontext\+\_\+t实现。
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }ucontext\_t\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_ctx(\ uc\_flags\ );}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{struct\ }ucontext\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *uc\_link;\ \textcolor{comment}{//指向上下文，即其他协程}}
+\DoxyCodeLine{\ \ \ \ stack\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uc\_stack;\textcolor{comment}{//该上下文使用的栈}}
+\DoxyCodeLine{\ \ \ \ mcontext\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uc\_mcontext;\textcolor{comment}{//上下文}}
+\DoxyCodeLine{\ \ \ \ sigset\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uc\_sigmask;\textcolor{comment}{//上下文中的阻塞信息}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{struct\ }\_libc\_fpstate\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_fpregs\_mem;}
+\DoxyCodeLine{\ \ \ \ \_\_extension\_\_\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \_\_ssp[\ 4\ ];}
+\DoxyCodeLine{\}\ ucontext\_t;}
+\DoxyCodeLine{\ \textcolor{comment}{//获取当前的上下文}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ getcontext(ucontext\_t\ *ucp)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//恢复ucp指向的上下文，这个函数不会返回，而是跳转到ucp上，相当于变相的调用了函数}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ setcontext(\textcolor{keyword}{const}\ ucontext\_t\ *ucp)\ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//修改由getcontext获取到的上下文指针ucp}}
+\DoxyCodeLine{\textcolor{comment}{//在调用之前，必须手动给ucp分配一段内存空间，存储在ucp-\/>uc\_stack中，这段内存空间将作为func函数运行的栈空间}}
+\DoxyCodeLine{\textcolor{comment}{//同时也可以指定ucp-\/>uc\_link，表示函数运行结束后恢复uc\_link指向的上下文}}
+\DoxyCodeLine{\textcolor{comment}{//如果不复制uc\_link,那么func函数结束时必须调用setcontext或swapcontext以重新指定一个有效的上下文，否则程序就跑飞了}}
+\DoxyCodeLine{\textcolor{comment}{//makecontext执行完后，ucp就与函数func绑定了，调用setcontext或swapcontext激活ucp时，func就会被运行}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ makecontext(ucontext\_t\ *ucp,\textcolor{keywordtype}{void}(*func)(),\textcolor{keywordtype}{int}\ argc,...)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//恢复ucp指向的上下文，同时将当前的上下文存储到oucp中。}}
+\DoxyCodeLine{\textcolor{comment}{//该函数也不会返回，而是会跳转到ucp上下文对应的函数中执行，相当于调用了函数}}
+\DoxyCodeLine{int\ swapcontext(ucontext\_t*\ oucp,const\ ucontext\_t\ *ucp);}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{协程的实现}{协程的实现}}\label{md_README_autotoc_md4}
+对应于线程，协程也设置了五个状态： 

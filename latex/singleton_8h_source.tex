@@ -1,0 +1,28 @@
+\doxysection{singleton.\+h}
+\hypertarget{singleton_8h_source}{}\label{singleton_8h_source}\index{sylar/singleton.h@{sylar/singleton.h}}
+\mbox{\hyperlink{singleton_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_SYLAR\_SINGLETON\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_SYLAR\_SINGLETON\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ X\ =\ \textcolor{keywordtype}{void},\ \textcolor{keywordtype}{int}\ N\ =\ 0>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Singleton}{Singleton}}\ \{}
+\DoxyCodeLine{00008\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{static}\ T\ *\mbox{\hyperlink{classsylar_1_1Singleton_a93ceebb0d66f13d1460986d2040db36b}{GetInstance}}()\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ T\ v;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&v;}
+\DoxyCodeLine{00012\ \ \ \ \ \}}
+\DoxyCodeLine{00013\ \};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ X\ =\ \textcolor{keywordtype}{void},\ \textcolor{keywordtype}{int}\ N\ =\ 0>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1SingletonPtr}{SingletonPtr}}\ \{}
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<T>\ \mbox{\hyperlink{classsylar_1_1SingletonPtr_a39365b7817d38dea411ab17e38a690d0}{GetInstance}}()\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ std::shared\_ptr<T>\ v(\ \textcolor{keyword}{new}\ T\ );}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00019\ \ \ \ \ \}}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

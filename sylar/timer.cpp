@@ -91,6 +91,12 @@ Timer::ptr TimerManager::addTimer( uint64_t ms, Func cb, bool recurring ) {
     addTimer( timer, Wlock );
     return timer;
 }
+/**
+ * @brief 添加定时器
+ *
+ * @param val
+ * @param lock
+ */
 void TimerManager::addTimer( Timer::ptr val, MutexType::WriteLock &lock ) {
     auto it       = m_timers.insert( val ).first;
     bool at_front = ( it == m_timers.begin() ) && !m_tickled;
@@ -108,6 +114,15 @@ static void OnTimer( std::weak_ptr<void> weak_cond, std::function<void()> cb ) {
         cb();
     }
 }
+/**
+ * @brief
+ *
+ * @param ms
+ * @param cb
+ * @param weak_cond
+ * @param recurring
+ * @return Timer::ptr
+ */
 Timer::ptr TimerManager::addConditionTimer( uint64_t ms, Func cb,
                                             std::weak_ptr<void> weak_cond,
                                             bool                recurring ) {

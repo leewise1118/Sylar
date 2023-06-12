@@ -1,0 +1,359 @@
+\doxysection{sylar\+::IOManager Class Reference}
+\hypertarget{classsylar_1_1IOManager}{}\label{classsylar_1_1IOManager}\index{sylar::IOManager@{sylar::IOManager}}
+
+
+{\ttfamily \#include $<$iomanager.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::IOManager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classsylar_1_1IOManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::IOManager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classsylar_1_1IOManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}} \{ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7faadc83980f9a40fcf08169d6ad2ad23a3}{NONE}} = 0x0
+, \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa090891b5bdc9b68bfba5a8f37dbf5515}{READ}} = 0x1
+, \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa5374ec6931815ee5254402a638a9db51}{WRITE}} = 0x4
+ \}
+\item 
+using \mbox{\hyperlink{classsylar_1_1IOManager_a539946484dda7a8d5a04f7f2c95d2b79}{ptr}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}} $>$
+\item 
+using \mbox{\hyperlink{classsylar_1_1IOManager_a22a4f9b53993db79101863f45c4ed40d}{Mutex\+Type}} = \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}
+\item 
+using \mbox{\hyperlink{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}{Func}} = std\+::function$<$ void()$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classsylar_1_1Scheduler}{sylar\+::\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classsylar_1_1Scheduler_a877fc600416afb8d4106d473f49ea528}{ptr}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}} $>$
+\item 
+using \mbox{\hyperlink{classsylar_1_1Scheduler_afcb306c3a47a04ade1daf63f64a11fe5}{Mutex\+Type}} = \mbox{\hyperlink{classsylar_1_1Mutex}{Mutex}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classsylar_1_1TimerManager}{sylar\+::\+Timer\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} = std\+::function$<$ void()$>$
+\item 
+using \mbox{\hyperlink{classsylar_1_1TimerManager_a035754a6c842fb49695c05c655581d69}{Mutex\+Type}} = \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1IOManager_a3f414d2f5ff9c48fdccd8b04cd28cfc7}{IOManager}} (size\+\_\+t thread=1, bool use\+\_\+caller=true, const std\+::string \&name=\"{}\"{})
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classsylar_1_1IOManager}{IOManager} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsylar_1_1IOManager_a58fee9eb690cdf0269b57fb7d813e9f7}{\texorpdfstring{$\sim$}{\string~}\+IOManager}} ()
+\item 
+int \mbox{\hyperlink{classsylar_1_1IOManager_a0e866857d58f39aa36eebaf571ef5007}{add\+Event}} (int fd, \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}} event, \mbox{\hyperlink{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}{Func}} cb=nullptr)
+\begin{DoxyCompactList}\small\item\em 添加事件 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsylar_1_1IOManager_a75d9ef80cbaea0b0f5fbef325fd38a9d}{del\+Event}} (int fd, \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}} event)
+\item 
+bool \mbox{\hyperlink{classsylar_1_1IOManager_a3939d465df257f6e591aa405f24f7c3a}{cancel\+Event}} (int fd, \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}} event)
+\item 
+bool \mbox{\hyperlink{classsylar_1_1IOManager_a4be82a8ec8ce0653e5a90bc3a2d4450d}{cancel\+All}} (int fd)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classsylar_1_1Scheduler}{sylar\+::\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1Scheduler_a91af0820b085ae59c9e0feddb80c5ec4}{Scheduler}} (size\+\_\+t threads=1, bool use\+\_\+caller=true, const std\+::string \&name=\"{}\"{})
+\begin{DoxyCompactList}\small\item\em 构造函数 \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classsylar_1_1Scheduler_a581bc46880ca5f5e209db0e38a8b2814}{\texorpdfstring{$\sim$}{\string~}\+Scheduler}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Scheduler_a028c935d19b263bd0c49c5f65201e8b5}{start}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Scheduler_aa1f195d4d6862200f7a979200692d3ef}{stop}} ()
+\item 
+const std\+::string \& \mbox{\hyperlink{classsylar_1_1Scheduler_a0a9bb7fe898842720e1ef8e9eb3b1505}{get\+Name}} () const
+\item 
+{\footnotesize template$<$class Fiber\+Or\+Cb $>$ }\\void \mbox{\hyperlink{classsylar_1_1Scheduler_acd54348eec0012357cb2b83a0010a534}{schedule}} (Fiber\+Or\+Cb fc, int thread=-\/1)
+\begin{DoxyCompactList}\small\item\em 添加任务 thread-\/safe \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Input\+Iterator $>$ }\\void \mbox{\hyperlink{classsylar_1_1Scheduler_ae73f587c00445ca0c05005f80094d2a8}{schedule}} (Input\+Iterator begin, Input\+Iterator end)
+\begin{DoxyCompactList}\small\item\em 添加多个任务 thread-\/safe \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classsylar_1_1TimerManager}{sylar\+::\+Timer\+Manager}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1TimerManager_a8d9b6ca1141d8db2d6b4134de57e0138}{Timer\+Manager}} ()
+\item 
+virtual \mbox{\hyperlink{classsylar_1_1TimerManager_af3f5c71321a5b5b69eabb62661e4bcea}{\texorpdfstring{$\sim$}{\string~}\+Timer\+Manager}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} \mbox{\hyperlink{classsylar_1_1TimerManager_ac9eeb0e70ef2094344118fdbdcab07ab}{add\+Timer}} (uint64\+\_\+t ms, \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} cb, bool recurring=false)
+\item 
+void \mbox{\hyperlink{classsylar_1_1TimerManager_ae9c6687f2c73a7845e429e50c28fbdf9}{add\+Timer}} (\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} val, \mbox{\hyperlink{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf}{Mutex\+Type\+::\+Write\+Lock}} \&lock)
+\begin{DoxyCompactList}\small\item\em 添加定时器 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} \mbox{\hyperlink{classsylar_1_1TimerManager_a6f3aa491a4e67d7149602e2c343f98d1}{add\+Condition\+Timer}} (uint64\+\_\+t ms, \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} cb, std\+::weak\+\_\+ptr$<$ void $>$ weak\+\_\+cond, bool recurring=false)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1TimerManager_a18e9ac0428af178d7196cad9c5971195}{get\+Next\+Timer}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1TimerManager_afd2c8b35810fbe9e82725cb95120bb77}{list\+Expired\+Cb}} (std\+::vector$<$ \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} $>$ \&cbs)
+\item 
+bool \mbox{\hyperlink{classsylar_1_1TimerManager_a1a41364b95f0eb1974fe4082c23bcc47}{has\+Timer}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsylar_1_1IOManager_a1c94bd6197587c4eead17ae30cb1abea}{Get\+This}} ()
+\begin{DoxyCompactList}\small\item\em 返回当前的\+IOManager \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classsylar_1_1Scheduler}{sylar\+::\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsylar_1_1Scheduler_af49c48071c9523d1ab4bc11edf409f29}{Get\+This}} ()
+\item 
+static \mbox{\hyperlink{classsylar_1_1Fiber}{Fiber}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsylar_1_1Scheduler_a8b802736f5c20b477def0838b92804cf}{Get\+Main\+Fiber}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classsylar_1_1IOManager_a28895129097dd6e85698bd52aa2f30cd}{tickle}} () override
+\item 
+bool \mbox{\hyperlink{classsylar_1_1IOManager_aec614100855edd1e48d23afb67468b45}{stopping}} () override
+\item 
+bool \mbox{\hyperlink{classsylar_1_1IOManager_a5cc8bc218e13cf197930f8e0b2e9f458}{stopping}} (uint64\+\_\+t \&timeout)
+\item 
+void \mbox{\hyperlink{classsylar_1_1IOManager_ab68c334a1b1c0bbd8f016b28f6715c13}{idle}} () override
+\item 
+void \mbox{\hyperlink{classsylar_1_1IOManager_a8d41d71eb7e5525f9b1d1dd6f976571d}{on\+Time\+Inserted\+At\+Front}} () override
+\item 
+void \mbox{\hyperlink{classsylar_1_1IOManager_a887c03f40a7360591ca9b945b7a76714}{context\+Resize}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em 重置socket句柄上下文的容器大小 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classsylar_1_1Scheduler}{sylar\+::\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classsylar_1_1Scheduler_a142d8cd454d6a8471278506c335302ae}{tickle}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Scheduler_ac87e22634869414e4b493685cbbf82e2}{run}} ()
+\item 
+virtual bool \mbox{\hyperlink{classsylar_1_1Scheduler_ae61cba3e8e7320d441c295b6183bba55}{stopping}} ()
+\item 
+virtual void \mbox{\hyperlink{classsylar_1_1Scheduler_a669db8fa5f3ca3d0595c9858b903fc71}{idle}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1Scheduler_aab919e867c6b4dac93a6f810551e9def}{set\+This}} ()
+\item 
+bool \mbox{\hyperlink{classsylar_1_1Scheduler_abd6c9d9fc49ac0c095b284761fa7de13}{has\+Idle\+Thread}} ()
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classsylar_1_1TimerManager_aa8f798b71cbd8db28bf8970a363862e6}{on\+Time\+Inserted\+At\+Front}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classsylar_1_1Scheduler}{sylar\+::\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classsylar_1_1Scheduler_a14da3ea7c8a253f2bc9a199e7975ef91}{m\+\_\+thread\+Ids}}
+\item 
+size\+\_\+t \mbox{\hyperlink{classsylar_1_1Scheduler_a8bcf2c2c1b89fcd3ee2fec70b42987ce}{m\+\_\+thread\+Count}} = 0
+\item 
+std\+::atomic$<$ size\+\_\+t $>$ \mbox{\hyperlink{classsylar_1_1Scheduler_a837fcf7e9403f859813cf830d2efe306}{m\+\_\+active\+Thread\+Count}} \{ 0 \}
+\item 
+std\+::atomic$<$ size\+\_\+t $>$ \mbox{\hyperlink{classsylar_1_1Scheduler_a51cab9237c299fc30f537dc9fd4935db}{m\+\_\+idle\+Thread\+Count}} \{ 0 \}
+\item 
+bool \mbox{\hyperlink{classsylar_1_1Scheduler_ab40c5cd7c4d39a1bed431781f299b1ee}{m\+\_\+stopping}} = true
+\item 
+bool \mbox{\hyperlink{classsylar_1_1Scheduler_a857b3c4ea979fe4ccdea1a94dc5c8aae}{m\+\_\+auto\+Stop}} = false
+\item 
+int \mbox{\hyperlink{classsylar_1_1Scheduler_ad798d9881a2285fcb55e0dc3b60708f0}{m\+\_\+root\+Thread}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}\label{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b} 
+\index{sylar::IOManager@{sylar::IOManager}!Func@{Func}}
+\index{Func@{Func}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{Func}{Func}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}{sylar\+::\+IOManager\+::\+Func}} =  std\+::function$<$void()$>$}
+
+\Hypertarget{classsylar_1_1IOManager_a22a4f9b53993db79101863f45c4ed40d}\label{classsylar_1_1IOManager_a22a4f9b53993db79101863f45c4ed40d} 
+\index{sylar::IOManager@{sylar::IOManager}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1IOManager_a22a4f9b53993db79101863f45c4ed40d}{sylar\+::\+IOManager\+::\+Mutex\+Type}} =  \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}}
+
+\Hypertarget{classsylar_1_1IOManager_a539946484dda7a8d5a04f7f2c95d2b79}\label{classsylar_1_1IOManager_a539946484dda7a8d5a04f7f2c95d2b79} 
+\index{sylar::IOManager@{sylar::IOManager}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1IOManager_a539946484dda7a8d5a04f7f2c95d2b79}{sylar\+::\+IOManager\+::ptr}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}}$>$}
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}\label{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f} 
+\index{sylar::IOManager@{sylar::IOManager}!Event@{Event}}
+\index{Event@{Event}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{Event}{Event}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{sylar\+::\+IOManager\+::\+Event}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!sylar::IOManager@{sylar::IOManager}}\index{sylar::IOManager@{sylar::IOManager}!NONE@{NONE}}}\Hypertarget{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7faadc83980f9a40fcf08169d6ad2ad23a3}\label{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7faadc83980f9a40fcf08169d6ad2ad23a3} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ@{READ}!sylar::IOManager@{sylar::IOManager}}\index{sylar::IOManager@{sylar::IOManager}!READ@{READ}}}\Hypertarget{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa090891b5bdc9b68bfba5a8f37dbf5515}\label{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa090891b5bdc9b68bfba5a8f37dbf5515} 
+READ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WRITE@{WRITE}!sylar::IOManager@{sylar::IOManager}}\index{sylar::IOManager@{sylar::IOManager}!WRITE@{WRITE}}}\Hypertarget{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa5374ec6931815ee5254402a638a9db51}\label{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa5374ec6931815ee5254402a638a9db51} 
+WRITE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1IOManager_a3f414d2f5ff9c48fdccd8b04cd28cfc7}\label{classsylar_1_1IOManager_a3f414d2f5ff9c48fdccd8b04cd28cfc7} 
+\index{sylar::IOManager@{sylar::IOManager}!IOManager@{IOManager}}
+\index{IOManager@{IOManager}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{IOManager()}{IOManager()}}
+{\footnotesize\ttfamily sylar\+::\+IOManager\+::\+IOManager (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{thread = {\ttfamily 1},  }\item[{bool}]{use\+\_\+caller = {\ttfamily true},  }\item[{const std\+::string \&}]{name = {\ttfamily \"{}\"{}} }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{classsylar_1_1IOManager}{IOManager} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread} & 线程数量 \\
+\hline
+{\em use\+\_\+caller} & 是否将调用线程包含进去 \\
+\hline
+{\em name} & 调度器的名称 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsylar_1_1IOManager_a58fee9eb690cdf0269b57fb7d813e9f7}\label{classsylar_1_1IOManager_a58fee9eb690cdf0269b57fb7d813e9f7} 
+\index{sylar::IOManager@{sylar::IOManager}!````~IOManager@{\texorpdfstring{$\sim$}{\string~}IOManager}}
+\index{````~IOManager@{\texorpdfstring{$\sim$}{\string~}IOManager}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IOManager()}{\string~IOManager()}}
+{\footnotesize\ttfamily sylar\+::\+IOManager\+::\texorpdfstring{$\sim$}{\string~}\+IOManager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1IOManager_a0e866857d58f39aa36eebaf571ef5007}\label{classsylar_1_1IOManager_a0e866857d58f39aa36eebaf571ef5007} 
+\index{sylar::IOManager@{sylar::IOManager}!addEvent@{addEvent}}
+\index{addEvent@{addEvent}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{addEvent()}{addEvent()}}
+{\footnotesize\ttfamily int sylar\+::\+IOManager\+::add\+Event (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}}]{event,  }\item[{\mbox{\hyperlink{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}{Func}}}]{cb = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+添加事件 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & socket句柄 \\
+\hline
+{\em event} & 事件类型 \\
+\hline
+{\em cb} & 事件回调函数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 添加成功返回0，失败返回-\/1 
+\end{DoxyReturn}
+\Hypertarget{classsylar_1_1IOManager_a4be82a8ec8ce0653e5a90bc3a2d4450d}\label{classsylar_1_1IOManager_a4be82a8ec8ce0653e5a90bc3a2d4450d} 
+\index{sylar::IOManager@{sylar::IOManager}!cancelAll@{cancelAll}}
+\index{cancelAll@{cancelAll}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{cancelAll()}{cancelAll()}}
+{\footnotesize\ttfamily bool sylar\+::\+IOManager\+::cancel\+All (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1IOManager_a3939d465df257f6e591aa405f24f7c3a}\label{classsylar_1_1IOManager_a3939d465df257f6e591aa405f24f7c3a} 
+\index{sylar::IOManager@{sylar::IOManager}!cancelEvent@{cancelEvent}}
+\index{cancelEvent@{cancelEvent}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{cancelEvent()}{cancelEvent()}}
+{\footnotesize\ttfamily bool sylar\+::\+IOManager\+::cancel\+Event (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1IOManager_a887c03f40a7360591ca9b945b7a76714}\label{classsylar_1_1IOManager_a887c03f40a7360591ca9b945b7a76714} 
+\index{sylar::IOManager@{sylar::IOManager}!contextResize@{contextResize}}
+\index{contextResize@{contextResize}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{contextResize()}{contextResize()}}
+{\footnotesize\ttfamily void sylar\+::\+IOManager\+::context\+Resize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+重置socket句柄上下文的容器大小 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & 容器大小 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsylar_1_1IOManager_a75d9ef80cbaea0b0f5fbef325fd38a9d}\label{classsylar_1_1IOManager_a75d9ef80cbaea0b0f5fbef325fd38a9d} 
+\index{sylar::IOManager@{sylar::IOManager}!delEvent@{delEvent}}
+\index{delEvent@{delEvent}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{delEvent()}{delEvent()}}
+{\footnotesize\ttfamily bool sylar\+::\+IOManager\+::del\+Event (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1IOManager_a1c94bd6197587c4eead17ae30cb1abea}\label{classsylar_1_1IOManager_a1c94bd6197587c4eead17ae30cb1abea} 
+\index{sylar::IOManager@{sylar::IOManager}!GetThis@{GetThis}}
+\index{GetThis@{GetThis}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{GetThis()}{GetThis()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}} \texorpdfstring{$\ast$}{*} sylar\+::\+IOManager\+::\+Get\+This (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+返回当前的\+IOManager 
+
+\Hypertarget{classsylar_1_1IOManager_ab68c334a1b1c0bbd8f016b28f6715c13}\label{classsylar_1_1IOManager_ab68c334a1b1c0bbd8f016b28f6715c13} 
+\index{sylar::IOManager@{sylar::IOManager}!idle@{idle}}
+\index{idle@{idle}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{idle()}{idle()}}
+{\footnotesize\ttfamily void sylar\+::\+IOManager\+::idle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classsylar_1_1Scheduler_a669db8fa5f3ca3d0595c9858b903fc71}{sylar\+::\+Scheduler}}.
+
+\Hypertarget{classsylar_1_1IOManager_a8d41d71eb7e5525f9b1d1dd6f976571d}\label{classsylar_1_1IOManager_a8d41d71eb7e5525f9b1d1dd6f976571d} 
+\index{sylar::IOManager@{sylar::IOManager}!onTimeInsertedAtFront@{onTimeInsertedAtFront}}
+\index{onTimeInsertedAtFront@{onTimeInsertedAtFront}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{onTimeInsertedAtFront()}{onTimeInsertedAtFront()}}
+{\footnotesize\ttfamily void sylar\+::\+IOManager\+::on\+Time\+Inserted\+At\+Front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsylar_1_1TimerManager_aa8f798b71cbd8db28bf8970a363862e6}{sylar\+::\+Timer\+Manager}}.
+
+\Hypertarget{classsylar_1_1IOManager_aec614100855edd1e48d23afb67468b45}\label{classsylar_1_1IOManager_aec614100855edd1e48d23afb67468b45} 
+\index{sylar::IOManager@{sylar::IOManager}!stopping@{stopping}}
+\index{stopping@{stopping}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{stopping()}{stopping()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool sylar\+::\+IOManager\+::stopping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classsylar_1_1Scheduler_ae61cba3e8e7320d441c295b6183bba55}{sylar\+::\+Scheduler}}.
+
+\Hypertarget{classsylar_1_1IOManager_a5cc8bc218e13cf197930f8e0b2e9f458}\label{classsylar_1_1IOManager_a5cc8bc218e13cf197930f8e0b2e9f458} 
+\index{sylar::IOManager@{sylar::IOManager}!stopping@{stopping}}
+\index{stopping@{stopping}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{stopping()}{stopping()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool sylar\+::\+IOManager\+::stopping (\begin{DoxyParamCaption}\item[{uint64\+\_\+t \&}]{timeout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsylar_1_1IOManager_a28895129097dd6e85698bd52aa2f30cd}\label{classsylar_1_1IOManager_a28895129097dd6e85698bd52aa2f30cd} 
+\index{sylar::IOManager@{sylar::IOManager}!tickle@{tickle}}
+\index{tickle@{tickle}!sylar::IOManager@{sylar::IOManager}}
+\doxysubsubsection{\texorpdfstring{tickle()}{tickle()}}
+{\footnotesize\ttfamily void sylar\+::\+IOManager\+::tickle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classsylar_1_1Scheduler_a142d8cd454d6a8471278506c335302ae}{sylar\+::\+Scheduler}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{iomanager_8h}{iomanager.\+h}}\item 
+sylar/\mbox{\hyperlink{iomanager_8cpp}{iomanager.\+cpp}}\end{DoxyCompactItemize}

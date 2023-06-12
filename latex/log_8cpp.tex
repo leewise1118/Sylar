@@ -1,0 +1,119 @@
+\doxysection{sylar/log.cpp File Reference}
+\hypertarget{log_8cpp}{}\label{log_8cpp}\index{sylar/log.cpp@{sylar/log.cpp}}
+{\ttfamily \#include \"{}config.\+h\"{}}\newline
+{\ttfamily \#include \"{}log.\+h\"{}}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for log.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{log_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsylar_1_1FilenameFormatItem}{sylar\+::\+Filename\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1LineFormatItem}{sylar\+::\+Line\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1NewLineFormatItem}{sylar\+::\+New\+Line\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1MessageFormatItem}{sylar\+::\+Message\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1LevelFormatItem}{sylar\+::\+Level\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1ElapseFormatItem}{sylar\+::\+Elapse\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1NameFormatItem}{sylar\+::\+Name\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1ThreadIdFormatItem}{sylar\+::\+Thread\+Id\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1FiberIdFormatItem}{sylar\+::\+Fiber\+Id\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1ThreadNameFormatItem}{sylar\+::\+Thread\+Name\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1DateTimeFormatItem}{sylar\+::\+Date\+Time\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1StringFormatItem}{sylar\+::\+String\+Format\+Item}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1TabFormatItem}{sylar\+::\+Tab\+Format\+Item}}
+\item 
+struct \mbox{\hyperlink{structsylar_1_1LogAppenderDefine}{sylar\+::\+Log\+Appender\+Define}}
+\item 
+struct \mbox{\hyperlink{structsylar_1_1LogDefine}{sylar\+::\+Log\+Define}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01LogDefine_01_4}{sylar\+::\+Lexical\+Cast$<$ std\+::string, Log\+Define $>$}}
+\item 
+class \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01LogDefine_00_01std_1_1string_01_4}{sylar\+::\+Lexical\+Cast$<$ Log\+Define, std\+::string $>$}}
+\item 
+struct \mbox{\hyperlink{structsylar_1_1LogIniter}{sylar\+::\+Log\+Initer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacesylar}{sylar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{log_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}{XX}}(name)
+\item 
+\#define \mbox{\hyperlink{log_8cpp_a5768ee2cced018b64159cf9f11699c2e}{XX}}(level,  v)
+\item 
+\#define \mbox{\hyperlink{log_8cpp_aa68af0d1ac82246bb0abd79186dda36f}{XX}}(str,  C)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1ConfigVar}{sylar\+::\+Config\+Var}}$<$ std\+::set$<$ \mbox{\hyperlink{structsylar_1_1LogDefine}{Log\+Define}} $>$ $>$\+::ptr \mbox{\hyperlink{namespacesylar_a040cde36e8cc5de3f5c1ea505aa99232}{sylar\+::g\+\_\+log\+\_\+defines}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{log_8cpp_a5768ee2cced018b64159cf9f11699c2e}\label{log_8cpp_a5768ee2cced018b64159cf9f11699c2e} 
+\index{log.cpp@{log.cpp}!XX@{XX}}
+\index{XX@{XX}!log.cpp@{log.cpp}}
+\doxysubsubsection{\texorpdfstring{XX}{XX}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \#define XX(\begin{DoxyParamCaption}\item[{}]{level,  }\item[{}]{v }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\ str\ ==\ \#v\ )\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ LogLevel::level;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{log_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}\label{log_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124} 
+\index{log.cpp@{log.cpp}!XX@{XX}}
+\index{XX@{XX}!log.cpp@{log.cpp}}
+\doxysubsubsection{\texorpdfstring{XX}{XX}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \#define XX(\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{case}\ LogLevel::name:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \#name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+
+\end{DoxyCode}
+\Hypertarget{log_8cpp_aa68af0d1ac82246bb0abd79186dda36f}\label{log_8cpp_aa68af0d1ac82246bb0abd79186dda36f} 
+\index{log.cpp@{log.cpp}!XX@{XX}}
+\index{XX@{XX}!log.cpp@{log.cpp}}
+\doxysubsubsection{\texorpdfstring{XX}{XX}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \#define XX(\begin{DoxyParamCaption}\item[{}]{str,  }\item[{}]{C }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\textcolor{preprocessor}{\#str,\ [](\ const\ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&fmt\ )\ \{\ return\ FormatItem::ptr(\ new\ C(\ fmt\ )\ );\ \}\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\textcolor{preprocessor}{\ \ \ \ \}}}
+
+\end{DoxyCode}

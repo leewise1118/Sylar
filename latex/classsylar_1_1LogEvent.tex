@@ -1,0 +1,148 @@
+\doxysection{sylar\+::Log\+Event Class Reference}
+\hypertarget{classsylar_1_1LogEvent}{}\label{classsylar_1_1LogEvent}\index{sylar::LogEvent@{sylar::LogEvent}}
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+
+
+Collaboration diagram for sylar\+::Log\+Event\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classsylar_1_1LogEvent__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1LogEvent}{Log\+Event}} $>$ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1LogEvent_af80fd9ef44f2716aa7dd75806403e0d8}{Log\+Event}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$ logger, \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} level, const char \texorpdfstring{$\ast$}{*}file, int32\+\_\+t line, uint32\+\_\+t elapes, uint32\+\_\+t thread\+\_\+id, uint32\+\_\+t fiber\+\_\+id, uint64\+\_\+t time, const std\+::string \&thread\+\_\+name)
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsylar_1_1LogEvent_a7d850e140794b4ba223890f5f98f729a}{get\+File}} () const
+\item 
+int32\+\_\+t \mbox{\hyperlink{classsylar_1_1LogEvent_ab1df35550e5e274c398cc612fe177607}{get\+Line}} () const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classsylar_1_1LogEvent_ab4ef746304d5f2fd749a0bc3366fc72d}{get\+Elapse}} () const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classsylar_1_1LogEvent_a505967bcd9112c3f869146c1e11955ad}{get\+Thead\+Id}} () const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classsylar_1_1LogEvent_aee373b68ef27604cbfda4375822285f8}{get\+Fiber\+Id}} () const
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1LogEvent_a83cb90842b18d39975849070c8a4c25f}{get\+Time}} () const
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1LogEvent_a13a44ff908b0afa2b782c0936b799330}{get\+Content}} () const
+\item 
+std\+::stringstream \& \mbox{\hyperlink{classsylar_1_1LogEvent_a9f1b1a241920538461ad3047f1784e40}{get\+SS}} ()
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1LogEvent_ac829de3a164cc27fd6d2f29c30e82810}{get\+Thread\+Name}} () const
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$ \mbox{\hyperlink{classsylar_1_1LogEvent_a19800a6a9aafe50254896fc772dfd4c7}{get\+Logger}} () const
+\item 
+\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} \mbox{\hyperlink{classsylar_1_1LogEvent_a661f70eb36b2cc1dcca4f3dd602087ed}{get\+Level}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1LogEvent_a6730af6d53112c4731a7779cf0e38bc4}{format}} (const char \texorpdfstring{$\ast$}{*}fmt)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}\label{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497} 
+\index{sylar::LogEvent@{sylar::LogEvent}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1LogEvent}{Log\+Event}}$>$ \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{sylar\+::\+Log\+Event\+::ptr}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1LogEvent_af80fd9ef44f2716aa7dd75806403e0d8}\label{classsylar_1_1LogEvent_af80fd9ef44f2716aa7dd75806403e0d8} 
+\index{sylar::LogEvent@{sylar::LogEvent}!LogEvent@{LogEvent}}
+\index{LogEvent@{LogEvent}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{LogEvent()}{LogEvent()}}
+{\footnotesize\ttfamily sylar\+::\+Log\+Event\+::\+Log\+Event (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$}]{logger,  }\item[{\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}}}]{level,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{int32\+\_\+t}]{line,  }\item[{uint32\+\_\+t}]{elapes,  }\item[{uint32\+\_\+t}]{thread\+\_\+id,  }\item[{uint32\+\_\+t}]{fiber\+\_\+id,  }\item[{uint64\+\_\+t}]{time,  }\item[{const std\+::string \&}]{thread\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1LogEvent_a6730af6d53112c4731a7779cf0e38bc4}\label{classsylar_1_1LogEvent_a6730af6d53112c4731a7779cf0e38bc4} 
+\index{sylar::LogEvent@{sylar::LogEvent}!format@{format}}
+\index{format@{format}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily void sylar\+::\+Log\+Event\+::format (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LogEvent_a13a44ff908b0afa2b782c0936b799330}\label{classsylar_1_1LogEvent_a13a44ff908b0afa2b782c0936b799330} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getContent@{getContent}}
+\index{getContent@{getContent}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getContent()}{getContent()}}
+{\footnotesize\ttfamily std\+::string sylar\+::\+Log\+Event\+::get\+Content (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_ab4ef746304d5f2fd749a0bc3366fc72d}\label{classsylar_1_1LogEvent_ab4ef746304d5f2fd749a0bc3366fc72d} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getElapse@{getElapse}}
+\index{getElapse@{getElapse}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getElapse()}{getElapse()}}
+{\footnotesize\ttfamily uint32\+\_\+t sylar\+::\+Log\+Event\+::get\+Elapse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_aee373b68ef27604cbfda4375822285f8}\label{classsylar_1_1LogEvent_aee373b68ef27604cbfda4375822285f8} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getFiberId@{getFiberId}}
+\index{getFiberId@{getFiberId}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getFiberId()}{getFiberId()}}
+{\footnotesize\ttfamily uint32\+\_\+t sylar\+::\+Log\+Event\+::get\+Fiber\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_a7d850e140794b4ba223890f5f98f729a}\label{classsylar_1_1LogEvent_a7d850e140794b4ba223890f5f98f729a} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getFile@{getFile}}
+\index{getFile@{getFile}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getFile()}{getFile()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} sylar\+::\+Log\+Event\+::get\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_a661f70eb36b2cc1dcca4f3dd602087ed}\label{classsylar_1_1LogEvent_a661f70eb36b2cc1dcca4f3dd602087ed} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getLevel()}{getLevel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} sylar\+::\+Log\+Event\+::get\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_ab1df35550e5e274c398cc612fe177607}\label{classsylar_1_1LogEvent_ab1df35550e5e274c398cc612fe177607} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getLine@{getLine}}
+\index{getLine@{getLine}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getLine()}{getLine()}}
+{\footnotesize\ttfamily int32\+\_\+t sylar\+::\+Log\+Event\+::get\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_a19800a6a9aafe50254896fc772dfd4c7}\label{classsylar_1_1LogEvent_a19800a6a9aafe50254896fc772dfd4c7} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getLogger@{getLogger}}
+\index{getLogger@{getLogger}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getLogger()}{getLogger()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$ sylar\+::\+Log\+Event\+::get\+Logger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_a9f1b1a241920538461ad3047f1784e40}\label{classsylar_1_1LogEvent_a9f1b1a241920538461ad3047f1784e40} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getSS@{getSS}}
+\index{getSS@{getSS}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getSS()}{getSS()}}
+{\footnotesize\ttfamily std\+::stringstream \& sylar\+::\+Log\+Event\+::get\+SS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_a505967bcd9112c3f869146c1e11955ad}\label{classsylar_1_1LogEvent_a505967bcd9112c3f869146c1e11955ad} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getTheadId@{getTheadId}}
+\index{getTheadId@{getTheadId}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getTheadId()}{getTheadId()}}
+{\footnotesize\ttfamily uint32\+\_\+t sylar\+::\+Log\+Event\+::get\+Thead\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_ac829de3a164cc27fd6d2f29c30e82810}\label{classsylar_1_1LogEvent_ac829de3a164cc27fd6d2f29c30e82810} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getThreadName@{getThreadName}}
+\index{getThreadName@{getThreadName}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getThreadName()}{getThreadName()}}
+{\footnotesize\ttfamily std\+::string sylar\+::\+Log\+Event\+::get\+Thread\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogEvent_a83cb90842b18d39975849070c8a4c25f}\label{classsylar_1_1LogEvent_a83cb90842b18d39975849070c8a4c25f} 
+\index{sylar::LogEvent@{sylar::LogEvent}!getTime@{getTime}}
+\index{getTime@{getTime}!sylar::LogEvent@{sylar::LogEvent}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily uint64\+\_\+t sylar\+::\+Log\+Event\+::get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{log_8h}{log.\+h}}\item 
+sylar/\mbox{\hyperlink{log_8cpp}{log.\+cpp}}\end{DoxyCompactItemize}

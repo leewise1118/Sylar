@@ -1,0 +1,89 @@
+\doxysection{sylar\+::Log\+Formatter Class Reference}
+\hypertarget{classsylar_1_1LogFormatter}{}\label{classsylar_1_1LogFormatter}\index{sylar::LogFormatter@{sylar::LogFormatter}}
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+
+
+Collaboration diagram for sylar\+::Log\+Formatter\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classsylar_1_1LogFormatter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsylar_1_1LogFormatter_1_1FormatItem}{Format\+Item}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1LogFormatter}{Log\+Formatter}} $>$ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1LogFormatter_ad8bec0dfadf27200f56be4b9cccdfb51}{Log\+Formatter}} (const std\+::string \&pattern=\"{}\%d\{\%Y-\/\%m-\/\%d \%H\+:\%M\+:\%S\}\%T\%t\%T\%F\%T\mbox{[}\%p\mbox{]}\%T\mbox{[}\%c\mbox{]}\%T\%f\+:\%l\%T\%m\%n\"{})
+\item 
+std\+::string \mbox{\hyperlink{classsylar_1_1LogFormatter_a83b31fbad9724e424a9e2d327698311d}{format}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$ logger, \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} level, \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)
+\item 
+bool \mbox{\hyperlink{classsylar_1_1LogFormatter_a89c12e29d7cf73a3d93a98fd53683801}{is\+Error}} () const
+\item 
+const std\+::string \mbox{\hyperlink{classsylar_1_1LogFormatter_a283df40ecc8dbbc9a36d3f6dab739eb2}{get\+Pattern}} () const
+\item 
+void \mbox{\hyperlink{classsylar_1_1LogFormatter_a84b8213e503570f4de1655028f7debf3}{init}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}\label{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5} 
+\index{sylar::LogFormatter@{sylar::LogFormatter}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::LogFormatter@{sylar::LogFormatter}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1LogFormatter}{Log\+Formatter}}$>$ \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{sylar\+::\+Log\+Formatter\+::ptr}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1LogFormatter_ad8bec0dfadf27200f56be4b9cccdfb51}\label{classsylar_1_1LogFormatter_ad8bec0dfadf27200f56be4b9cccdfb51} 
+\index{sylar::LogFormatter@{sylar::LogFormatter}!LogFormatter@{LogFormatter}}
+\index{LogFormatter@{LogFormatter}!sylar::LogFormatter@{sylar::LogFormatter}}
+\doxysubsubsection{\texorpdfstring{LogFormatter()}{LogFormatter()}}
+{\footnotesize\ttfamily sylar\+::\+Log\+Formatter\+::\+Log\+Formatter (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{pattern = {\ttfamily \"{}\%d\{\%Y-\/\%m-\/\%d~\%H\+:\%M\+:\%S\}\%T\%t\%T\%F\%T\mbox{[}\%p\mbox{]}\%T\mbox{[}\%c\mbox{]}\%T\%f\+:\%l\%T\%m\%n\"{}} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1LogFormatter_a83b31fbad9724e424a9e2d327698311d}\label{classsylar_1_1LogFormatter_a83b31fbad9724e424a9e2d327698311d} 
+\index{sylar::LogFormatter@{sylar::LogFormatter}!format@{format}}
+\index{format@{format}!sylar::LogFormatter@{sylar::LogFormatter}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily std\+::string sylar\+::\+Log\+Formatter\+::format (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$}]{logger,  }\item[{\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}}}]{level,  }\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LogFormatter_a283df40ecc8dbbc9a36d3f6dab739eb2}\label{classsylar_1_1LogFormatter_a283df40ecc8dbbc9a36d3f6dab739eb2} 
+\index{sylar::LogFormatter@{sylar::LogFormatter}!getPattern@{getPattern}}
+\index{getPattern@{getPattern}!sylar::LogFormatter@{sylar::LogFormatter}}
+\doxysubsubsection{\texorpdfstring{getPattern()}{getPattern()}}
+{\footnotesize\ttfamily const std\+::string sylar\+::\+Log\+Formatter\+::get\+Pattern (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogFormatter_a84b8213e503570f4de1655028f7debf3}\label{classsylar_1_1LogFormatter_a84b8213e503570f4de1655028f7debf3} 
+\index{sylar::LogFormatter@{sylar::LogFormatter}!init@{init}}
+\index{init@{init}!sylar::LogFormatter@{sylar::LogFormatter}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void sylar\+::\+Log\+Formatter\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LogFormatter_a89c12e29d7cf73a3d93a98fd53683801}\label{classsylar_1_1LogFormatter_a89c12e29d7cf73a3d93a98fd53683801} 
+\index{sylar::LogFormatter@{sylar::LogFormatter}!isError@{isError}}
+\index{isError@{isError}!sylar::LogFormatter@{sylar::LogFormatter}}
+\doxysubsubsection{\texorpdfstring{isError()}{isError()}}
+{\footnotesize\ttfamily bool sylar\+::\+Log\+Formatter\+::is\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{log_8h}{log.\+h}}\item 
+sylar/\mbox{\hyperlink{log_8cpp}{log.\+cpp}}\end{DoxyCompactItemize}

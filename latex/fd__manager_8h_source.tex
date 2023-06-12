@@ -1,0 +1,67 @@
+\doxysection{fd\+\_\+manager.\+h}
+\hypertarget{fd__manager_8h_source}{}\label{fd__manager_8h_source}\index{sylar/fd\_manager.h@{sylar/fd\_manager.h}}
+\mbox{\hyperlink{fd__manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hook_8h}{hook.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{iomanager_8h}{iomanager.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{thread_8h}{thread.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1FdCtx}{FdCtx}}\ :\ \textcolor{keyword}{public}\ std::enable\_shared\_from\_this<FdCtx>\ \{}
+\DoxyCodeLine{00009\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1FdCtx_a2bc0456ac99662a3837bae79bc93702e}{ptr}}\ =\ std::shared\_ptr<FdCtx>;}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FdCtx}{FdCtx}}(\ \textcolor{keywordtype}{int}\ fd\ );}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FdCtx_ae671c614e53af7c5ceb40e8dfc0a45e1}{\string~FdCtx}}();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FdCtx_ad6e7f2b2d6946f85ace9e3c2237c2456}{init}}();}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FdCtx_ab228b84fc49eac70fdcfaa01a3189b14}{isInit}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isInit;}
+\DoxyCodeLine{00017\ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FdCtx_af9986ca313fb63a68bbf73f15adfb2ff}{isSocket}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isSocket;}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FdCtx_a46f8a7b8409c76bba7a90692de85a297}{isClose}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isClosed;}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FdCtx_a734a12816c846353a5c97faafd21a22e}{close}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1FdCtx_a56adbad167928b7090e3b1f457dac872}{setUserNonblock}}(\ \textcolor{keywordtype}{bool}\ v\ )\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ m\_userNonblock\ =\ v;}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1FdCtx_af09ed2a6e534b1e412940916a18751f3}{getUserNonblock}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_userNonblock;}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FdCtx_aa6d966aa221131dd9397d097052debbe}{setTimeout}}(\ \textcolor{keywordtype}{int}\ type,\ uint64\_t\ v\ );}
+\DoxyCodeLine{00033\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classsylar_1_1FdCtx_a794e1f791e88e19005af78565fd665e7}{getTimeout}}(\ \textcolor{keywordtype}{int}\ type\ );}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isInit\ :\ 1;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isSocket\ :\ 1;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_sysNonblock\ :\ 1;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_userNonblock\ :\ 1;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isClosed\ :\ 1;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ \ m\_fd;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ uint64\_t\ \ \ m\_recvTimeout;}
+\DoxyCodeLine{00044\ \ \ \ \ uint64\_t\ \ \ m\_sendTimeout;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}}\ *m\_iomanager;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1FdManager}{FdManager}}\ \{}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1RWMutex}{MutexType}}\ =\ \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}};}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FdManager_ae67fab65b64443548da58f81a83f5054}{FdManager}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FdCtx_a2bc0456ac99662a3837bae79bc93702e}{FdCtx::ptr}}\ \mbox{\hyperlink{classsylar_1_1FdManager_a957e988b2a77ba591e004c2dafbb7694}{get}}(\ \textcolor{keywordtype}{int}\ fd,\ \textcolor{keywordtype}{bool}\ auto\_create\ =\ \textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1FdManager_ac5d16d0785629e429c9291fdc0dc4c5b}{del}}(\ \textcolor{keywordtype}{int}\ fd\ );}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1RWMutex}{MutexType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex;}
+\DoxyCodeLine{00057\ \ \ \ \ std::vector<FdCtx::ptr>\ m\_datas;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1Singleton}{FdMgr}}\ =\ \mbox{\hyperlink{classsylar_1_1Singleton}{Singleton<FdManager>}};}
+\DoxyCodeLine{00061\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+
+\end{DoxyCode}

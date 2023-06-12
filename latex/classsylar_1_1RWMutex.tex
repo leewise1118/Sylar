@@ -1,0 +1,91 @@
+\doxysection{sylar\+::RWMutex Class Reference}
+\hypertarget{classsylar_1_1RWMutex}{}\label{classsylar_1_1RWMutex}\index{sylar::RWMutex@{sylar::RWMutex}}
+
+
+{\ttfamily \#include $<$thread.\+h$>$}
+
+
+
+Collaboration diagram for sylar\+::RWMutex\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classsylar_1_1RWMutex__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classsylar_1_1RWMutex_a9d6d798e5c00ce05fc552fbf17a8cce7}{Read\+Lock}} = \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{Read\+Scoped\+Lock\+Impl}}$<$ \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}} $>$
+\item 
+using \mbox{\hyperlink{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf}{Write\+Lock}} = \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{Write\+Scoped\+Lock\+Impl}}$<$ \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}} $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1RWMutex_aa6196162a98b05e1cbc678056f81db6d}{RWMutex}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1RWMutex_a6a02763b6a2103f33faf26268f19ab7a}{\texorpdfstring{$\sim$}{\string~}\+RWMutex}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1RWMutex_a92006b89bf01559cb03d47334eef826d}{rdlock}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1RWMutex_a52b14cbad63675d0abf107ad03a67d96}{wrlock}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1RWMutex_a72c6b53d97b17d02ba9a8bd382507b51}{unlock}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1RWMutex_a9d6d798e5c00ce05fc552fbf17a8cce7}\label{classsylar_1_1RWMutex_a9d6d798e5c00ce05fc552fbf17a8cce7} 
+\index{sylar::RWMutex@{sylar::RWMutex}!ReadLock@{ReadLock}}
+\index{ReadLock@{ReadLock}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{ReadLock}{ReadLock}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1RWMutex_a9d6d798e5c00ce05fc552fbf17a8cce7}{sylar\+::\+RWMutex\+::\+Read\+Lock}} =  \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{Read\+Scoped\+Lock\+Impl}}$<$\mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}$>$}
+
+\Hypertarget{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf}\label{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf} 
+\index{sylar::RWMutex@{sylar::RWMutex}!WriteLock@{WriteLock}}
+\index{WriteLock@{WriteLock}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{WriteLock}{WriteLock}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf}{sylar\+::\+RWMutex\+::\+Write\+Lock}} =  \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{Write\+Scoped\+Lock\+Impl}}$<$\mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1RWMutex_aa6196162a98b05e1cbc678056f81db6d}\label{classsylar_1_1RWMutex_aa6196162a98b05e1cbc678056f81db6d} 
+\index{sylar::RWMutex@{sylar::RWMutex}!RWMutex@{RWMutex}}
+\index{RWMutex@{RWMutex}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{RWMutex()}{RWMutex()}}
+{\footnotesize\ttfamily sylar\+::\+RWMutex\+::\+RWMutex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1RWMutex_a6a02763b6a2103f33faf26268f19ab7a}\label{classsylar_1_1RWMutex_a6a02763b6a2103f33faf26268f19ab7a} 
+\index{sylar::RWMutex@{sylar::RWMutex}!````~RWMutex@{\texorpdfstring{$\sim$}{\string~}RWMutex}}
+\index{````~RWMutex@{\texorpdfstring{$\sim$}{\string~}RWMutex}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RWMutex()}{\string~RWMutex()}}
+{\footnotesize\ttfamily sylar\+::\+RWMutex\+::\texorpdfstring{$\sim$}{\string~}\+RWMutex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1RWMutex_a92006b89bf01559cb03d47334eef826d}\label{classsylar_1_1RWMutex_a92006b89bf01559cb03d47334eef826d} 
+\index{sylar::RWMutex@{sylar::RWMutex}!rdlock@{rdlock}}
+\index{rdlock@{rdlock}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{rdlock()}{rdlock()}}
+{\footnotesize\ttfamily void sylar\+::\+RWMutex\+::rdlock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1RWMutex_a72c6b53d97b17d02ba9a8bd382507b51}\label{classsylar_1_1RWMutex_a72c6b53d97b17d02ba9a8bd382507b51} 
+\index{sylar::RWMutex@{sylar::RWMutex}!unlock@{unlock}}
+\index{unlock@{unlock}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{unlock()}{unlock()}}
+{\footnotesize\ttfamily void sylar\+::\+RWMutex\+::unlock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1RWMutex_a52b14cbad63675d0abf107ad03a67d96}\label{classsylar_1_1RWMutex_a52b14cbad63675d0abf107ad03a67d96} 
+\index{sylar::RWMutex@{sylar::RWMutex}!wrlock@{wrlock}}
+\index{wrlock@{wrlock}!sylar::RWMutex@{sylar::RWMutex}}
+\doxysubsubsection{\texorpdfstring{wrlock()}{wrlock()}}
+{\footnotesize\ttfamily void sylar\+::\+RWMutex\+::wrlock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{thread_8h}{thread.\+h}}\end{DoxyCompactItemize}

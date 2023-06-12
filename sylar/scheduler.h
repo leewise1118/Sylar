@@ -152,12 +152,12 @@ class Scheduler {
 
   protected:
     std::vector<int>    m_threadIds;
-    size_t              m_threadCount       = 0;
-    std::atomic<size_t> m_activeThreadCount = { 0 };
-    std::atomic<size_t> m_idleThreadCount   = { 0 };
-    bool                m_stopping          = true;  // 执行停止状态
-    bool                m_autoStop          = false; // 是否自动停止
-    int                 m_rootThread        = 0;
+    size_t              m_threadCount = 0;
+    std::atomic<size_t> m_activeThreadCount{ 0 };
+    std::atomic<size_t> m_idleThreadCount{ 0 };
+    bool                m_stopping   = true;  // 执行停止状态
+    bool                m_autoStop   = false; // 是否自动停止
+    int                 m_rootThread = 0;
 };
 
 } // namespace sylar

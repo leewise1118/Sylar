@@ -1,0 +1,93 @@
+\doxysection{hook.\+h}
+\hypertarget{hook_8h_source}{}\label{hook_8h_source}\index{sylar/hook.h@{sylar/hook.h}}
+\mbox{\hyperlink{hook_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <fcntl.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <sys/ioctl.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesylar_a96b66cca46a6064c041c44db1c80cb57}{is\_hook\_enable}}();}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacesylar_a70bef04603cf6928b6328aa6dd8ccc39}{set\_hook\_enable}}(\ \textcolor{keywordtype}{bool}\ flag\ );}
+\DoxyCodeLine{00013\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ sleep}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ int\ (\ *\mbox{\hyperlink{hook_8h_a6510c2594c6ec655c5d854be1be1549f}{sleep\_fun}}\ )(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seconds\ );}
+\DoxyCodeLine{00019\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a6510c2594c6ec655c5d854be1be1549f}{sleep\_fun}}\ \mbox{\hyperlink{hook_8h_a28fa9f842d916efcf5cd02888151777c}{sleep\_f}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_a9d19c22dd0de93ddd011ff3e933ea326}{usleep\_fun}}\ )(\ useconds\_t\ usec\ );}
+\DoxyCodeLine{00022\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a9d19c22dd0de93ddd011ff3e933ea326}{usleep\_fun}}\ \mbox{\hyperlink{hook_8h_a00747f17a364e2773f98bbed73a661ab}{usleep\_f}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_af020bdfceabb83ef6a37b67c86214552}{nanosleep\_fun}}\ )(\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }timespec\ *req,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ \ \ \ \ \ \ *rem\ );}
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_af020bdfceabb83ef6a37b67c86214552}{nanosleep\_fun}}\ \mbox{\hyperlink{hook_8h_aa9cfabd22e8e34e52edcd9a6dc52d6d7}{nanosleep\_f}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ socket}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_a85d5dc60114c1d08607f796a65ade6cf}{socket\_fun}}\ )(\ \textcolor{keywordtype}{int}\ domain,\ \textcolor{keywordtype}{int}\ type,\ \textcolor{keywordtype}{int}\ protocol\ );}
+\DoxyCodeLine{00030\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a85d5dc60114c1d08607f796a65ade6cf}{socket\_fun}}\ \mbox{\hyperlink{hook_8h_a5c92da2058edaebc2948da048d1efe08}{socket\_f}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_a9c525f49b1905bdd7c9518de634095b4}{connect\_fun}}\ )(\ \textcolor{keywordtype}{int}\ sockfd,\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }sockaddr\ *addr,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socklen\_t\ addrlen\ );}
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a9c525f49b1905bdd7c9518de634095b4}{connect\_fun}}\ \mbox{\hyperlink{hook_8h_a2f8319664f570a791c194adbc5218753}{connect\_f}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_ad9f6ac4c3e23c52bdf2624783cf21aa1}{accept\_fun}}\ )(\ \textcolor{keywordtype}{int}\ s,\ \textcolor{keyword}{struct\ }sockaddr\ *addr,\ socklen\_t\ *addrlen\ );}
+\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_ad9f6ac4c3e23c52bdf2624783cf21aa1}{accept\_fun}}\ \mbox{\hyperlink{hook_8h_ab319e66249a1e8af1a58038dc4f97f17}{accept\_f}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_ac06e8f91c1ec6b5577cdfbb6af388c33}{read\_fun}}\ )(\ \textcolor{keywordtype}{int}\ fd,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{test__thread_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}\ );}
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_ac06e8f91c1ec6b5577cdfbb6af388c33}{read\_fun}}\ \mbox{\hyperlink{hook_8h_acf96a8abe9b6bea12e487302aa85b535}{read\_f}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_af11acd9b3568d3a49fa500f0823e2aaf}{readv\_fun}}\ )(\ \textcolor{keywordtype}{int}\ fd,\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }iovec\ *iov,\ \textcolor{keywordtype}{int}\ iovcnt\ );}
+\DoxyCodeLine{00043\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_af11acd9b3568d3a49fa500f0823e2aaf}{readv\_fun}}\ \mbox{\hyperlink{hook_8h_a112f4396291ee49da44a1e031dd51603}{readv\_f}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_ad6533d1e274b2406b8ba3698c14297c9}{recv\_fun}}\ )(\ \textcolor{keywordtype}{int}\ sockfd,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags\ );}
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_ad6533d1e274b2406b8ba3698c14297c9}{recv\_fun}}\ \mbox{\hyperlink{hook_8h_a288cb0fdb8677d2452fce75a7e2f2364}{recv\_f}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_aab76f00d0714aedcbf8860cd5b5ac021}{recvfrom\_fun}}\ )(\ \textcolor{keywordtype}{int}\ sockfd,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sockaddr\ *src\_addr,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socklen\_t\ \ \ \ \ \ \ *addrlen\ );}
+\DoxyCodeLine{00051\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_aab76f00d0714aedcbf8860cd5b5ac021}{recvfrom\_fun}}\ \mbox{\hyperlink{hook_8h_a567a076666812070b9dec5ed1a6f4989}{recvfrom\_f}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_a96ac40f3edbae56ca6099c056d1b3637}{recvmsg\_fun}}\ )(\ \textcolor{keywordtype}{int}\ sockfd,\ \textcolor{keyword}{struct\ }msghdr\ *msg,\ \textcolor{keywordtype}{int}\ flags\ );}
+\DoxyCodeLine{00054\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a96ac40f3edbae56ca6099c056d1b3637}{recvmsg\_fun}}\ \mbox{\hyperlink{hook_8h_a9a40ce88798df665aed14ed03efc95bc}{recvmsg\_f}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_a4fc648bec0927b048dfdc84f120d4448}{write\_fun}}\ )(\ \textcolor{keywordtype}{int}\ fd,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{test__thread_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}\ );}
+\DoxyCodeLine{00057\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a4fc648bec0927b048dfdc84f120d4448}{write\_fun}}\ \mbox{\hyperlink{hook_8h_ad93804cea84b095a5103807738fb5286}{write\_f}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_a7bc34e31d9c6379aa0b9063ed76dd268}{writev\_fun}}\ )(\ \textcolor{keywordtype}{int}\ fd,\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }iovec\ *iov,\ \textcolor{keywordtype}{int}\ iovcnt\ );}
+\DoxyCodeLine{00060\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a7bc34e31d9c6379aa0b9063ed76dd268}{writev\_fun}}\ \mbox{\hyperlink{hook_8h_a20264910fb49a96856e915d42317f328}{writev\_f}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_a961a4c859053856116df838deb37ed51}{send\_fun}}\ )(\ \textcolor{keywordtype}{int}\ s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *msg,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags\ );}
+\DoxyCodeLine{00063\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a961a4c859053856116df838deb37ed51}{send\_fun}}\ \mbox{\hyperlink{hook_8h_a3c701d5d4319de6facdd24b95a31cf18}{send\_f}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_a53bc224b11a0c280666c126bc8f5f555}{sendto\_fun}}\ )(\ \textcolor{keywordtype}{int}\ s,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *msg,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }sockaddr\ *to,\ socklen\_t\ tolen\ );}
+\DoxyCodeLine{00067\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a53bc224b11a0c280666c126bc8f5f555}{sendto\_fun}}\ \mbox{\hyperlink{hook_8h_a422a97edabc8edb0cc439f65d754600c}{sendto\_f}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{typedef}\ ssize\_t\ (\ *\mbox{\hyperlink{hook_8h_abfc743fb9705b6f759d68691a11923fa}{sendmsg\_fun}}\ )(\ \textcolor{keywordtype}{int}\ s,\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }msghdr\ *msg,\ \textcolor{keywordtype}{int}\ flags\ );}
+\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_abfc743fb9705b6f759d68691a11923fa}{sendmsg\_fun}}\ \mbox{\hyperlink{hook_8h_a9ec84f761f2fade2a1e55e44598f6f7f}{sendmsg\_f}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_a1c1f3d7b9917606bfa316455a55100e2}{close\_fun}}\ )(\ \textcolor{keywordtype}{int}\ fd\ );}
+\DoxyCodeLine{00073\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a1c1f3d7b9917606bfa316455a55100e2}{close\_fun}}\ \mbox{\hyperlink{hook_8h_a3466c7d802010ddbbb95c5190a3b03d5}{close\_f}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ socket操作相关}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_a13527d0ac991b8ec45cc69035475c592}{fcntl\_fun}}\ )(\ \textcolor{keywordtype}{int}\ fd,\ \textcolor{keywordtype}{int}\ cmd,\ ...\ );}
+\DoxyCodeLine{00077\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a13527d0ac991b8ec45cc69035475c592}{fcntl\_fun}}\ \mbox{\hyperlink{hook_8h_abb24ea265f6aa7c740c0e6da842b6d7f}{fcntl\_f}};}
+\DoxyCodeLine{00078\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_ae5d66dd9e9f30629c35bad02e6bc785d}{ioctl\_fun}}\ )(\ \textcolor{keywordtype}{int}\ d,\ \textcolor{keywordtype}{int}\ request,\ ...\ );}
+\DoxyCodeLine{00079\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_ae5d66dd9e9f30629c35bad02e6bc785d}{ioctl\_fun}}\ \mbox{\hyperlink{hook_8h_a17d068c63810b47db209546097f5bcfc}{ioctl\_f}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_ac028cfb1ea5160627e5d305b08810889}{getsockopt\_fun}}\ )(\ \textcolor{keywordtype}{int}\ sockfd,\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keywordtype}{int}\ optname,}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *optval,\ socklen\_t\ *optlen\ );}
+\DoxyCodeLine{00083\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_ac028cfb1ea5160627e5d305b08810889}{getsockopt\_fun}}\ \mbox{\hyperlink{hook_8h_a0ccaa6f4964423584c7e5e37c2fba2f4}{getsockopt\_f}};}
+\DoxyCodeLine{00084\ \textcolor{keyword}{typedef}\ int\ (\ *\mbox{\hyperlink{hook_8h_a2d8dabf11787090bf53ceb38528ed4f3}{setsockopt\_fun}}\ )(\ \textcolor{keywordtype}{int}\ sockfd,\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keywordtype}{int}\ optname,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *optval,\ socklen\_t\ *optlen\ );}
+\DoxyCodeLine{00086\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{hook_8h_a2d8dabf11787090bf53ceb38528ed4f3}{setsockopt\_fun}}\ \mbox{\hyperlink{hook_8h_a65b06a0a021b84494a58db4a03df24d2}{setsockopt\_f}};}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}

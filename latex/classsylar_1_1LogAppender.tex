@@ -1,0 +1,165 @@
+\doxysection{sylar\+::Log\+Appender Class Reference}
+\hypertarget{classsylar_1_1LogAppender}{}\label{classsylar_1_1LogAppender}\index{sylar::LogAppender@{sylar::LogAppender}}
+
+
+{\ttfamily \#include $<$log.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::Log\+Appender\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{classsylar_1_1LogAppender__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::Log\+Appender\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classsylar_1_1LogAppender__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1LogAppender}{Log\+Appender}} $>$ \mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{ptr}}
+\item 
+typedef \mbox{\hyperlink{classsylar_1_1SpinLock}{Spin\+Lock}} \mbox{\hyperlink{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98}{Mutex\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classsylar_1_1LogAppender_ae138dc2ce082f7831c2605bff9cf1d6b}{\texorpdfstring{$\sim$}{\string~}\+Log\+Appender}} ()
+\item 
+virtual void \mbox{\hyperlink{classsylar_1_1LogAppender_ad49c2fa9abee897253b493323c47fcdd}{log}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$ logger, \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} level, \mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}} event)=0
+\item 
+void \mbox{\hyperlink{classsylar_1_1LogAppender_ade49666352b105396992ddd7099cabb9}{set\+Formatter}} (\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} val)
+\item 
+\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} \mbox{\hyperlink{classsylar_1_1LogAppender_acdbd919ff4eb7e7f476e913fb32b82a7}{get\+Formatter}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1LogAppender_a6559a10346f097fa8eed13571c9bf5a1}{set\+Level}} (\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} level)
+\item 
+virtual std\+::string \mbox{\hyperlink{classsylar_1_1LogAppender_a7d03db71a8d7593dc6c4de7b7c42a452}{to\+Yaml\+String}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} \mbox{\hyperlink{classsylar_1_1LogAppender_a4e1088a64778dda4d6813275bfb763a1}{m\+\_\+level}} = \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271bae2625cd4626664fa9b0fdf6b938768e7}{Log\+Level\+::\+DEBUG}}
+\item 
+\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} \mbox{\hyperlink{classsylar_1_1LogAppender_a6174f622ce2f4d687612912dcb427dd5}{m\+\_\+formatter}}
+\item 
+bool \mbox{\hyperlink{classsylar_1_1LogAppender_ad39f1d5bd9c5e46bb8e8bd7fe7d44a4e}{m\+\_\+has\+Formatter}} = false
+\item 
+\mbox{\hyperlink{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98}{Mutex\+Type}} \mbox{\hyperlink{classsylar_1_1LogAppender_a89fc441dde93af5e145e660961630918}{m\+\_\+mutex}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsylar_1_1LogAppender_aff02b76416d2846736b7ecd798921a0a}{Logger}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98}\label{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98} 
+\index{sylar::LogAppender@{sylar::LogAppender}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classsylar_1_1SpinLock}{Spin\+Lock}} \mbox{\hyperlink{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98}{sylar\+::\+Log\+Appender\+::\+Mutex\+Type}}}
+
+\Hypertarget{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}\label{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7} 
+\index{sylar::LogAppender@{sylar::LogAppender}!ptr@{ptr}}
+\index{ptr@{ptr}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{ptr}{ptr}}
+{\footnotesize\ttfamily typedef std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classsylar_1_1LogAppender}{Log\+Appender}}$>$ \mbox{\hyperlink{classsylar_1_1LogAppender_a16c4d71a72684533056b6b99feec1ed7}{sylar\+::\+Log\+Appender\+::ptr}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1LogAppender_ae138dc2ce082f7831c2605bff9cf1d6b}\label{classsylar_1_1LogAppender_ae138dc2ce082f7831c2605bff9cf1d6b} 
+\index{sylar::LogAppender@{sylar::LogAppender}!````~LogAppender@{\texorpdfstring{$\sim$}{\string~}LogAppender}}
+\index{````~LogAppender@{\texorpdfstring{$\sim$}{\string~}LogAppender}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LogAppender()}{\string~LogAppender()}}
+{\footnotesize\ttfamily virtual sylar\+::\+Log\+Appender\+::\texorpdfstring{$\sim$}{\string~}\+Log\+Appender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1LogAppender_acdbd919ff4eb7e7f476e913fb32b82a7}\label{classsylar_1_1LogAppender_acdbd919ff4eb7e7f476e913fb32b82a7} 
+\index{sylar::LogAppender@{sylar::LogAppender}!getFormatter@{getFormatter}}
+\index{getFormatter@{getFormatter}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{getFormatter()}{getFormatter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} sylar\+::\+Log\+Appender\+::get\+Formatter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LogAppender_ad49c2fa9abee897253b493323c47fcdd}\label{classsylar_1_1LogAppender_ad49c2fa9abee897253b493323c47fcdd} 
+\index{sylar::LogAppender@{sylar::LogAppender}!log@{log}}
+\index{log@{log}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily virtual void sylar\+::\+Log\+Appender\+::log (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classsylar_1_1Logger}{Logger}} $>$}]{logger,  }\item[{\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}}}]{level,  }\item[{\mbox{\hyperlink{classsylar_1_1LogEvent_a5edba5d4e7c7b90edc5585716065f497}{Log\+Event\+::ptr}}}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\Hypertarget{classsylar_1_1LogAppender_ade49666352b105396992ddd7099cabb9}\label{classsylar_1_1LogAppender_ade49666352b105396992ddd7099cabb9} 
+\index{sylar::LogAppender@{sylar::LogAppender}!setFormatter@{setFormatter}}
+\index{setFormatter@{setFormatter}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{setFormatter()}{setFormatter()}}
+{\footnotesize\ttfamily void sylar\+::\+Log\+Appender\+::set\+Formatter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}}}]{val }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1LogAppender_a6559a10346f097fa8eed13571c9bf5a1}\label{classsylar_1_1LogAppender_a6559a10346f097fa8eed13571c9bf5a1} 
+\index{sylar::LogAppender@{sylar::LogAppender}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void sylar\+::\+Log\+Appender\+::set\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}}}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsylar_1_1LogAppender_a7d03db71a8d7593dc6c4de7b7c42a452}\label{classsylar_1_1LogAppender_a7d03db71a8d7593dc6c4de7b7c42a452} 
+\index{sylar::LogAppender@{sylar::LogAppender}!toYamlString@{toYamlString}}
+\index{toYamlString@{toYamlString}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{toYamlString()}{toYamlString()}}
+{\footnotesize\ttfamily virtual std\+::string sylar\+::\+Log\+Appender\+::to\+Yaml\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsylar_1_1StdoutLogAppender_abf908e01cdd38cb8b84005a761154638}{sylar\+::\+Stdout\+Log\+Appender}}, and \mbox{\hyperlink{classsylar_1_1FileLogAppender_aea43a854b2a2f7fe4f5be9eccbf0137f}{sylar\+::\+File\+Log\+Appender}}.
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classsylar_1_1LogAppender_aff02b76416d2846736b7ecd798921a0a}\label{classsylar_1_1LogAppender_aff02b76416d2846736b7ecd798921a0a} 
+\index{sylar::LogAppender@{sylar::LogAppender}!Logger@{Logger}}
+\index{Logger@{Logger}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{Logger}{Logger}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classsylar_1_1Logger}{Logger}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsylar_1_1LogAppender_a6174f622ce2f4d687612912dcb427dd5}\label{classsylar_1_1LogAppender_a6174f622ce2f4d687612912dcb427dd5} 
+\index{sylar::LogAppender@{sylar::LogAppender}!m\_formatter@{m\_formatter}}
+\index{m\_formatter@{m\_formatter}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{m\_formatter}{m\_formatter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogFormatter_a6968c960b5bed4e57badb54afd45c5e5}{Log\+Formatter\+::ptr}} sylar\+::\+Log\+Appender\+::m\+\_\+formatter\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsylar_1_1LogAppender_ad39f1d5bd9c5e46bb8e8bd7fe7d44a4e}\label{classsylar_1_1LogAppender_ad39f1d5bd9c5e46bb8e8bd7fe7d44a4e} 
+\index{sylar::LogAppender@{sylar::LogAppender}!m\_hasFormatter@{m\_hasFormatter}}
+\index{m\_hasFormatter@{m\_hasFormatter}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{m\_hasFormatter}{m\_hasFormatter}}
+{\footnotesize\ttfamily bool sylar\+::\+Log\+Appender\+::m\+\_\+has\+Formatter = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsylar_1_1LogAppender_a4e1088a64778dda4d6813275bfb763a1}\label{classsylar_1_1LogAppender_a4e1088a64778dda4d6813275bfb763a1} 
+\index{sylar::LogAppender@{sylar::LogAppender}!m\_level@{m\_level}}
+\index{m\_level@{m\_level}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{m\_level}{m\_level}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271b}{Log\+Level\+::\+Level}} sylar\+::\+Log\+Appender\+::m\+\_\+level = \mbox{\hyperlink{classsylar_1_1LogLevel_aa16de1ee1263beffb6f17ba6deb0271bae2625cd4626664fa9b0fdf6b938768e7}{Log\+Level\+::\+DEBUG}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsylar_1_1LogAppender_a89fc441dde93af5e145e660961630918}\label{classsylar_1_1LogAppender_a89fc441dde93af5e145e660961630918} 
+\index{sylar::LogAppender@{sylar::LogAppender}!m\_mutex@{m\_mutex}}
+\index{m\_mutex@{m\_mutex}!sylar::LogAppender@{sylar::LogAppender}}
+\doxysubsubsection{\texorpdfstring{m\_mutex}{m\_mutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1LogAppender_a6a904318f196c5ca7d905840474eba98}{Mutex\+Type}} sylar\+::\+Log\+Appender\+::m\+\_\+mutex\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{log_8h}{log.\+h}}\item 
+sylar/\mbox{\hyperlink{log_8cpp}{log.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,239 @@
+\doxysection{sylar/hook.cpp File Reference}
+\hypertarget{hook_8cpp}{}\label{hook_8cpp}\index{sylar/hook.cpp@{sylar/hook.cpp}}
+{\ttfamily \#include \"{}fd\+\_\+manager.\+h\"{}}\newline
+{\ttfamily \#include \"{}fiber.\+h\"{}}\newline
+{\ttfamily \#include \"{}hook.\+h\"{}}\newline
+{\ttfamily \#include \"{}iomanager.\+h\"{}}\newline
+{\ttfamily \#include \"{}scheduler.\+h\"{}}\newline
+{\ttfamily \#include \"{}util.\+h\"{}}\newline
+{\ttfamily \#include $<$asm-\/generic/socket.\+h$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+Include dependency graph for hook.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hook_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsylar_1_1__HookIniter}{sylar\+::\+\_\+\+Hook\+Initer}}
+\item 
+struct \mbox{\hyperlink{structtimer__info}{timer\+\_\+info}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacesylar}{sylar}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hook_8cpp_a392fb874e547e582e9c66a08a1f23326}{MAX}}~1000;
+\item 
+\#define \mbox{\hyperlink{hook_8cpp_a6b4d903a5c66b4d728f44e739f45f77e}{HOOK\+\_\+\+FUN}}(\mbox{\hyperlink{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}{XX}})
+\item 
+\#define \mbox{\hyperlink{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}{XX}}(name)~name\#\#\+\_\+f = (name\#\#\+\_\+fun) dlsym( RTLD\+\_\+\+NEXT, \#name );
+\item 
+\#define \mbox{\hyperlink{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}{XX}}(name)~name\#\#\+\_\+fun name\#\#\+\_\+f = nullptr;
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacesylar_a294efd75baf106d9c82a63f39aa8ad71}{sylar\+::hook\+\_\+init}} ()
+\item 
+bool \mbox{\hyperlink{namespacesylar_a96b66cca46a6064c041c44db1c80cb57}{sylar\+::is\+\_\+hook\+\_\+enable}} ()
+\item 
+void \mbox{\hyperlink{namespacesylar_a70bef04603cf6928b6328aa6dd8ccc39}{sylar\+::set\+\_\+hook\+\_\+enable}} (bool flag)
+\item 
+unsigned int \mbox{\hyperlink{hook_8cpp_a69c97039c9ec10a30e5edbdf365e3bbd}{sleep}} (unsigned int seconds)
+\item 
+int \mbox{\hyperlink{hook_8cpp_ac0383719bafa9b5b2aa25fabc586bd1f}{usleep}} (useconds\+\_\+t usec)
+\item 
+int \mbox{\hyperlink{hook_8cpp_a1b63fa141b202a0b01cfef8421aa48d6}{nanosleep}} (const struct timespec \texorpdfstring{$\ast$}{*}req, struct timespec \texorpdfstring{$\ast$}{*}rem)
+\item 
+int \mbox{\hyperlink{hook_8cpp_af4e0711877c45a41168ac677b0670ccd}{socket}} (int domain, int type, int protocol)
+\item 
+int \mbox{\hyperlink{hook_8cpp_acdfd99b6c59c833776412fbb0c539efb}{connect}} (int sockfd, const struct sockaddr \texorpdfstring{$\ast$}{*}addr, socklen\+\_\+t addrlen)
+\item 
+int \mbox{\hyperlink{hook_8cpp_aaaf2f15c3d464ebd84caabb51920c4bc}{accept}} (int s, struct sockaddr \texorpdfstring{$\ast$}{*}addr, socklen\+\_\+t \texorpdfstring{$\ast$}{*}addrlen)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_af32a16ad2dd9e48482f8f790db7dbbd2}{read}} (int fd, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t \mbox{\hyperlink{test__thread_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_aa1952d693ed3c43292566e643ceb9858}{readv}} (int fd, const struct iovec \texorpdfstring{$\ast$}{*}iov, int iovcnt)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_a49c565342c0f29cec5461ec22c3b1b3d}{recv}} (int sockfd, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_ad144bb8d4119d5fa0ee5b6c4d06bc645}{recvfrom}} (int sockfd, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags, struct sockaddr \texorpdfstring{$\ast$}{*}src\+\_\+addr, socklen\+\_\+t \texorpdfstring{$\ast$}{*}addrlen)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_a839d5b323cc725649953be13649e2407}{recvmsg}} (int sockfd, struct msghdr \texorpdfstring{$\ast$}{*}msg, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_abb39b21888372e95ad3e5c59b166f5c8}{write}} (int fd, const void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t \mbox{\hyperlink{test__thread_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_ad57f362a0aef72b52ea59288f74dd1ea}{writev}} (int fd, const struct iovec \texorpdfstring{$\ast$}{*}iov, int iovcnt)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_a9da4ddaf95f37c1457e545a65ee1a506}{send}} (int s, const void \texorpdfstring{$\ast$}{*}msg, size\+\_\+t len, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{hook_8cpp_abc7bcc841d2209f10cfbaba3c740bec0}{sendmsg}} (int s, const struct msghdr \texorpdfstring{$\ast$}{*}msg, int flags)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{sylar\+::\+Logger\+::ptr}} \mbox{\hyperlink{hook_8cpp_a1b5b87cae870fbca16d5fecee001ba7a}{g\+\_\+logger}} = \mbox{\hyperlink{log_8h_a1e080e5eff9c67a3825e59c7d2877f78}{SYLAR\+\_\+\+LOG\+\_\+\+NAME}}( \"{}system\"{} )
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{hook_8cpp_a6b4d903a5c66b4d728f44e739f45f77e}\label{hook_8cpp_a6b4d903a5c66b4d728f44e739f45f77e} 
+\index{hook.cpp@{hook.cpp}!HOOK\_FUN@{HOOK\_FUN}}
+\index{HOOK\_FUN@{HOOK\_FUN}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{HOOK\_FUN}{HOOK\_FUN}}
+{\footnotesize\ttfamily HOOK\+\_\+\+FUN(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}{XX}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}{XX}}(\ \mbox{\hyperlink{hook_8cpp_a69c97039c9ec10a30e5edbdf365e3bbd}{sleep}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_ac0383719bafa9b5b2aa25fabc586bd1f}{usleep}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_a1b63fa141b202a0b01cfef8421aa48d6}{nanosleep}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_af4e0711877c45a41168ac677b0670ccd}{socket}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_acdfd99b6c59c833776412fbb0c539efb}{connect}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_aaaf2f15c3d464ebd84caabb51920c4bc}{accept}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_af32a16ad2dd9e48482f8f790db7dbbd2}{read}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_aa1952d693ed3c43292566e643ceb9858}{readv}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_a49c565342c0f29cec5461ec22c3b1b3d}{recv}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_ad144bb8d4119d5fa0ee5b6c4d06bc645}{recvfrom}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_a839d5b323cc725649953be13649e2407}{recvmsg}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_abb39b21888372e95ad3e5c59b166f5c8}{write}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_ad57f362a0aef72b52ea59288f74dd1ea}{writev}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_a9da4ddaf95f37c1457e545a65ee1a506}{send}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ sendto\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ \mbox{\hyperlink{hook_8cpp_abc7bcc841d2209f10cfbaba3c740bec0}{sendmsg}}\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ close\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ fcntl\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ ioctl\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ getsockopt\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ XX(\ setsockopt\ )}
+
+\end{DoxyCode}
+\Hypertarget{hook_8cpp_a392fb874e547e582e9c66a08a1f23326}\label{hook_8cpp_a392fb874e547e582e9c66a08a1f23326} 
+\index{hook.cpp@{hook.cpp}!MAX@{MAX}}
+\index{MAX@{MAX}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define MAX~1000;}
+
+\Hypertarget{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}\label{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124} 
+\index{hook.cpp@{hook.cpp}!XX@{XX}}
+\index{XX@{XX}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{XX}{XX}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define XX(\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})~name\#\#\+\_\+f = (name\#\#\+\_\+fun) dlsym( RTLD\+\_\+\+NEXT, \#name );}
+
+\Hypertarget{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124}\label{hook_8cpp_a05f4bdc8cf2b17d08f5f7870244e6124} 
+\index{hook.cpp@{hook.cpp}!XX@{XX}}
+\index{XX@{XX}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{XX}{XX}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define XX(\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})~name\#\#\+\_\+fun name\#\#\+\_\+f = nullptr;}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{hook_8cpp_aaaf2f15c3d464ebd84caabb51920c4bc}\label{hook_8cpp_aaaf2f15c3d464ebd84caabb51920c4bc} 
+\index{hook.cpp@{hook.cpp}!accept@{accept}}
+\index{accept@{accept}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily int accept (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{socklen\+\_\+t \texorpdfstring{$\ast$}{*}}]{addrlen }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_acdfd99b6c59c833776412fbb0c539efb}\label{hook_8cpp_acdfd99b6c59c833776412fbb0c539efb} 
+\index{hook.cpp@{hook.cpp}!connect@{connect}}
+\index{connect@{connect}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily int connect (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{const struct sockaddr \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{socklen\+\_\+t}]{addrlen }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_a1b63fa141b202a0b01cfef8421aa48d6}\label{hook_8cpp_a1b63fa141b202a0b01cfef8421aa48d6} 
+\index{hook.cpp@{hook.cpp}!nanosleep@{nanosleep}}
+\index{nanosleep@{nanosleep}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{nanosleep()}{nanosleep()}}
+{\footnotesize\ttfamily int nanosleep (\begin{DoxyParamCaption}\item[{const struct timespec \texorpdfstring{$\ast$}{*}}]{req,  }\item[{struct timespec \texorpdfstring{$\ast$}{*}}]{rem }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_af32a16ad2dd9e48482f8f790db7dbbd2}\label{hook_8cpp_af32a16ad2dd9e48482f8f790db7dbbd2} 
+\index{hook.cpp@{hook.cpp}!read@{read}}
+\index{read@{read}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily ssize\+\_\+t read (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_aa1952d693ed3c43292566e643ceb9858}\label{hook_8cpp_aa1952d693ed3c43292566e643ceb9858} 
+\index{hook.cpp@{hook.cpp}!readv@{readv}}
+\index{readv@{readv}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{readv()}{readv()}}
+{\footnotesize\ttfamily ssize\+\_\+t readv (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const struct iovec \texorpdfstring{$\ast$}{*}}]{iov,  }\item[{int}]{iovcnt }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_a49c565342c0f29cec5461ec22c3b1b3d}\label{hook_8cpp_a49c565342c0f29cec5461ec22c3b1b3d} 
+\index{hook.cpp@{hook.cpp}!recv@{recv}}
+\index{recv@{recv}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{recv()}{recv()}}
+{\footnotesize\ttfamily ssize\+\_\+t recv (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_ad144bb8d4119d5fa0ee5b6c4d06bc645}\label{hook_8cpp_ad144bb8d4119d5fa0ee5b6c4d06bc645} 
+\index{hook.cpp@{hook.cpp}!recvfrom@{recvfrom}}
+\index{recvfrom@{recvfrom}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{recvfrom()}{recvfrom()}}
+{\footnotesize\ttfamily ssize\+\_\+t recvfrom (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{src\+\_\+addr,  }\item[{socklen\+\_\+t \texorpdfstring{$\ast$}{*}}]{addrlen }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_a839d5b323cc725649953be13649e2407}\label{hook_8cpp_a839d5b323cc725649953be13649e2407} 
+\index{hook.cpp@{hook.cpp}!recvmsg@{recvmsg}}
+\index{recvmsg@{recvmsg}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{recvmsg()}{recvmsg()}}
+{\footnotesize\ttfamily ssize\+\_\+t recvmsg (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{struct msghdr \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_a9da4ddaf95f37c1457e545a65ee1a506}\label{hook_8cpp_a9da4ddaf95f37c1457e545a65ee1a506} 
+\index{hook.cpp@{hook.cpp}!send@{send}}
+\index{send@{send}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily ssize\+\_\+t send (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_abc7bcc841d2209f10cfbaba3c740bec0}\label{hook_8cpp_abc7bcc841d2209f10cfbaba3c740bec0} 
+\index{hook.cpp@{hook.cpp}!sendmsg@{sendmsg}}
+\index{sendmsg@{sendmsg}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{sendmsg()}{sendmsg()}}
+{\footnotesize\ttfamily ssize\+\_\+t sendmsg (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{const struct msghdr \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_a69c97039c9ec10a30e5edbdf365e3bbd}\label{hook_8cpp_a69c97039c9ec10a30e5edbdf365e3bbd} 
+\index{hook.cpp@{hook.cpp}!sleep@{sleep}}
+\index{sleep@{sleep}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{sleep()}{sleep()}}
+{\footnotesize\ttfamily unsigned int sleep (\begin{DoxyParamCaption}\item[{unsigned int}]{seconds }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_af4e0711877c45a41168ac677b0670ccd}\label{hook_8cpp_af4e0711877c45a41168ac677b0670ccd} 
+\index{hook.cpp@{hook.cpp}!socket@{socket}}
+\index{socket@{socket}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{socket()}{socket()}}
+{\footnotesize\ttfamily int socket (\begin{DoxyParamCaption}\item[{int}]{domain,  }\item[{int}]{type,  }\item[{int}]{protocol }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_ac0383719bafa9b5b2aa25fabc586bd1f}\label{hook_8cpp_ac0383719bafa9b5b2aa25fabc586bd1f} 
+\index{hook.cpp@{hook.cpp}!usleep@{usleep}}
+\index{usleep@{usleep}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{usleep()}{usleep()}}
+{\footnotesize\ttfamily int usleep (\begin{DoxyParamCaption}\item[{useconds\+\_\+t}]{usec }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_abb39b21888372e95ad3e5c59b166f5c8}\label{hook_8cpp_abb39b21888372e95ad3e5c59b166f5c8} 
+\index{hook.cpp@{hook.cpp}!write@{write}}
+\index{write@{write}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily ssize\+\_\+t write (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\Hypertarget{hook_8cpp_ad57f362a0aef72b52ea59288f74dd1ea}\label{hook_8cpp_ad57f362a0aef72b52ea59288f74dd1ea} 
+\index{hook.cpp@{hook.cpp}!writev@{writev}}
+\index{writev@{writev}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{writev()}{writev()}}
+{\footnotesize\ttfamily ssize\+\_\+t writev (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const struct iovec \texorpdfstring{$\ast$}{*}}]{iov,  }\item[{int}]{iovcnt }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{hook_8cpp_a1b5b87cae870fbca16d5fecee001ba7a}\label{hook_8cpp_a1b5b87cae870fbca16d5fecee001ba7a} 
+\index{hook.cpp@{hook.cpp}!g\_logger@{g\_logger}}
+\index{g\_logger@{g\_logger}!hook.cpp@{hook.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_logger}{g\_logger}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Logger_a947f09bae8ec3d783a1f60231f6b6cd3}{sylar\+::\+Logger\+::ptr}} g\+\_\+logger = \mbox{\hyperlink{log_8h_a1e080e5eff9c67a3825e59c7d2877f78}{SYLAR\+\_\+\+LOG\+\_\+\+NAME}}( \"{}system\"{} )}
+

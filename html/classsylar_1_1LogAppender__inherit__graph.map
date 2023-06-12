@@ -1,0 +1,7 @@
+<map id="sylar::LogAppender" name="sylar::LogAppender">
+<area shape="rect" id="Node000001" title=" " alt="" coords="104,5,228,216"/>
+<area shape="rect" id="Node000002" href="$classsylar_1_1FileLogAppender.html" title=" " alt="" coords="5,264,151,381"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,230,104,266,99,263,114,228"/>
+<area shape="rect" id="Node000003" href="$classsylar_1_1StdoutLogAppender.html" title=" " alt="" coords="175,283,336,363"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,227,241,282,236,284,213,229"/>
+</map>

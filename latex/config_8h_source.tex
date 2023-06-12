@@ -1,0 +1,395 @@
+\doxysection{config.\+h}
+\hypertarget{config_8h_source}{}\label{config_8h_source}\index{sylar/config.h@{sylar/config.h}}
+\mbox{\hyperlink{config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_SYLAR\_CONFIG\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_SYLAR\_CONFIG\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{thread_8h}{thread.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <boost/lexical\_cast.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <yaml-\/cpp/yaml.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{log_8h}{log.h}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1ConfigVarBase}{ConfigVarBase}}\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<ConfigVarBase>\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{ptr}};}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a39cef3e573a7a5c9dcbe94683bde346f}{ConfigVarBase}}(\ \textcolor{keyword}{const}\ std::string\ \&name,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&description\ =\ \textcolor{stringliteral}{"{}"{}}\ )}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ :\ m\_name(\ name\ )}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ ,\ m\_description(\ description\ )\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::transform(\ m\_name.begin(),\ m\_name.end(),\ m\_name.begin(),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::tolower\ );}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classsylar_1_1ConfigVarBase_aa404a47e82ef657f5e966440a319bf88}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classsylar_1_1ConfigVarBase_a22c1ba4557b7099013f3effa24019c41}{getDescription}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_description;}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a5f8b4b6e0f6fbed4790f31981b8f190c}{toString}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a747792b1cfc384a30b1c8f090d9af6b6}{fromString}}(\ \textcolor{keyword}{const}\ std::string\ \&val\ )\ =\ 0;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a47480d264f9c7e55d6ebb0dfcc99b81a}{getTypeName}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ std::string\ m\_name;}
+\DoxyCodeLine{00047\ \ \ \ \ std::string\ m\_description;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ F\ from\_type,\ T\ to\_type}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ F,\ \textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}\ \{}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ T\ \mbox{\hyperlink{classsylar_1_1LexicalCast_a2f757be55b2ef3342f407845ba4cbd40}{operator()}}(\ \textcolor{keyword}{const}\ F\ \&v\ )\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ boost::lexical\_cast<T>(\ v\ );}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::string,\ std::vector<T>>\ \{}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \ \ std::vector<T>\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01std_1_1vector_3_01T_01_4_01_4_a11cf7a8d6fa5b3802fbd28b417233470}{operator()}}(\ \textcolor{keyword}{const}\ std::string\ \&v\ )\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ YAML::Node\ \ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ YAML::Load(\ v\ );}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::vector<T>\ vec;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ std::stringstream\ \ \ \ \ \ \ ss;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ node.size();\ i++\ )\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ ss.str(\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ node[\ i\ ];}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ vec.push\_back(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<std::string,\ T>}}()(\ ss.str()\ )\ );}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::vector<T>,\ std::string>\ \{}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1vector_3_01T_01_4_00_01std_1_1string_01_4_a7f09daf9b23d67410f2b74d460474285}{operator()}}(\ \textcolor{keyword}{const}\ std::vector<T>\ \&v\ )\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ YAML::Node\ node;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ v\ )\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ node.push\_back(\ YAML::Load(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<T,\ std::string>}}()(\ i\ )\ )\ );}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ ss\ <<\ node;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::string,\ std::list<T>>\ \{}
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00088\ \ \ \ \ std::list<T>\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01std_1_1list_3_01T_01_4_01_4_ae363bb88b0833f6ca9b22f40b2487058}{operator()}}(\ \textcolor{keyword}{const}\ std::string\ \&v\ )\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ YAML::Node\ \ \ \ \ \ \ \ \ \ \ \ node\ =\ YAML::Load(\ v\ );}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::list<T>\ list;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::stringstream\ \ \ \ \ ss;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ node.size();\ i++\ )\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ ss.str(\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ node[\ i\ ];}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ list.push\_back(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<std::string,\ T>}}()(\ ss.str()\ )\ );}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::list<T>,\ std::string>\ \{}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1list_3_01T_01_4_00_01std_1_1string_01_4_a183d08857ca80df4f0d604873b416cec}{operator()}}(\ \textcolor{keyword}{const}\ std::list<T>\ \&v\ )\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ YAML::Node\ node;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ v\ )\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ node.push\_back(\ YAML::Load(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<T,\ std::string>}}()(\ i\ )\ )\ );}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ ss\ <<\ node;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::string,\ std::set<T>>\ \{}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00115\ \ \ \ \ std::set<T>\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01std_1_1set_3_01T_01_4_01_4_ad085514c67bb66ffc822bac66d4a3201}{operator()}}(\ \textcolor{keyword}{const}\ std::string\ \&v\ )\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ YAML::Node\ \ \ \ \ \ \ \ \ \ \ node\ =\ YAML::Load(\ v\ );}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::set<T>\ list;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ std::stringstream\ \ \ \ ss;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ node.size();\ i++\ )\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ ss.str(\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ node[\ i\ ];}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ list.insert(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<std::string,\ T>}}()(\ ss.str()\ )\ );}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::set<T>,\ std::string>\ \{}
+\DoxyCodeLine{00128\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00129\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1set_3_01T_01_4_00_01std_1_1string_01_4_a924bbfeb37313c11599ba5732e26c226}{operator()}}(\ \textcolor{keyword}{const}\ std::set<T>\ \&v\ )\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ YAML::Node\ node;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ v\ )\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ node.push\_back(\ YAML::Load(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<T,\ std::string>}}()(\ i\ )\ )\ );}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ ss\ <<\ node;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::string,\ std::unordered\_set<T>>\ \{}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00142\ \ \ \ \ std::unordered\_set<T>\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01std_1_1unordered__set_3_01T_01_4_01_4_a352d66075505d130d2ffeb17006bd1e9}{operator()}}(\ \textcolor{keyword}{const}\ std::string\ \&v\ )\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ YAML::Node\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ YAML::Load(\ v\ );}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::unordered\_set<T>\ list;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ std::stringstream\ \ \ \ \ \ \ \ \ \ \ \ \ \ ss;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ node.size();\ i++\ )\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ ss.str(\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ node[\ i\ ];}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ list.insert(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<std::string,\ T>}}()(\ ss.str()\ )\ );}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00152\ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \};}
+\DoxyCodeLine{00154\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::unordered\_set<T>,\ std::string>\ \{}
+\DoxyCodeLine{00155\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00156\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1unordered__set_3_01T_01_4_00_01std_1_1string_01_4_a85f84d3a6ad0e24996f50020fcee3cb4}{operator()}}(\ \textcolor{keyword}{const}\ std::unordered\_set<T>\ \&v\ )\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ YAML::Node\ node;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ v\ )\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ node.push\_back(\ YAML::Load(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<T,\ std::string>}}()(\ i\ )\ )\ );}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ ss\ <<\ node;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::string,\ std::map<std::string,\ T>>\ \{}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00169\ \ \ \ \ std::map<std::string,\ T>\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01std_1_1map_3_01std_1_1string_00_01T_01_4_01_4_a071d3ce75774920f233d58510ecc5dd0}{operator()}}(\ \textcolor{keyword}{const}\ std::string\ \&v\ )\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ YAML::Node\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ YAML::Load(\ v\ );}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::map<std::string,\ T>\ list;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ std::stringstream\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ss;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ it\ =\ node.begin();\ it\ !=\ node.end();\ it++\ )\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ ss.str(\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ it-\/>second;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ list.insert(}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::make\_pair(\ it-\/>first.Scalar(),}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<std::string,\ T>}}()(\ ss.str()\ )\ )\ );}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \};}
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::map<std::string,\ T>,\ std::string>\ \{}
+\DoxyCodeLine{00184\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00185\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1map_3_01std_1_1string_00_01T_01_4_00_01std_1_1string_01_4_abe5f3b1c11af690eed6c7316005a889d}{operator()}}(\ \textcolor{keyword}{const}\ std::map<std::string,\ T>\ \&v\ )\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ YAML::Node\ node;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ v\ )\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ node[\ i.first\ ]\ =}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ YAML::Load(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<T,\ std::string>}}()(\ i.second\ )\ );}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ ss\ <<\ node;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00198\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::string,\ std::unordered\_map<std::string,\ T>>\ \{}
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00200\ \ \ \ \ std::unordered\_map<std::string,\ T>\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1string_00_01std_1_1unordered__map_3_01std_1_1string_00_01T_01_4_01_4_a420ceceb4b219f6179c33b7e555e8f7c}{operator()}}(\ \textcolor{keyword}{const}\ std::string\ \&v\ )\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ YAML::Node\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ YAML::Load(\ v\ );}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ std::unordered\_map<std::string,\ T>\ list;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ std::stringstream\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ss;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ it\ =\ node.begin();\ it\ !=\ node.end();\ it++\ )\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ ss.str(\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ ss\ <<\ it-\/>second;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ list.insert(}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::make\_pair(\ it-\/>first.Scalar(),}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<std::string,\ T>}}()(\ ss.str()\ )\ )\ );}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \};}
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast}}<std::unordered\_map<std::string,\ T>,\ std::string>\ \{}
+\DoxyCodeLine{00216\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00217\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1LexicalCast_3_01std_1_1unordered__map_3_01std_1_1string_00_01T_01_4_00_01std_1_1string_01_4_ac9e29892c61e141f8bbb089cf3d00a90}{operator()}}(\ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ T>\ \&v\ )\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ YAML::Node\ node;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ v\ )\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ node[\ i.first\ ]\ =}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ YAML::Load(\ \mbox{\hyperlink{classsylar_1_1LexicalCast}{LexicalCast<T,\ std::string>}}()(\ i.second\ )\ );}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ std::stringstream\ ss;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ ss\ <<\ node;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \};}
+\DoxyCodeLine{00228\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ FromStr\ =\ LexicalCast<std::\textcolor{keywordtype}{string},\ T>,}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{class}\ ToStr\ =\ LexicalCast<T,\ std::\textcolor{keywordtype}{string}>>}
+\DoxyCodeLine{00230\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1ConfigVar}{ConfigVar}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase}{ConfigVarBase}}\ \{}
+\DoxyCodeLine{00231\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVar_a5f77c5801f772ed4fea0af74155bff3a}{MutexType}};}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<ConfigVar>\ \mbox{\hyperlink{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795}{ptr}};}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{typedef}\ std::function<void(\ \textcolor{keyword}{const}\ T\ \&old\_value,\ \textcolor{keyword}{const}\ T\ \&new\_value\ )>}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\_change\_cb}};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVar_a9c5915ab6991ddf8599384ebd1d2f065}{ConfigVar}}(\ \textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ T\ \&default\_value,}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&description\ =\ \textcolor{stringliteral}{"{}"{}}\ )}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase}{ConfigVarBase}}(\ name,\ description\ )}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ ,\ m\_val(\ default\_value\ )\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1ConfigVar_ab7f80240eb387bf8c3c7fb63b768da1d}{toString}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{MutexType::ReadLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ToStr()(\ m\_val\ );}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\ std::exception\ \&e\ )\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a9dfd5249e7f9c2854da1369fb355364f}{SYLAR\_LOG\_ERROR}}(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ ConfigVar::toString\ exception\ "{}}\ <<\ e.what()}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ convert:\ "{}}\ <<\ \textcolor{keyword}{typeid}(\ m\_val\ ).name()\ <<\ \textcolor{stringliteral}{"{}\ to\ string"{}};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a977245d654a3d6d31be8e1b99846ad4b}{fromString}}(\ \textcolor{keyword}{const}\ std::string\ \&val\ )\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{MutexType::WriteLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVar_a0efde2e43919caa1d60b25022baf34d8}{setValue}}(\ FromStr()(\ val\ )\ );}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (\ std::exception\ \&e\ )\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a9dfd5249e7f9c2854da1369fb355364f}{SYLAR\_LOG\_ERROR}}(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ ConfigVar::fromString\ exception\ "{}}\ <<\ e.what()}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ convert:\ string\ to\ "{}}\ <<\ \textcolor{keyword}{typeid}(\ m\_val\ ).name()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ "{}}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ val;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00265\ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{const}\ T\ \mbox{\hyperlink{classsylar_1_1ConfigVar_acef1a5354310a25b25238fc6ac31105e}{getValue}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{MutexType::ReadLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_val;}
+\DoxyCodeLine{00270\ \ \ \ \ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a0efde2e43919caa1d60b25022baf34d8}{setValue}}(\ \textcolor{keyword}{const}\ T\ \&v\ )\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{MutexType::ReadLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ v\ ==\ m\_val\ )\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keyword}{auto}\ \&i\ :\ m\_cbs\ )\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i.second(\ m\_val,\ v\ );}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{MutexType::WriteLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ m\_val\ =\ v;}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ std::string\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a0d5ccdbfa6b67de8c4e7d989ed2de90f}{getTypeName}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{typeid}(\ T\ ).name();}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a4cb77987924fdae7b5036990a0182ea6}{addListener}}(\ \mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\_change\_cb}}\ cb\ )\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ uint64\_t\ \ \ \ \ \ s\_fun\_id\ =\ 0;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{MutexType::WriteLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ ++s\_fun\_id;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ m\_cbs[\ s\_fun\_id\ ]\ =\ cb;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s\_fun\_id;}
+\DoxyCodeLine{00296\ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a99f10a04e93a9cc859e7d10129146dab}{delListener}}(\ uint64\_t\ key\ )\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{MutexType::WriteLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ m\_cbs.erase(\ key\ );}
+\DoxyCodeLine{00300\ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a85029db1324a67e4ecfdd8aac081ce44}{clearListener}}()\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{MutexType::ReadLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ m\_cbs.clear();}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1ConfigVar_ae081a9003d87ae2423862d87e502a8ed}{on\_change\_cb}}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a7e04703e538bb4f6189e8f5425ce654a}{getListener}}(\ uint64\_t\ key\ )\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{MutexType::ReadLock}}\ Lock(\ m\_mutex\ );}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ m\_cbs.find(\ key\ );}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it\ ==\ m\_cbs.end()\ ?\ nullptr\ :\ it-\/>second;}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00312\ \ \ \ \ T\ m\_val;}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{comment}{//\ 变更回调函数组,\ \ \ \ uint64\_t\ key,要求唯一，一般可以用hash}}
+\DoxyCodeLine{00314\ \ \ \ \ std::map<uint64\_t,\ on\_change\_cb>\ m\_cbs;}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{mutable}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_a5f77c5801f772ed4fea0af74155bff3a}{MutexType}}\ m\_mutex;}
+\DoxyCodeLine{00317\ \};}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00320\ \textcolor{comment}{\ *\ @brief\ ConfigVar的管理类}}
+\DoxyCodeLine{00321\ \textcolor{comment}{\ *\ @details\ 提供便捷的方法创建/访问ConfigVar}}
+\DoxyCodeLine{00322\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00323\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Config}{Config}}\ \{}
+\DoxyCodeLine{00324\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{typedef}\ std::unordered\_map<std::string,\ ConfigVarBase::ptr>\ \mbox{\hyperlink{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767}{ConfigVarMap}};}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}\ \mbox{\hyperlink{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29}{MutexType}};}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795}{ConfigVar<T>::ptr}}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Config_adde813cb9c68f633c020675e5cd7741a}{Lookup}}(\ \textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ T\ \&default\_value,}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&description\ =\ \textcolor{stringliteral}{"{}"{}}\ )\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{MutexType::WriteLock}}\ Lock(\ GetMutex()\ );}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ GetDatas().find(\ name\ );}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ it\ !=\ GetDatas().end()\ )\ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ tmp\ =\ std::dynamic\_pointer\_cast<ConfigVar<T>>(\ it-\/>second\ );}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ tmp\ )\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a0cfea58ee3be21deb892e4a806fc4e0f}{SYLAR\_LOG\_INFO}}(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Lookup\ name\ =\ "{}}\ <<\ name\ <<\ \textcolor{stringliteral}{"{}exists"{}};}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tmp;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a9dfd5249e7f9c2854da1369fb355364f}{SYLAR\_LOG\_ERROR}}(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Lookup\ name\ =\ "{}}\ <<\ name\ <<\ \textcolor{stringliteral}{"{}\ exists\ but\ type\ not\ "{}}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{keyword}{typeid}(\ T\ ).name()\ <<\ \textcolor{stringliteral}{"{}\ real\_type\ "{}}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ it-\/>second-\/>getTypeName()\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ it-\/>second-\/>toString();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ name.find\_first\_not\_of(}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}abcdefghikjlmnopqrstuvwxyz.\_012345678"{}}\ )\ !=}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string::npos\ )\ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log_8h_a9dfd5249e7f9c2854da1369fb355364f}{SYLAR\_LOG\_ERROR}}(\ \mbox{\hyperlink{log_8h_af752fd33828eb554b0281ed98544fe79}{SYLAR\_LOG\_ROOT}}()\ )}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Lookup\ name\ invalid\ "{}}\ <<\ name;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\ name\ );}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795}{ConfigVar<T>::ptr}}\ v(}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{classsylar_1_1ConfigVar}{ConfigVar<T>}}(\ name,\ default\_value,\ description\ )\ );}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ GetDatas()[\ name\ ]\ =\ v;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ v;}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classsylar_1_1ConfigVar_abd0f84e7fd3f71427930a0be35861795}{ConfigVar<T>::ptr}}\ \mbox{\hyperlink{classsylar_1_1Config_aee856ec7e648987627713129db3593c4}{Lookup}}(\ \textcolor{keyword}{const}\ std::string\ \&name\ )\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ GetDatas().find(\ name\ );}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ it\ ==\ GetDatas().end()\ )\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::dynamic\_pointer\_cast<ConfigVar<T>>(\ it-\/>second\ );}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Config_a2493fc15005de6e9c1e680481d734657}{LoadFromYaml}}(\ \textcolor{keyword}{const}\ YAML::Node\ \&root\ );}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{ConfigVarBase::ptr}}\ \mbox{\hyperlink{classsylar_1_1Config_a0cd72efaefdc4cffac4ea7d935a46d0c}{LookupBase}}(\ \textcolor{keyword}{const}\ std::string\ \&name\ );}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Config_a0535f79dd0911d3bd6cd56e75e22410a}{Visit}}(\ std::function<\textcolor{keywordtype}{void}(\ \mbox{\hyperlink{classsylar_1_1ConfigVarBase_a40f405ae773a67002f6407283a89c344}{ConfigVarBase::ptr}}\ )>\ cb\ );}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767}{ConfigVarMap}}\ \&GetDatas()\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Config_acca4c31405d485cc5684130721ed4767}{ConfigVarMap}}\ s\_datas;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ s\_datas;}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29}{MutexType}}\ \&GetMutex()\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Config_a839ff3f87d92277b487709860a03ce29}{MutexType}}\ \mbox{\hyperlink{test__thread_8cpp_a4e37a87e621e9035dfe5547145365fce}{s\_mutex}};}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{test__thread_8cpp_a4e37a87e621e9035dfe5547145365fce}{s\_mutex}};}
+\DoxyCodeLine{00384\ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \};}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

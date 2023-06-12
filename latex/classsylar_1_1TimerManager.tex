@@ -1,0 +1,179 @@
+\doxysection{sylar\+::Timer\+Manager Class Reference}
+\hypertarget{classsylar_1_1TimerManager}{}\label{classsylar_1_1TimerManager}\index{sylar::TimerManager@{sylar::TimerManager}}
+
+
+{\ttfamily \#include $<$timer.\+h$>$}
+
+
+
+Inheritance diagram for sylar\+::Timer\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classsylar_1_1TimerManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sylar\+::Timer\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classsylar_1_1TimerManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} = std\+::function$<$ void()$>$
+\item 
+using \mbox{\hyperlink{classsylar_1_1TimerManager_a035754a6c842fb49695c05c655581d69}{Mutex\+Type}} = \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsylar_1_1TimerManager_a8d9b6ca1141d8db2d6b4134de57e0138}{Timer\+Manager}} ()
+\item 
+virtual \mbox{\hyperlink{classsylar_1_1TimerManager_af3f5c71321a5b5b69eabb62661e4bcea}{\texorpdfstring{$\sim$}{\string~}\+Timer\+Manager}} ()
+\item 
+\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} \mbox{\hyperlink{classsylar_1_1TimerManager_ac9eeb0e70ef2094344118fdbdcab07ab}{add\+Timer}} (uint64\+\_\+t ms, \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} cb, bool recurring=false)
+\item 
+void \mbox{\hyperlink{classsylar_1_1TimerManager_ae9c6687f2c73a7845e429e50c28fbdf9}{add\+Timer}} (\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} val, \mbox{\hyperlink{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf}{Mutex\+Type\+::\+Write\+Lock}} \&lock)
+\begin{DoxyCompactList}\small\item\em 添加定时器 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} \mbox{\hyperlink{classsylar_1_1TimerManager_a6f3aa491a4e67d7149602e2c343f98d1}{add\+Condition\+Timer}} (uint64\+\_\+t ms, \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} cb, std\+::weak\+\_\+ptr$<$ void $>$ weak\+\_\+cond, bool recurring=false)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{classsylar_1_1TimerManager_a18e9ac0428af178d7196cad9c5971195}{get\+Next\+Timer}} ()
+\item 
+void \mbox{\hyperlink{classsylar_1_1TimerManager_afd2c8b35810fbe9e82725cb95120bb77}{list\+Expired\+Cb}} (std\+::vector$<$ \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} $>$ \&cbs)
+\item 
+bool \mbox{\hyperlink{classsylar_1_1TimerManager_a1a41364b95f0eb1974fe4082c23bcc47}{has\+Timer}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classsylar_1_1TimerManager_aa8f798b71cbd8db28bf8970a363862e6}{on\+Time\+Inserted\+At\+Front}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsylar_1_1TimerManager_a50de43af5bed41f30c071d8cce0e81bc}{Timer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}\label{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189} 
+\index{sylar::TimerManager@{sylar::TimerManager}!Func@{Func}}
+\index{Func@{Func}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{Func}{Func}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{sylar\+::\+Timer\+Manager\+::\+Func}} =  std\+::function$<$void()$>$}
+
+\Hypertarget{classsylar_1_1TimerManager_a035754a6c842fb49695c05c655581d69}\label{classsylar_1_1TimerManager_a035754a6c842fb49695c05c655581d69} 
+\index{sylar::TimerManager@{sylar::TimerManager}!MutexType@{MutexType}}
+\index{MutexType@{MutexType}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{MutexType}{MutexType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classsylar_1_1TimerManager_a035754a6c842fb49695c05c655581d69}{sylar\+::\+Timer\+Manager\+::\+Mutex\+Type}} =  \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsylar_1_1TimerManager_a8d9b6ca1141d8db2d6b4134de57e0138}\label{classsylar_1_1TimerManager_a8d9b6ca1141d8db2d6b4134de57e0138} 
+\index{sylar::TimerManager@{sylar::TimerManager}!TimerManager@{TimerManager}}
+\index{TimerManager@{TimerManager}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{TimerManager()}{TimerManager()}}
+{\footnotesize\ttfamily sylar\+::\+Timer\+Manager\+::\+Timer\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1TimerManager_af3f5c71321a5b5b69eabb62661e4bcea}\label{classsylar_1_1TimerManager_af3f5c71321a5b5b69eabb62661e4bcea} 
+\index{sylar::TimerManager@{sylar::TimerManager}!````~TimerManager@{\texorpdfstring{$\sim$}{\string~}TimerManager}}
+\index{````~TimerManager@{\texorpdfstring{$\sim$}{\string~}TimerManager}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}TimerManager()}{\string~TimerManager()}}
+{\footnotesize\ttfamily sylar\+::\+Timer\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Timer\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsylar_1_1TimerManager_a6f3aa491a4e67d7149602e2c343f98d1}\label{classsylar_1_1TimerManager_a6f3aa491a4e67d7149602e2c343f98d1} 
+\index{sylar::TimerManager@{sylar::TimerManager}!addConditionTimer@{addConditionTimer}}
+\index{addConditionTimer@{addConditionTimer}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{addConditionTimer()}{addConditionTimer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} sylar\+::\+Timer\+Manager\+::add\+Condition\+Timer (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{ms,  }\item[{\mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}}}]{cb,  }\item[{std\+::weak\+\_\+ptr$<$ void $>$}]{weak\+\_\+cond,  }\item[{bool}]{recurring = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ms} & \\
+\hline
+{\em cb} & \\
+\hline
+{\em weak\+\_\+cond} & \\
+\hline
+{\em recurring} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr} 
+\end{DoxyReturn}
+\Hypertarget{classsylar_1_1TimerManager_ae9c6687f2c73a7845e429e50c28fbdf9}\label{classsylar_1_1TimerManager_ae9c6687f2c73a7845e429e50c28fbdf9} 
+\index{sylar::TimerManager@{sylar::TimerManager}!addTimer@{addTimer}}
+\index{addTimer@{addTimer}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{addTimer()}{addTimer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void sylar\+::\+Timer\+Manager\+::add\+Timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}}}]{val,  }\item[{\mbox{\hyperlink{classsylar_1_1RWMutex_a6aa724a61a6bc08cc697c4afda067dcf}{Mutex\+Type\+::\+Write\+Lock}} \&}]{lock }\end{DoxyParamCaption})}
+
+
+
+添加定时器 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & \\
+\hline
+{\em lock} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsylar_1_1TimerManager_ac9eeb0e70ef2094344118fdbdcab07ab}\label{classsylar_1_1TimerManager_ac9eeb0e70ef2094344118fdbdcab07ab} 
+\index{sylar::TimerManager@{sylar::TimerManager}!addTimer@{addTimer}}
+\index{addTimer@{addTimer}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{addTimer()}{addTimer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsylar_1_1Timer_a8ffa8fde8d708e7ba6de3975dab5c0b9}{Timer\+::ptr}} sylar\+::\+Timer\+Manager\+::add\+Timer (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{ms,  }\item[{\mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}}}]{cb,  }\item[{bool}]{recurring = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1TimerManager_a18e9ac0428af178d7196cad9c5971195}\label{classsylar_1_1TimerManager_a18e9ac0428af178d7196cad9c5971195} 
+\index{sylar::TimerManager@{sylar::TimerManager}!getNextTimer@{getNextTimer}}
+\index{getNextTimer@{getNextTimer}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{getNextTimer()}{getNextTimer()}}
+{\footnotesize\ttfamily uint64\+\_\+t sylar\+::\+Timer\+Manager\+::get\+Next\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1TimerManager_a1a41364b95f0eb1974fe4082c23bcc47}\label{classsylar_1_1TimerManager_a1a41364b95f0eb1974fe4082c23bcc47} 
+\index{sylar::TimerManager@{sylar::TimerManager}!hasTimer@{hasTimer}}
+\index{hasTimer@{hasTimer}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{hasTimer()}{hasTimer()}}
+{\footnotesize\ttfamily bool sylar\+::\+Timer\+Manager\+::has\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1TimerManager_afd2c8b35810fbe9e82725cb95120bb77}\label{classsylar_1_1TimerManager_afd2c8b35810fbe9e82725cb95120bb77} 
+\index{sylar::TimerManager@{sylar::TimerManager}!listExpiredCb@{listExpiredCb}}
+\index{listExpiredCb@{listExpiredCb}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{listExpiredCb()}{listExpiredCb()}}
+{\footnotesize\ttfamily void sylar\+::\+Timer\+Manager\+::list\+Expired\+Cb (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classsylar_1_1TimerManager_a961ecd615dc0241b704f4215901c2189}{Func}} $>$ \&}]{cbs }\end{DoxyParamCaption})}
+
+\Hypertarget{classsylar_1_1TimerManager_aa8f798b71cbd8db28bf8970a363862e6}\label{classsylar_1_1TimerManager_aa8f798b71cbd8db28bf8970a363862e6} 
+\index{sylar::TimerManager@{sylar::TimerManager}!onTimeInsertedAtFront@{onTimeInsertedAtFront}}
+\index{onTimeInsertedAtFront@{onTimeInsertedAtFront}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{onTimeInsertedAtFront()}{onTimeInsertedAtFront()}}
+{\footnotesize\ttfamily virtual void sylar\+::\+Timer\+Manager\+::on\+Time\+Inserted\+At\+Front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsylar_1_1IOManager_a8d41d71eb7e5525f9b1d1dd6f976571d}{sylar\+::\+IOManager}}.
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classsylar_1_1TimerManager_a50de43af5bed41f30c071d8cce0e81bc}\label{classsylar_1_1TimerManager_a50de43af5bed41f30c071d8cce0e81bc} 
+\index{sylar::TimerManager@{sylar::TimerManager}!Timer@{Timer}}
+\index{Timer@{Timer}!sylar::TimerManager@{sylar::TimerManager}}
+\doxysubsubsection{\texorpdfstring{Timer}{Timer}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classsylar_1_1Timer}{Timer}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sylar/\mbox{\hyperlink{timer_8h}{timer.\+h}}\item 
+sylar/\mbox{\hyperlink{timer_8cpp}{timer.\+cpp}}\end{DoxyCompactItemize}

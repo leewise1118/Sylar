@@ -1,0 +1,78 @@
+\doxysection{iomanager.\+h}
+\hypertarget{iomanager_8h_source}{}\label{iomanager_8h_source}\index{sylar/iomanager.h@{sylar/iomanager.h}}
+\mbox{\hyperlink{iomanager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{scheduler_8h}{scheduler.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{timer_8h}{timer.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsylar_1_1TimerManager}{TimerManager}}\ \{}
+\DoxyCodeLine{00008\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1IOManager_a539946484dda7a8d5a04f7f2c95d2b79}{ptr}}\ \ \ \ \ \ \ =\ std::shared\_ptr<IOManager>;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1RWMutex}{MutexType}}\ =\ \mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}{Func}}\ \ \ \ \ \ =\ std::function<void()>;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7faadc83980f9a40fcf08169d6ad2ad23a3}{NONE}}\ \ =\ 0x0,\ \textcolor{comment}{//\ 无事件}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa090891b5bdc9b68bfba5a8f37dbf5515}{READ}}\ \ =\ 0x1,\ \textcolor{comment}{//\ 读事件EPOLLIN}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7fa5374ec6931815ee5254402a638a9db51}{WRITE}}\ =\ 0x4,\ \textcolor{comment}{//\ 写事件EPOLLOUT}}
+\DoxyCodeLine{00017\ \ \ \ \ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }FdContext\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }MutexType\ =\ \mbox{\hyperlink{classsylar_1_1Mutex}{Mutex}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext}{EventContext}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Scheduler}{Scheduler}}\ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext_a59bfa9c53d44119a487a1386e628e678}{scheduler}};\ \textcolor{comment}{//\ 事件执行的scheduler}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Fiber_a641a275bf48282cb93e3fad47145ec86}{Fiber::ptr}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext_a0704fc900aa2cc12456cc02b41a80d7b}{fiber}};\ \ \ \ \ \textcolor{comment}{//\ 事件协程}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ std::function<void()>\ \mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext_a3d381954d65e3b4c6e38edc0efbb3160}{cb}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 事件的回调函数}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext}{EventContext}}\ \&getContext(\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ event\ );}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ resetContext(\ \mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext}{EventContext}}\ \&ctx\ );}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ triggerEvent(\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ event\ );}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ fd\ =\ 0;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 事件关联的句柄}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext}{EventContext}}\ \mbox{\hyperlink{hook_8cpp_af32a16ad2dd9e48482f8f790db7dbbd2}{read}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 读事件上下文}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1IOManager_1_1FdContext_1_1EventContext}{EventContext}}\ \mbox{\hyperlink{hook_8cpp_abb39b21888372e95ad3e5c59b166f5c8}{write}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 写事件上下文}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ \ \ \ \ \ \ \ events\ =\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7faadc83980f9a40fcf08169d6ad2ad23a3}{NONE}};\ \textcolor{comment}{//\ 当前的事件}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Mutex}{MutexType}}\ \ \ \ mutex;}
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}}(\ \textcolor{keywordtype}{size\_t}\ thread\ =\ 1,\ \textcolor{keywordtype}{bool}\ use\_caller\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&name\ =\ \textcolor{stringliteral}{"{}"{}}\ );}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager_a58fee9eb690cdf0269b57fb7d813e9f7}{\string~IOManager}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsylar_1_1IOManager_a0e866857d58f39aa36eebaf571ef5007}{addEvent}}(\ \textcolor{keywordtype}{int}\ fd,\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ event,\ \mbox{\hyperlink{classsylar_1_1IOManager_acecf51951689523667de6c83594d266b}{Func}}\ cb\ =\ \textcolor{keyword}{nullptr}\ );}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1IOManager_a75d9ef80cbaea0b0f5fbef325fd38a9d}{delEvent}}(\ \textcolor{keywordtype}{int}\ fd,\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ event\ );}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1IOManager_a3939d465df257f6e591aa405f24f7c3a}{cancelEvent}}(\ \textcolor{keywordtype}{int}\ fd,\ \mbox{\hyperlink{classsylar_1_1IOManager_a92053b21305a9cd1e0854f60a9ddde7f}{Event}}\ event\ );}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1IOManager_a4be82a8ec8ce0653e5a90bc3a2d4450d}{cancelAll}}(\ \textcolor{keywordtype}{int}\ fd\ );}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1IOManager}{IOManager}}\ *\mbox{\hyperlink{classsylar_1_1IOManager_a1c94bd6197587c4eead17ae30cb1abea}{GetThis}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1IOManager_a28895129097dd6e85698bd52aa2f30cd}{tickle}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1IOManager_aec614100855edd1e48d23afb67468b45}{stopping}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsylar_1_1IOManager_aec614100855edd1e48d23afb67468b45}{stopping}}(\ uint64\_t\ \&timeout\ );}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1IOManager_ab68c334a1b1c0bbd8f016b28f6715c13}{idle}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1IOManager_a8d41d71eb7e5525f9b1d1dd6f976571d}{onTimeInsertedAtFront}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1IOManager_a887c03f40a7360591ca9b945b7a76714}{contextResize}}(\ \textcolor{keywordtype}{size\_t}\ size\ );}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_epfd\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ epoll文件句柄}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{int}\ m\_tickleFds[\ 2\ ];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ pipe文件句柄}}
+\DoxyCodeLine{00107\ \ \ \ \ std::atomic<size\_t>\ m\_pendingEventCount\{\ 0\ \};\ \textcolor{comment}{//\ 当前等待执行的事件数量}}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1IOManager_a22a4f9b53993db79101863f45c4ed40d}{MutexType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex;}
+\DoxyCodeLine{00109\ \ \ \ \ std::vector<FdContext\ *>\ m\_fdContexts;\ \textcolor{comment}{//\ socket事件上下文容器}}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+
+\end{DoxyCode}

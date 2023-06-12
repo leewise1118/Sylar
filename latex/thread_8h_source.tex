@@ -1,0 +1,272 @@
+\doxysection{thread.\+h}
+\hypertarget{thread_8h_source}{}\label{thread_8h_source}\index{sylar/thread.h@{sylar/thread.h}}
+\mbox{\hyperlink{thread_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_SYLAR\_THREAD\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_SYLAR\_THREAD\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <semaphore.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesylar}{sylar}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}(\ uint32\_t\ \mbox{\hyperlink{test__thread_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}\ =\ 0\ );}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Semaphore_a203eccbd849e7dd6036e77aefabf0399}{\string~Semaphore}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Semaphore_a843da59f5946c27e4ac2c9f7ad1f20c4}{wait}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Semaphore_afef71b6092904fb87ecc9e9ff8b23655}{notify}}();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ sem\_t\ m\_semaphore;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}\ \&\ )\ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}\ \&\&\ )\ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}\ \&operator=(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}\ \&\ )\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{ScopedLockImpl}}\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl_a770a1da4fc606261d47e1af685469b68}{ScopedLockImpl}}(\ T\ \&mutex\ )}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ :\ m\_mutex(\ mutex\ )\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ m\_mutex.lock();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl_a6ddddf6743e38bad138651cd2cc1d9f0}{\string~ScopedLockImpl}}()\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl_ab031564b6a6dd6e8055267aa50390c2c}{unlock}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl_a1c0fadd235ae2cc0ee349b89690cbe78}{lock}}()\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !m\_locked\ )\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex.lock();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl_ab031564b6a6dd6e8055267aa50390c2c}{unlock}}()\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ m\_locked\ )\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex.unlock();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ T\ \ \ \&m\_mutex;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_locked;}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{ReadScopedLockImpl}}\ \{}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl_aaee63ae9e12ad52469bba1bbba9df10f}{ReadScopedLockImpl}}(\ T\ \&mutex\ )}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ :\ m\_mutex(\ mutex\ )\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ m\_mutex.rdlock();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl_a4f4115cea17667a9e9145bea40ba074c}{\string~ReadScopedLockImpl}}()\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl_ac628a0e3211dbaa1544a060702eabb00}{unlock}}();}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl_a129aa48ea84ee665b318965eb4cc1c0f}{lock}}()\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !m\_locked\ )\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex.rdlock();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl_ac628a0e3211dbaa1544a060702eabb00}{unlock}}()\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ m\_locked\ )\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex.unlock();}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00086\ \ \ \ \ T\ \ \ \&m\_mutex;}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_locked;}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{WriteScopedLockImpl}}\ \{}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl_a72b1c217844cde6ead5071a968d438f8}{WriteScopedLockImpl}}(\ T\ \&mutex\ )}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ :\ m\_mutex(\ mutex\ )\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ m\_mutex.wrlock();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl_aaadf50e8bf978beda7a30449f334f1a5}{\string~WriteScopedLockImpl}}()\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl_a4c93fa4b52dbadb93234ea782f3640b2}{unlock}}();}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl_abe800d800dc1fdf479da3846e363a905}{lock}}()\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ !m\_locked\ )\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex.wrlock();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl_a4c93fa4b52dbadb93234ea782f3640b2}{unlock}}()\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ m\_locked\ )\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutex.unlock();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ m\_locked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ \ \ \ \ T\ \ \ \&m\_mutex;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_locked;}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1NullMutex}{NullMutex}}\ \{}
+\DoxyCodeLine{00120\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{ScopedLockImpl<NullMutex>}}\ \mbox{\hyperlink{classsylar_1_1NullMutex_a4d753970d00765710bb351e7eeb9af2b}{Lock}};}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1NullMutex_a6df8b293da5201fe23817e51bc5ed2e9}{NullMutex}}()\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1NullMutex_a2a1d8ede6f3ecbe90208722bfdc8606a}{\string~NullMutex}}()\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1NullMutex_ac338fda0648cc6ea236db47ec78b1015}{lock}}()\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1NullMutex_adc3c0612c46e101c4c434462a610ef5d}{unlock}}()\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Mutex}{Mutex}}\ \{}
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{ScopedLockImpl<Mutex>}}\ \mbox{\hyperlink{classsylar_1_1Mutex_ac22fc466468ee176c4567f9c6cd016bb}{Lock}};}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Mutex_a547e4d9cb15f963fe76589ee519b9a4f}{Mutex}}()\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ pthread\_mutex\_init(\ \&m\_mutex,\ \textcolor{keyword}{nullptr}\ );}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Mutex_ab0bad1f763f208ab0ee5a80b309f2037}{\string~Mutex}}()\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ pthread\_mutex\_destroy(\ \&m\_mutex\ );}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Mutex_aca15820600438ec37ec0e733b6c59e0f}{lock}}()\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ pthread\_mutex\_lock(\ \&m\_mutex\ );}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1Mutex_ac768d0ebdb6db5653ab2aaadd4337c99}{unlock}}()\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ pthread\_mutex\_unlock(\ \&m\_mutex\ );}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00148\ \ \ \ \ pthread\_mutex\_t\ m\_mutex;}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1NullRWMutex}{NullRWMutex}}\ \{}
+\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{ReadScopedLockImpl<NullRWMutex>}}\ \ \mbox{\hyperlink{classsylar_1_1NullRWMutex_adc4358db6ff649e66e5103cae0c5d41e}{ReadLock}};}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{WriteScopedLockImpl<NullRWMutex>}}\ \mbox{\hyperlink{classsylar_1_1NullRWMutex_a61292e1d23d3b59c1b92b5eb2c7b4759}{WriteLock}};}
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1NullRWMutex_a5b6ec65f82959a31a1ff7660b87a47c3}{NullRWMutex}}()\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1NullRWMutex_aaabc87ee684243408789cf7e4ec2f703}{\string~NullRWMutex}}()\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1NullRWMutex_a7f636d1354c647e2d7e801f56d615c05}{rdlock}}()\ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1NullRWMutex_a873ec8d9a6d3553df38b39d720d57185}{wrlock}}()\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1NullRWMutex_ab9651ebce26f5e666c8b1eb5f7cde5c6}{unlock}}()\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1RWMutex}{RWMutex}}\ \{}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{ReadLock}}\ \ =\ \mbox{\hyperlink{structsylar_1_1ReadScopedLockImpl}{ReadScopedLockImpl<RWMutex>}};}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{WriteLock}}\ =\ \mbox{\hyperlink{structsylar_1_1WriteScopedLockImpl}{WriteScopedLockImpl<RWMutex>}};}
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1RWMutex_aa6196162a98b05e1cbc678056f81db6d}{RWMutex}}()\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ pthread\_rwlock\_init(\ \&m\_lock,\ \textcolor{keyword}{nullptr}\ );}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1RWMutex_a6a02763b6a2103f33faf26268f19ab7a}{\string~RWMutex}}()\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ pthread\_rwlock\_destroy(\ \&m\_lock\ );}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1RWMutex_a92006b89bf01559cb03d47334eef826d}{rdlock}}()\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ pthread\_rwlock\_rdlock(\ \&m\_lock\ );}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1RWMutex_a52b14cbad63675d0abf107ad03a67d96}{wrlock}}()\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ pthread\_rwlock\_wrlock(\ \&m\_lock\ );}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1RWMutex_a72c6b53d97b17d02ba9a8bd382507b51}{unlock}}()\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ pthread\_rwlock\_unlock(\ \&m\_lock\ );}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00189\ \ \ \ \ pthread\_rwlock\_t\ m\_lock;}
+\DoxyCodeLine{00190\ \};}
+\DoxyCodeLine{00191\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1SpinLock}{SpinLock}}\ \{}
+\DoxyCodeLine{00192\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{ScopedLockImpl<SpinLock>}}\ \mbox{\hyperlink{classsylar_1_1SpinLock_a7f32d15d5892aab43802bfd845b1f18d}{Lock}};}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1SpinLock_af1613a1fd795d77bd6516a6bce3338de}{SpinLock}}()\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ pthread\_spin\_init(\ \&m\_mutex,\ 0\ );}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1SpinLock_a1d348a91e818d222961692f87aa45d91}{\string~SpinLock}}()\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ pthread\_spin\_destroy(\ \&m\_mutex\ );}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1SpinLock_a75a011f7028d8e8060180438df2237fa}{lock}}()\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ pthread\_spin\_lock(\ \&m\_mutex\ );}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1SpinLock_a79658f4418ff94b9b988c7cb2292a704}{unlock}}()\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ pthread\_spin\_unlock(\ \&m\_mutex\ );}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00209\ \ \ \ \ pthread\_spinlock\_t\ m\_mutex;}
+\DoxyCodeLine{00210\ \};}
+\DoxyCodeLine{00211\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1CASLock}{CASLock}}\ \{}
+\DoxyCodeLine{00212\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsylar_1_1ScopedLockImpl}{ScopedLockImpl<CASLock>}}\ \mbox{\hyperlink{classsylar_1_1CASLock_af248dcf25f3613e0242a666cf486aeb8}{Lock}};}
+\DoxyCodeLine{00214\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1CASLock_ad50de9b2b17d3cac2a6a540cd78e2026}{CASLock}}()\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1CASLock_ac294174c0873d985a013bae47455c734}{\string~CASLock}}()\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1CASLock_a6bf4d98aa994321b83b8e949bd0de938}{lock}}()\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\ std::atomic\_flag\_test\_and\_set\_explicit(}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \&m\_mutex,\ std::memory\_order\_acquire\ )\ )}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsylar_1_1CASLock_af6d158c89cefb57c06639783bb469712}{unlock}}()\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ std::atomic\_flag\_clear\_explicit(\ \&m\_mutex,\ std::memory\_order\_release\ );}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{volatile}\ std::atomic\_flag\ m\_mutex;}
+\DoxyCodeLine{00230\ \};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsylar_1_1Thread}{Thread}}\ \{}
+\DoxyCodeLine{00233\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{typedef}\ std::shared\_ptr<Thread>\ \mbox{\hyperlink{classsylar_1_1Thread_ac3f80069fd34a46d43f3deb182d0862a}{ptr}};}
+\DoxyCodeLine{00235\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}(\ std::function<\textcolor{keywordtype}{void}()>\ cb,\ \textcolor{keyword}{const}\ std::string\ \&name\ );}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread_ae03879c4a90c8cbd70f22bb5af6e551d}{\string~Thread}}();}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ pid\_t\ \mbox{\hyperlink{classsylar_1_1Thread_ac4cce4866ea05e18c198006933398b60}{getId}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_id;}
+\DoxyCodeLine{00240\ \ \ \ \ \};}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classsylar_1_1Thread_a114869b716d2ce1ea2b0c8a25c5008a3}{getName}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread_a51e83a092b106aa490dfc4ffdc47fa3d}{join}}();}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}\ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{classsylar_1_1Thread_adbf1aae7492d486ef8d13affa049642b}{GetThis}}();}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classsylar_1_1Thread_ae4ddc8a49c1624d048ffb3fdbff04deb}{GetName}}();}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread_ac75f0a058c7fcf020863ec859b3dc614}{SetName}}(\ \textcolor{keyword}{const}\ std::string\ \&name\ );}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00251\ \ \ \ \ pid\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_id\ \ \ \ \ =\ -\/1;}
+\DoxyCodeLine{00252\ \ \ \ \ pthread\_t\ \ \ \ \ \ \ \ \ \ \ \ \ m\_thread\ =\ 0;}
+\DoxyCodeLine{00253\ \ \ \ \ std::function<void()>\ m\_cb;}
+\DoxyCodeLine{00254\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ m\_name;}
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Semaphore}{Semaphore}}\ \ \ \ \ \ \ \ \ \ \ \ \ m\_semaphore;}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *run(\ \textcolor{keywordtype}{void}\ *arg\ );}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{//\ 不允许拷贝构造，避免泄漏}}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}\ \&\ )\ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}\ \&\&\ )\ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}\ \&operator=(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsylar_1_1Thread}{Thread}}\ \&\ )\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00264\ \};}
+\DoxyCodeLine{00265\ \}\ \textcolor{comment}{//\ namespace\ sylar}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
