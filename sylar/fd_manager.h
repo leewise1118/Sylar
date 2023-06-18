@@ -29,6 +29,13 @@ class FdCtx : public std::enable_shared_from_this<FdCtx> {
     bool getUserNonblock() const {
         return m_userNonblock;
     }
+
+    void setSysNonblock( bool v ) {
+        m_sysNonblock = v;
+    }
+    bool getSysNonblock() const {
+        return m_sysNonblock;
+    }
     void     setTimeout( int type, uint64_t v );
     uint64_t getTimeout( int type );
 
